@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Understanding and Computing the Hilbert Regularity</title>
+    <meta name="description" content="">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/var.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/katex.min.css">
+<link rel="stylesheet" href="/css/sidenotes.css">
+<link rel="stylesheet" href="/css/header.css" />
+<link rel="stylesheet" href="/css/footer.css" />
+<link rel="stylesheet" href="/css/post.css" />
+
+    
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://jfs.sh/rss.xml">
+    
+    </head>
+
+<body>
+    <script>if(localStorage.getItem('theme')=='dark'){document.body.classList.add('dark-mode');}</script>
+    
+<header  class="blur" >
+    <div class="top">
+        <a class="header blog" href="/blog">
+            <img src="/icons/pen-nib-fill.svg" class="filter-dark" width="36px">
+            <span>Blog</span>
+        </a>
+        <a class="back" href="/">
+            <img src="/icons/arrow-left-s-line.svg" class="filter-dark" width="14px">
+            <span>Home</span>
+        </a>
+        <div class="icon">
+            <a id="go-home" href="/" aria-label="home" ><img src="/icons/user-3-fill.svg" class="filter-dark" width="24px"></a>
+            <button id="color-toggle" aria-label="dark light mode switch"><img src="/icons/moon-fill.svg" class="filter-dark" width="24px"></button>
+            <button id="toc-toggle" aria-label="table of content"><img src="/icons/menu-2-fill.svg" class="filter-dark" width="24px"></button>
+            </div>
+    </div>
+    <div id="progress-bar"></div>
+</header>
+
+<div class="wrap">
+    <aside  class="blur" >  
+        <nav>
+            <ul>
+                <li>
+                    <a class="toc-h2" href="#definition-of-the-hilbert-regularity">Definition of the Hilbert Regularity</a>
+                    <ul>
+                        <li>
+                            <a class="toc-h3" href="#example-0-dimensional-ideal">Example: 0-Dimensional Ideal</a>
+                        </li>
+                        <li>
+                            <a class="toc-h3" href="#example-ideal-of-positive-dimension">Example: Ideal of Positive Dimension</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#more-variables-more-dimensions">More Variables, More Dimensions</a>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#computing-the-regularity-in-sagemath">Computing the Regularity in sagemath</a>
+                    <ul>
+                        <li>
+                            <a class="toc-h3" href="#the-nice-to-visualize-geometric-approach">The nice-to-visualize geometric approach</a>
+                        </li>
+                        <li>
+                            <a class="toc-h3" href="#math-approach">The rigorous mathematical approach</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#summary">Summary</a>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#references">References</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <main>
+        <div id="top"></div>
+        <article>
+            <h1>Understanding and Computing the Hilbert Regularity</h1>
+            <div id="post-info">
+                <div class="date">
+                    <span id="publish">2021-06-08</span>
+                    </div>
+                <div class="tags">
+                    <a class="tag" href="https://jfs.sh/tags/algebra"><span>#Algebra</span></a><a class="tag" href="https://jfs.sh/tags/grobner-basis"><span>#Gröbner basis</span></a><a class="tag" href="https://jfs.sh/tags/as-discrete-mathematics"><span>#AS Discrete Mathematics</span></a>
+                </div>
+            </div>    
+
+            
+            
+            <table><thead><tr><th style="text-align: left">🛈</th></tr></thead><tbody>
+<tr><td style="text-align: left">I originally wrote this post when working at <a rel="nofollow noreferrer" href="https://asdm.gmbh">AS Discrete Mathematics</a> as part of a project sponsored by the <a rel="nofollow noreferrer" href="https://ethereum.foundation/">Ethereum Foundation</a>. It is reproduced here with friendly permission.</td></tr>
+</tbody></table>
+<p>When attacking <a rel="nofollow noreferrer" href="https://asdm.gmbh/arithmetization-oriented-ciphers/aoc-project/">AOCs</a> using Gröbner bases, the most relevant question is:
+how complex is the Gröbner basis computation?
+One commonly used estimation is based on the <em>degree of regularity</em>.
+Intuitively, the degree of regularity is the degree of the highest-degree polynomials to appear during the Gröbner basis computation.
+(<a href="https://jfs.sh/blog/dreg-insufficient-for-security/">Whether this metric is good for estimating the AOC's security is a different matter</a>.)</p>
+<p>Unfortunately, different authors define the term “degree of regularity” differently.
+In this post, I use the understanding of Bardet et al. [1,2], which coincides with the well-defined <em>Hilbert regularity</em>.</p>
+<p>I first introduce the required concepts, and then make them more tangible with some examples.
+Lastly, there is some <a rel="nofollow noreferrer" href="https://www.sagemath.org/">sagemath</a> code with which the Hilbert regularity can be computed.</p>
+<h1 id="definition-of-the-hilbert-regularity">Definition of the Hilbert Regularity</h1>
+<p>Let <script type="math/tex">\mathbb{F}</script>
+
+be some field,
+<script type="math/tex">R = \mathbb{F}[x_0, \dots, x_{n-1}]</script>
+
+a polynomial ring in <script type="math/tex">n</script>
+ variables over
+<script type="math/tex">\mathbb{F}</script>
+,
+and
+<script type="math/tex">I \subseteq R</script>
+
+a polynomial ideal of <script type="math/tex">R</script>
+.</p>
+<p>The affine Hilbert function of quotient ring <script type="math/tex">R/I</script>
+ is defined as
+<script type="math/tex;mode=display">{}^a\textsf{HF}_{R/I}(s) = \dim_\mathbb{F}\!\left(R_{\leqslant s} \middle/ I_{\leqslant s}\right).</script>
+
+For some large enough value <script type="math/tex">s_0</script>
+, the Hilbert function of all <script type="math/tex">s \geqslant s_0</script>
+ can be expressed as a polynomial in <script type="math/tex">s</script>
+.
+<label for="mn-background" class="margin-toggle">🛈</label><input type="checkbox" id="mn-background" class="margin-toggle"/>
+<span class="marginnote">
+    For a general treatment of the <em>how?</em> and <em>why?</em>, have a look at the excellent book “Ideals, Varieties, and Algorithms,” [3] in particular Chapter 9, §2, Theorem 6, and Chapter 9, §3.
+The examples in this post hopefully shed some light, too.
+
+</span>
+
+This polynomial, denoted <script type="math/tex">{}^a\textsf{HP}_{R/I}(s)</script>
+, is called <em>Hilbert polynomial</em>.
+By definition, the values of the Hilbert function and the Hilbert polynomial coincide for values greater than <script type="math/tex">s_0</script>
+.</p>
+<p>The <strong>Hilbert regularity</strong> is the smallest <script type="math/tex">s_0</script>
+ such that for all <script type="math/tex">s \geqslant s_0</script>
+, the evaluation of the Hilbert function in <script type="math/tex">s</script>
+ equals the evaluation of the Hilbert polynomial in <script type="math/tex">s.</script>
+</p>
+<p>By the <a rel="nofollow noreferrer" href="https://en.wikipedia.org/wiki/Rank%E2%80%93nullity_theorem">rank-nullity theorem</a>, we can equivalently write the Hilbert function as
+<script type="math/tex;mode=display">{}^a\textsf{HF}_{R/I}(s) = \dim_\mathbb{F}\! \left( R_{\leqslant s} \right) - \dim_\mathbb{F}\! \left( I_{\leqslant s}\right).</script>
+
+This is a little bit easier to handle, because we can look at <script type="math/tex">R</script>
+ and <script type="math/tex">I</script>
+ separately and can ignore the quotient ring <script type="math/tex">R/I</script>
+ for the moment.
+By augmenting <script type="math/tex">R</script>
+ with a graded monomial order, like <a rel="nofollow noreferrer" href="https://en.wikipedia.org/wiki/Monomial_order#Graded_reverse_lexicographic_order">degrevlex</a>, we can go one step further and look at leading monomials <script type="math/tex">\textsf{lm}</script>
+ only:
+the set
+<script type="math/tex">\{ \textsf{lm}(f) \mid f \in I, \deg(f) \leqslant s \}</script>
+
+is a basis for
+<script type="math/tex">I_{\leqslant s}</script>
+ as an <script type="math/tex">\mathbb{F}</script>
+-vector space.
+<label for="mn-f_v_space" class="margin-toggle">🛈</label><input type="checkbox" id="mn-f_v_space" class="margin-toggle"/>
+<span class="marginnote">
+    See [3, Chapter 9, §3, Proposition 4] for a full proof.
+
+</span>
+
+Meaning we don't even need to look at <script type="math/tex">I</script>
+, but can restrict ourselves to the ideal of leading monomials <script type="math/tex">\langle \textsf{lm}(I) \rangle</script>
+.
+<script type="math/tex;mode=display">{}^a\textsf{HF}_{R/I}(s) = \dim_\mathbb{F}\!\left(R_{\leqslant s}\right) - \dim_\mathbb{F}\!\left( \langle \textsf{lm}(I) \rangle_{\leqslant s}\right).</script>
+</p>
+<p>One way to get a good grip on <script type="math/tex">\langle I \rangle</script>
+ is through reduced Gröbner bases.
+A Gröbner basis <script type="math/tex">G</script>
+ for ideal <script type="math/tex">I</script>
+ is a finite set of polynomials with the property
+<script type="math/tex">\langle G \rangle = \langle I \rangle</script>
+
+and, more relevant right now,
+<script type="math/tex">\langle \textsf{lm}(G) \rangle = \langle \textsf{lm}(I) \rangle.</script>
+
+This means it's sufficient to look at (the right combinations) of elements of <script type="math/tex">\textsf{lm}(G).</script>
+
+This, in turn, is more manageable because <script type="math/tex">G</script>
+ always has finitely many elements, but <script type="math/tex">I</script>
+ might not.</p>
+<h2 id="example-0-dimensional-ideal">Example: 0-Dimensional Ideal</h2>
+<p>Let's start with a super simple polynomial system:
+<script type="math/tex;mode=display">G = \{x^6, x^2y^2, y^5\} \subseteq \mathbb{F}[x,y], \quad I = \langle G \rangle</script>
+
+for some finite field
+<script type="math/tex">\mathbb{F}.</script>
+
+This is a zero-dimensional, monomial (thus homogeneous) ideal.
+That's about as special as a special case can get.
+Note that here, we have
+<script type="math/tex">I = \langle \textsf{lm}(I) \rangle</script>
+, but this doesn't generally hold.
+Dealing with a super-special case also means that the Hilbert polynomial is relatively boring, but that's fine for starting out.
+<script type="math/tex">G</script>
+ is the reduced Gröbner basis for <script type="math/tex">I</script>
+, and we'll use its elements to help computing the Hilbert function.</p>
+<p>A benefit of ideals in two variables is:
+we can draw pictures.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal-1.png" >
+    
+    <figcaption>The monomials of 𝔽[<em>x</em>,<em>y</em>] seen as 𝔽-vector space.</figcaption>
+    
+</figure>
+<p>This is what the monomials of <script type="math/tex">\mathbb{F}[x,y]</script>
+ as an <script type="math/tex">\mathbb{F}</script>
+-vector space look like.
+Well, at least the part <script type="math/tex">\{x^ay^b \mid a \leqslant 8, b \leqslant 7 \}.</script>
+
+After all, <script type="math/tex">\mathbb{F}[x,y]</script>
+ as an <script type="math/tex">\mathbb{F}</script>
+-vector space has infinite dimension.
+I have (arbitrarily) highlighted <script type="math/tex">x^3y^2,</script>
+ i.e., coordinate (3,2), to give a better understanding of what the picture means.</p>
+<p>Since <script type="math/tex">I</script>
+ is a monomial ideal, we can highlight every element in <script type="math/tex">I</script>
+.
+The circles of the elements of the Gröbner basis <script type="math/tex">G</script>
+ are red.
+The zig-zig pattern of the boundary between <script type="math/tex">x^ay^b \in I</script>
+ and <script type="math/tex">x^ay^b \notin I</script>
+ is inherent, and generalizes to higher dimensions, i.e., more variables.
+Because of the zig-zagging, the set of monomials not in <script type="math/tex">\langle \textsf{lm}(I) \rangle</script>
+ is referred to as <em>staircase</em> of <script type="math/tex">I.</script>
+</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal-2.png" >
+    
+    <figcaption>The <em>staircase</em> of &langle;G&rangle;.</figcaption>
+    
+</figure>
+<p>Let's start computing the Hilbert function for <script type="math/tex">R/I.</script>
+
+The <script type="math/tex">\mathbb{F}</script>
+-vector space dimensions of <script type="math/tex">R_{\leqslant s}</script>
+ and <script type="math/tex">I_{\leqslant s}</script>
+ are simply the number of monomials in <script type="math/tex">R</script>
+ respectively <script type="math/tex">I</script>
+ with degree <script type="math/tex">\leqslant s.</script>
+
+Getting those numbers is easy – it amounts to counting dots in the picture!
+For example, for <script type="math/tex">s=2,</script>
+, we have <script type="math/tex">{}^a\textsf{HF}_{R/I}(2)=5-0=5:</script>
+</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal-3.png" >
+    
+    <figcaption>The Hilbert Function of <em>I</em> at <em>s = 2</em>.</figcaption>
+    
+</figure>
+<p>No monomial of total degree less than or equal to 2 is in <script type="math/tex">I</script>
+, so computing the Hilbert function is a little bit boring here.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal-5.png" >
+    
+    <figcaption>The Hilbert Function of <em>I</em> at <em>s = 5</em>.</figcaption>
+    
+</figure>
+<p>The value of the Hilbert function
+<script type="math/tex">{}^a\textsf{HF}_{R/I}(5)</script>
+
+is more interesting:
+some monomials of degree <script type="math/tex">\leqslant 5</script>
+ are indeed elements of <script type="math/tex">I</script>
+, and thus <script type="math/tex">\dim I_{\leqslant 5}</script>
+ is not 0 but 4.
+In particular, we have <script type="math/tex">{}^a\textsf{HF}_{R/I}(5)=21 - 4=17.</script>
+
+For <script type="math/tex">s=6,</script>
+ we have <script type="math/tex">{}^a\textsf{HF}_{R/I}(6)=28-10=18:</script>
+</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal-6.png" >
+    
+    <figcaption>The Hilbert Function of <em>I</em> at <em>s = 6</em>.</figcaption>
+    
+</figure>
+<p>From this point forward, increasing <script type="math/tex">s</script>
+ will not change the value of the Hilbert function –
+the dimension of <script type="math/tex">I_{\leqslant s}</script>
+ as an <script type="math/tex">\mathbb{F}</script>
+-vector space grows with the same rate as the dimension of <script type="math/tex">R_{\leqslant s}</script>
+, since all monomials <em>not</em> in <script type="math/tex">I</script>
+ are of lesser total degree.
+Expressed differently, all monomials above the line are elements of both <script type="math/tex">I</script>
+ and <script type="math/tex">R</script>
+ –
+the values of the Hilbert function doesn't change by increasing <script type="math/tex">s.</script>
+</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal-7.png" >
+    
+    <figcaption>The Hilbert Function of <em>I</em> at <em>s = 7</em>.</figcaption>
+    
+</figure>
+<p>From this, two things follow:</p>
+<ol>
+<li>The Hilbert polynomial of <script type="math/tex">R/I</script>
+ is the constant 18.
+(That's why I said it's relatively boring.
+A more interesting case follows.)</li>
+<li>The Hilbert regularity of <script type="math/tex">R/I</script>
+ is 6, since <script type="math/tex">{}^a\textsf{HF}_{R/I}(s) = {}^a\textsf{HP}_{R/I}(s)</script>
+ for all <script type="math/tex">s \geqslant 6.</script>
+</li>
+</ol>
+<h2 id="example-ideal-of-positive-dimension">Example: Ideal of Positive Dimension</h2>
+<p>As hinted at above, whether or not <script type="math/tex">I</script>
+ is a monomial ideal does not matter for computing the Hilbert function or the Hilbert polynomial, because <script type="math/tex">\textsf{lm}(I)</script>
+ behaves exactly the same.
+What does matter, though, is the dimension of <script type="math/tex">I.</script>
+
+In the previous example, <script type="math/tex">I</script>
+ was of dimension 0, and the Hilbert polynomial of <script type="math/tex">R/I</script>
+ was a constant.
+That's not a coincidence.</p>
+<p>Even though the ideal spanned by the polynomial system modelling an AOC will usually be zero-dimensional, it's interesting to see what happens if it isn't.
+Let's take <script type="math/tex">G = \{x^4y^3, x^2y^5\} \subseteq \mathbb{F}[x,y]</script>
+ and <script type="math/tex">I = \langle G \rangle.</script>
+</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal_poly-0.png" >
+    
+    <figcaption>The “staircase” of &langle;G&rangle;. Some of the stairs' steps are pretty large.</figcaption>
+    
+</figure>
+<p>As you can see, there are parts of the staircase that extend to infinity.
+That's a direct consequence of <script type="math/tex">I</script>
+ having positive dimension, or, equivalently, variety <script type="math/tex">V(I)</script>
+ not having finitely many solutions.
+In the picture below, I've indicated the staircase's five subspaces of dimension <script type="math/tex">1</script>
+ by dashed, gray lines.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal_poly-1.png" >
+    
+    <figcaption>The five subspaces of <em>I</em> with dimension 1.</figcaption>
+    
+</figure>
+<p>For the Hilbert function, only monomials in <script type="math/tex">I</script>
+ of degree <script type="math/tex">\leqslant s</script>
+ are relevant.
+For each of the five subspaces, we can express the matching number of elements as a polynomial in <script type="math/tex">s.</script>
+</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal_poly-2.png" >
+    
+    <figcaption>The number of monomials in each of the 1-dimensional subspaces as a function of s.</figcaption>
+    
+</figure>
+<p>The sum of these five polynomials is <script type="math/tex">5s+1,</script>
+ which corresponds to the total number of monomials in the staircase of <script type="math/tex">I</script>
+ of degree <script type="math/tex">\leqslant s</script>
+ that lie in the staircase's 1-dimensional subspaces –
+except that some elements are counted more than once.
+Since the intersection of two orthogonal 1-dimensional subspaces is of dimension <script type="math/tex">0</script>
+, we can simply add a constant correction term.
+<label for="mn-higher_dim_correction" class="margin-toggle">🛈</label><input type="checkbox" id="mn-higher_dim_correction" class="margin-toggle"/>
+<span class="marginnote">
+    For ideals with more than two variables, we generally need to add correction terms of higher dimension, corresponding to polynomial summands of degree higher than 0.
+
+</span>
+</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal_poly-3.png" >
+    
+    <figcaption>The correction term for monomials counted twice is 6.</figcaption>
+    
+</figure>
+<p>Adding the correction term of <script type="math/tex">-6</script>
+ gives <script type="math/tex">5s-5</script>
+ as a (preliminary) Hilbert polynomial for <script type="math/tex">I.</script>
+
+We're not completely done yet:
+for <script type="math/tex">s > 4</script>
+, there are monomials not in <script type="math/tex">I</script>
+ that are also not in any of the 1-dimensional subspaces –
+for example <script type="math/tex">x^3y^3.</script>
+
+Of those, we only have finitely many.
+In the example, it's 4.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal_poly-4.png" >
+    
+    <figcaption>The correction term for monomials not counted at all is 4.</figcaption>
+    
+</figure>
+<p>After adding the second correction term, we have <script type="math/tex">{}^a\textsf{HP}_{I/R}(s)=5s-1</script>
+.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal_poly-5.png" >
+    
+    <figcaption>The staircase of &langle;G&rangle; with 1-dimensional subspaces and both correction terms.</figcaption>
+    
+</figure>
+<p>By finding the Hilbert polynomial, we also computed the Hilbert regularity of <script type="math/tex">R/I:</script>
+
+it's <script type="math/tex">7.</script>
+
+In other words, for <script type="math/tex">s\geqslant 7,</script>
+ we have <script type="math/tex">\dim_\mathbb{F}(R/I) = {}^a\textsf{HF}_{R/I}(s) = {}^a\textsf{HP}_{R/I}(s) = 5s-1.</script>
+</p>
+<p>This coincides with the distance of the closest diagonal
+<label for="mn-hyperplane" class="margin-toggle">🛈</label><input type="checkbox" id="mn-hyperplane" class="margin-toggle"/>
+<span class="marginnote">
+    Generally speaking, the diagonal is a hyperplane.
+
+</span>
+
+such that all “overlapping” as well as all zero-dimensional parts of the staircase are enclosed –
+the red and blue dashed circles, respectively, in above picture.</p>
+<h1 id="more-variables-more-dimensions">More Variables, More Dimensions</h1>
+<p>The intuition of the 2-dimensional examples above translate to higher dimensions:
+find the most distant corner of the blue circle –
+the parts where positive-dimensional subspaces of the variety overlap –
+and the red circle –
+the variety's part of dimension zero –
+and take the distance of the farther of these two corners as the Hilbert regularity.
+However, finding the corners becomes less trivial.
+Let me demonstrate with a staircase consisting of three “tunnels” that we'll successively modify.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal_3D-0.png" >
+    
+    <figcaption>Ideal &langle;G&rangle; as 3-dimensional 𝔽-vector space.</figcaption>
+    
+</figure>
+<p>Above staircase is defined by <script type="math/tex">G=\{x^2y, x^2z^3, yz^2\}.</script>
+
+No monomials exist in the red bubble –
+every point is part of a subspace of dimension 1.
+The blue corner is the monomial defining the enclosing space of the parts where positive-dimensional subspaces overlap.
+It coincides with the least common multiple (lcm) of the three elements of <script type="math/tex">G,</script>
+ namely <script type="math/tex">m=x^2yz^3.</script>
+
+The Hilbert regularity can be read off from <script type="math/tex">m\!</script>
+:
+the hyperplane's required distance is <script type="math/tex">\deg(x^{(2-1)}y^{(1-1)}z^{(3-1)})=3.</script>
+</p>
+<p>That was easy enough.
+Let's take a look at <script type="math/tex">G' = \{x^2y, yz^2, z^3\}.</script>
+
+The staircase looks similar, with the exception for the “<script type="math/tex">z</script>
+-tunnel.”</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal_3D-1.png" >
+    
+    <figcaption>Closing off the “tunnel” along the z-axis changes the Hilbert regularity.</figcaption>
+    
+</figure>
+<p>Even though <script type="math/tex">m</script>
+ from above is still on the “border” of <script type="math/tex">\langle G' \rangle,</script>
+ just as it was for <script type="math/tex">\langle G \rangle,</script>
+ it no longer defines the enclosing space we're looking for.
+Note that the lcm of the elements in <script type="math/tex">G'</script>
+ is still <script type="math/tex">m,</script>
+ but the Hilbert regularity is now defined by the lcm of only two elements, <script type="math/tex">x^2y</script>
+ and <script type="math/tex">yz^2,</script>
+ giving <script type="math/tex">m' = x^2yz^2.</script>
+
+The Hilbert regularity has changed to <script type="math/tex">2.</script>
+</p>
+<p>Let's modify the staircase a little bit more, and look at <script type="math/tex">G^\dagger = \{x^2, yz^2, z^3\}.</script>
+</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal_3D-2.png" >
+    
+    <figcaption>Additionally closing off the “tunnel” along the x-axis changes the Hilbert regularity again.</figcaption>
+    
+</figure>
+<p>he Hilbert regularity can once again be found by looking at <script type="math/tex">m = x^2yz^3,</script>
+ but the reason has changed.
+This time around, <script type="math/tex">m</script>
+ is the most distant corner of the volume enclosing all monomials not appearing in positive-dimensional subspaces of the variety –
+that's the red bubble from before.
+And since only one “tunnel” remains, there's no more overlap in positive-dimensional subspaces –
+the blue bubble, and with it the blue dot, have disappeared.
+Note that <script type="math/tex">m</script>
+ is once again the lcm of the three elements of <script type="math/tex">G^\dagger.</script>
+
+The Hilbert regularity is now again 3.</p>
+<p>For completeness sake, let's close off the last of the tunnels by adding <script type="math/tex">y^4</script>
+ to <script type="math/tex">G^\dagger.</script>
+
+Monomial <script type="math/tex">m^\dagger = x^2y^4z^2,</script>
+ being the lcm of <script type="math/tex">x^2,</script>
+ <script type="math/tex">yz^2,</script>
+ and <script type="math/tex">y^4,</script>
+ is the Hilbert regularity-defining corner.
+The Hilbert regularity for <script type="math/tex">G^\dagger</script>
+ is 5.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_monomial_ideal_3D-3.png" >
+    
+    <figcaption>Additionally closing off the “tunnel” along the y-axis again changes the Hilbert regularity.</figcaption>
+    
+</figure>
+<h1 id="computing-the-regularity-in-sagemath">Computing the Regularity in sagemath</h1>
+<p>After having understood the Hilbert regularity, it's time to throw some <a rel="nofollow noreferrer" href="https://www.sagemath.org/">sagemath</a> at the problem.
+Below, you can find two approaches.
+The first uses the staircase, like in the examples above.
+The second is based on the <em>Hilbert series</em>, which is explained <a href="https://jfs.sh/blog/hilbert-reg/#math-approach">further below</a>.</p>
+<h2 id="the-nice-to-visualize-geometric-approach">The nice-to-visualize geometric approach</h2>
+<p>Using the geometric intuitions from above, we can compute the Hilbert regularity by finding all of the staircase's corners.
+The code below only works for ideals of dimension 0
+<label for="mn-negative_dim" class="margin-toggle">🛈</label><input type="checkbox" id="mn-negative_dim" class="margin-toggle"/>
+<span class="marginnote">
+    Technically, the code works for any dimension ≤ 0, i.e., if there are no common solutions to the polynomials in the ideal, it also works.
+
+</span>
+
+since the polynomial models I do research on are always of that kind.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_finding_corners.png" >
+    
+    <figcaption>A general method to identify whether the lcm of some elements of G are a corner of the staircase.</figcaption>
+    
+</figure>
+<p>The code computes all lcm's of subsets of size <script type="math/tex">n</script>
+ of the Gröbner basis' leading monomials, which we have determined as the points of interest above.
+Any such lcm corresponding to a monomial that's flush to one of the 0-planes is ignored as being degenerate –
+for example, the turquoise cross in below picture.
+Next, we check if the lcm-monomial is actually a corner of the staircase, by moving one step towards the origin along all axes.
+If the resulting monomial is in the ideal, it is not in the staircase, and thus not a corner –
+for example, the red cross in above picture.
+If, from the moved-to monomial, moving one step along any axis crosses the border of the staircase, we found a corner –
+for example, both of the blue crosses in above picture, but not the orange cross in the picture below.
+The distance of the furthest such corner corresponds to the Hilbert regularity.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-08_finding_corners_3D.png" >
+    
+    <figcaption>Some edge cases when determining whether a monomial is a corner are most clearly seen in the 3-dimensional case.</figcaption>
+    
+</figure>
+<p>With those pictures in mind, following the code should be fairly doable:</p>
+<pre data-lang="py" style="background-color:#2e3440;color:#d8dee9;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#81a1c1;">import </span><span>combinations
+</span><span style="color:#81a1c1;">def </span><span style="color:#88c0d0;">hilbert_regularity_staircase</span><span>(I):
+</span><span>    </span><span style="color:#616e88;">&#39;&#39;&#39;
+</span><span style="color:#616e88;">    Compute the Hilbert regularity of R/I where R = I.ring() and I.dimension() &lt;= 0.
+</span><span style="color:#616e88;">    This is done by iterating through all n-tuples of the Gröbner basis&#39; leading monomials,
+</span><span style="color:#616e88;">    computing their lcm, then determining if that lcm is actually a corner of the staircase.
+</span><span style="color:#616e88;">    The corner that is the furthest from the origin determines the Hilbert regularity.
+</span><span style="color:#616e88;">    &#39;&#39;&#39;
+</span><span>    </span><span style="color:#81a1c1;">if </span><span>I</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">dimension</span><span>() </span><span style="color:#81a1c1;">&gt; </span><span style="color:#b48ead;">0</span><span>:
+</span><span>        </span><span style="color:#81a1c1;">raise </span><span style="color:#8fbcbb;">NotImplementedError</span><span>(</span><span style="color:#81a1c1;">f</span><span style="color:#a3be8c;">&quot;Ideal must be of dimension 0 or less, but has dim </span><span>{I</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">dimension</span><span>()}</span><span style="color:#a3be8c;">.&quot;</span><span>)
+</span><span>    gens </span><span style="color:#81a1c1;">= </span><span>I</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">ring</span><span>()</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">gens</span><span>() </span><span style="color:#616e88;"># all variables
+</span><span>    n </span><span style="color:#81a1c1;">= </span><span style="font-style:italic;color:#88c0d0;">len</span><span>(gens)
+</span><span>    xyz </span><span style="color:#81a1c1;">= </span><span style="font-style:italic;color:#88c0d0;">reduce</span><span>(operator</span><span style="color:#81a1c1;">.</span><span>mul</span><span style="color:#eceff4;">, </span><span>gens</span><span style="color:#eceff4;">, </span><span style="color:#b48ead;">1</span><span>)
+</span><span>    gb_lm </span><span style="color:#81a1c1;">= </span><span>[f</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">lm</span><span>() </span><span style="color:#81a1c1;">for </span><span>f </span><span style="color:#81a1c1;">in </span><span>I</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">groebner_basis</span><span>()]
+</span><span>    I_lm </span><span style="color:#81a1c1;">= </span><span style="color:#88c0d0;">Ideal</span><span>(gb_lm)
+</span><span>    hil_reg </span><span style="color:#81a1c1;">= </span><span style="color:#b48ead;">0
+</span><span>    </span><span style="color:#81a1c1;">for </span><span>lms </span><span style="color:#81a1c1;">in </span><span style="color:#88c0d0;">combinations</span><span>(gb_lm</span><span style="color:#eceff4;">, </span><span>n):
+</span><span>        m </span><span style="color:#81a1c1;">= </span><span style="color:#88c0d0;">lcm</span><span>(lms)
+</span><span>        </span><span style="color:#616e88;"># are we considering a meaningful combination of lm&#39;s?
+</span><span>        </span><span style="color:#616e88;"># i.e., does every variable make an appearance in m?
+</span><span>        </span><span style="color:#81a1c1;">if </span><span style="font-style:italic;color:#88c0d0;">len</span><span>(m</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">degrees</span><span>()) </span><span style="color:#81a1c1;">!= </span><span>n </span><span style="color:#81a1c1;">or not </span><span style="font-style:italic;color:#88c0d0;">all</span><span>(m</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">degrees</span><span>()):
+</span><span>            </span><span style="color:#81a1c1;">continue
+</span><span>        m </span><span style="color:#81a1c1;">= </span><span>m </span><span style="color:#81a1c1;">/ </span><span>xyz </span><span style="color:#616e88;"># 1 step towards origin along all axes
+</span><span>        </span><span style="color:#81a1c1;">assert </span><span>I</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">ring</span><span>()(m) </span><span style="color:#81a1c1;">== </span><span>m</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">numerator</span><span>() </span><span style="color:#616e88;"># no negative exponents, please
+</span><span>        m </span><span style="color:#81a1c1;">= </span><span>I</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">ring</span><span>()(m)
+</span><span>        </span><span style="color:#616e88;"># are we in a corner of the staircase?
+</span><span>        </span><span style="color:#616e88;"># i.e., not in the ideal, but moving 1 step along any axis, we end up in the ideal?
+</span><span>        </span><span style="color:#81a1c1;">if not </span><span>m </span><span style="color:#81a1c1;">in </span><span>I_lm </span><span style="color:#81a1c1;">and </span><span style="font-style:italic;color:#88c0d0;">all</span><span>([v</span><span style="color:#81a1c1;">*</span><span>m </span><span style="color:#81a1c1;">in </span><span>I_lm </span><span style="color:#81a1c1;">for </span><span>v </span><span style="color:#81a1c1;">in </span><span>gens]):
+</span><span>            hil_reg </span><span style="color:#81a1c1;">= </span><span style="font-style:italic;color:#88c0d0;">max</span><span>(hil_reg</span><span style="color:#eceff4;">, </span><span>m</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">degree</span><span>())
+</span><span>    </span><span style="color:#81a1c1;">return </span><span>hil_reg
+</span></code></pre>
+<h2 id="math-approach">The rigorous mathematical approach</h2>
+<p>The Hilbert regularity can also be computed using the <a rel="nofollow noreferrer" href="https://en.wikipedia.org/wiki/Hilbert_series_and_Hilbert_polynomial"><em>Hilbert series</em></a>.
+The Hilbert series is the formal power series of the (projective) Hilbert function:
+<label for="mn-projective" class="margin-toggle">🛈</label><input type="checkbox" id="mn-projective" class="margin-toggle"/>
+<span class="marginnote">
+    We can either look at the projective Hilbert function, or equivalently subtract two consecutive values of the affine Hilbert function, as I am doing here.
+
+</span>
+
+<script type="math/tex;mode=display">\textsf{HS}_{R/I}(t) = \sum_{s=1}^{\infty}({}^a\textsf{HF}_{R/I}(s) - {}^a\textsf{HF}_{R/I}(s-1))t^s</script>
+
+The Hilbert series' coefficient of monomial <script type="math/tex">t^d</script>
+ is the number of monomials of degree <script type="math/tex">d</script>
+
+<label for="mn-equality" class="margin-toggle">🛈</label><input type="checkbox" id="mn-equality" class="margin-toggle"/>
+<span class="marginnote">
+    Unlike before, we only consider equality now!
+
+</span>
+
+that are in <script type="math/tex">R</script>
+ but not in <script type="math/tex">I.</script>
+
+The Hilbert regularity coincides with the degree of the highest-degree consecutive term having positive coefficient.</p>
+<p>For example, take <script type="math/tex">I</script>
+ from the very first example again, where we had <script type="math/tex">G = \{x^6, x^2y^2, y^5\}.</script>
+
+Evaluating the Hilbert function of <script type="math/tex">R/I</script>
+ gives <script type="math/tex">(1, 3, 6, 10, 14, 17, 18, 18, \dots).</script>
+
+The Hilbert series of <script type="math/tex">R/I</script>
+ is
+<script type="math/tex;mode=display">\textsf{HS}_{R/I}(t) = 1 + 2t + 3t^2 + 4t^3 + 4t^4 + 3t^5 + t^6.</script>
+
+And indeed, the sought-for term has degree <script type="math/tex">6,</script>
+ which we have seen to be the Hilbert regularity of <script type="math/tex">R/I.</script>
+</p>
+<p>Conveniently, sagemath has a method for computing the Hilbert series of an ideal, albeit only for homogeneous ideals.
+As we have established above, the Hilbert regularity does not change when looking only at the leading monomials of the ideal's Gröbner basis, which is a homogeneous ideal.
+Thus, finally, we have a catch-all piece of code for computing the Hilbert regularity.</p>
+<pre data-lang="py" style="background-color:#2e3440;color:#d8dee9;" class="language-py "><code class="language-py" data-lang="py"><span style="color:#81a1c1;">def </span><span style="color:#88c0d0;">hilbert_regularity</span><span>(I):
+</span><span>    </span><span style="color:#616e88;">&#39;&#39;&#39;
+</span><span style="color:#616e88;">    Compute the Hilbert regularity of R/I using the Hilbert series of R/I.
+</span><span style="color:#616e88;">    &#39;&#39;&#39;
+</span><span>    gb_lm </span><span style="color:#81a1c1;">= </span><span>[f</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">lm</span><span>() </span><span style="color:#81a1c1;">for </span><span>f </span><span style="color:#81a1c1;">in </span><span>I</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">groebner_basis</span><span>()]
+</span><span>    I_lm </span><span style="color:#81a1c1;">= </span><span style="color:#88c0d0;">Ideal</span><span>(gb_lm)
+</span><span>    hil_ser </span><span style="color:#81a1c1;">= </span><span>I_lm</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">hilbert_series</span><span>()
+</span><span>    hil_reg </span><span style="color:#81a1c1;">= </span><span>hil_ser</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">numerator</span><span>()</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">degree</span><span>() </span><span style="color:#81a1c1;">- </span><span>hil_ser</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">denominator</span><span>()</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">degree</span><span>()
+</span><span>    </span><span style="color:#81a1c1;">return </span><span>hil_reg
+</span></code></pre>
+<h1 id="summary">Summary</h1>
+<p>In this post, we have looked at the Hilbert function, the Hilbert polynomial, the Hilbert regularity, and the Hilbert series.
+For the first two of those, extensive examples have built intuition for what the Hilbert regularity is –
+and why it is not trivial to compute using this intuition.
+Instead, the Hilbert series gives us a tool to find the Hilbert regularity fairly easily.</p>
+<h1 id="references">References</h1>
+<ol>
+<li>Magali Bardet, Jean-Charles Faugère, Bruno Salvy, and Bo-Yin Yang.
+<em>Asymptotic behaviour of the degree of regularity of semi-regular polynomial systems</em>.
+In Proceedings of MEGA, volume 5, 2005.</li>
+<li>Alessio Caminata and Elisa Gorla.
+<em>Solving multivariate polynomial systems and an invariant from commutative algebra</em>.
+arXiv preprint arXiv:1706.06319, 2017.</li>
+<li>David A. Cox, John Little, and Donal O’Shea.
+<em>Ideals, Varieties, and Algorithms: An Introduction to Computational Algebraic Geometry and Commutative Algebra</em>.
+Springer Science &amp; Business Media, 2013.</li>
+</ol>
+
+        </article>
+    </main>
+    <div class="blank"></div>
+</div>
+<footer>
+    <div class="copyright">
+         
+    </div>
+    
+</footer>
+<script src="/js/dark.js"></script>    
+    <script src="/js/toc.js"></script>
+    <script src="/js/progress.js"></script>
+    <script src="/js/lightense.min.js"></script>
+    <script src="/js/img.js"></script>
+    <script src="/js/katex.min.js"></script>
+    <script src="/js/mathtex-script-type.min.js"></script>
+
+</body>
+
+</html>

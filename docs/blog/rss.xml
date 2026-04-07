@@ -1,0 +1,1403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+      <title>jfs.sh</title>
+      <link>https://jfs.sh/blog/</link>
+      <description>The rambling and tinkering of a climbing cryptographer.</description>
+      <generator>Zola</generator>
+      <language>en</language>
+      <atom:link href="https://jfs.sh/blog/rss.xml" rel="self" type="application/rss+xml"/>
+      <lastBuildDate>Tue, 07 Apr 2026 00:00:00 +0000</lastBuildDate>
+      <item>
+          <title>Rust Macros – A Presentation</title>
+          <pubDate>Tue, 07 Apr 2026 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://jfs.sh/blog/macros-in-rust/</link>
+          <guid>https://jfs.sh/blog/macros-in-rust/</guid>
+          <description xml:base="https://jfs.sh/blog/macros-in-rust/">&lt;p&gt;Thanks to &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;rust-basel.ch&#x2F;&quot;&gt;Rust Basel&lt;&#x2F;a&gt;&#x27;s for inviting me to give a talk about macros in Rust!&lt;&#x2F;p&gt;
+&lt;p&gt;If you&#x27;re curious about the content, check out &lt;a href=&quot;&#x2F;blog&#x2F;rust_macros.pdf&quot;&gt;the slides&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2026-04-07_rust-macro-flavors.png&quot; &gt;
+    
+    &lt;figcaption&gt;the different types of macros in rust&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+</description>
+      </item>
+      <item>
+          <title>Mosaics and Geometric Patterns</title>
+          <pubDate>Mon, 18 Apr 2022 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://jfs.sh/blog/mosaics-and-geometric-patterns/</link>
+          <guid>https://jfs.sh/blog/mosaics-and-geometric-patterns/</guid>
+          <description xml:base="https://jfs.sh/blog/mosaics-and-geometric-patterns/">&lt;p&gt;A &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;remalue.github.io&#x2F;&quot;&gt;friend&lt;&#x2F;a&gt;&#x27;s late obsession on ornaments, mosaics, &amp;amp; patterns led me to toying around with them in &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;ipe.otfried.org&#x2F;&quot;&gt;ipe&lt;&#x2F;a&gt; on a lazy day.
+Here&#x27;s some nice looking pictures.
+Thanks to &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;ambigraph.com&#x2F;&quot;&gt;ambigraph&lt;&#x2F;a&gt; for the inspiration!&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;mosaics&quot;&gt;Mosaics&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;blog&#x2F;2022-04-18_four_star.svg&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;blog&#x2F;2022-04-18_five_star.svg&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;blog&#x2F;2022-04-18_six_star_5.svg&quot; alt=&quot;&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;ipe-files&quot;&gt;Ipe Files&lt;&#x2F;h1&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;2022-04-18_four_star.ipe&quot;&gt;Mosaic with four points&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;2022-04-18_five_star.ipe&quot;&gt;Mosaic with five points&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;a href=&quot;&#x2F;blog&#x2F;2022-04-18_six_star.ipe&quot;&gt;Mosaic with six points&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</description>
+      </item>
+      <item>
+          <title>Gröbner Basis-Attacking a Tiny Sponge</title>
+          <pubDate>Mon, 28 Jun 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://jfs.sh/blog/gb-attacking-tiny-sponge/</link>
+          <guid>https://jfs.sh/blog/gb-attacking-tiny-sponge/</guid>
+          <description xml:base="https://jfs.sh/blog/gb-attacking-tiny-sponge/">&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;🛈&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;I originally wrote this post when working at &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;asdm.gmbh&quot;&gt;AS Discrete Mathematics&lt;&#x2F;a&gt; as part of a project sponsored by the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;ethereum.foundation&#x2F;&quot;&gt;Ethereum Foundation&lt;&#x2F;a&gt;. It is reproduced here with friendly permission.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;When estimating the security of a cipher or hash function, there are many different attack scenarios to consider.
+For Arithmetization Oriented Ciphers (AOCs), Gröbner basis attacks are a lot more threatening than they are to “traditional” ciphers, like the AES.
+The most common way to argue resistance against Gröbner basis attacks is to look at the expected complexity of Gröbner basis algorithms.&lt;&#x2F;p&gt;
+&lt;p&gt;However, the complexity estimates only apply asymptotically, and the Big O notation might hide factors that are significant for parameter sizes a cipher designer is interested in.
+Thus, to validate whether the theoretical complexity estimates carry significance, we need “real” data to compare it to.
+This means running experiments – and that&#x27;s exactly what this post is about.
+Concretely, we have performed several Gröbner basis attacks, and will be discussing and interpreting the resulting data here.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;disclaimer&quot;&gt;Disclaimer&lt;&#x2F;h2&gt;
+&lt;p&gt;Take below results with a grain of salt – the data might be wrong.
+As far as I know, no one has reproduced it yet.
+&lt;label for=&quot;mn-efn_note&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-efn_note&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    If you have run your own, comparable experiments, please &lt;a href=&quot;mailto:gb_attack@jfs.sh&quot;&gt;let me know&lt;&#x2F;a&gt;!
+
+&lt;&#x2F;span&gt;
+
+Please draw any conclusions carefully.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;prerequisites&quot;&gt;Prerequisites&lt;&#x2F;h2&gt;
+&lt;p&gt;We assume a certain familiarity with the ciphers Rescue-Prime &lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;gb-attacking-tiny-sponge&#x2F;#references&quot;&gt;[4]&lt;&#x2F;a&gt; and Poseidon &lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;gb-attacking-tiny-sponge&#x2F;#references&quot;&gt;[3]&lt;&#x2F;a&gt;, as well as the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Sponge_function&quot;&gt;Sponge construction&lt;&#x2F;a&gt;.
+As a quick reminder for these three things, there are graphical depictions at the end of this post and in the next section, respectively.&lt;&#x2F;p&gt;
+&lt;p&gt;Since this post is all about Gröbner basis attacks, a certain familiarity on this topic does not hurt, albeit it shouldn&#x27;t be strictly necessary.
+In case you want to brush up on a detail or two, have a look &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;ia.cr&#x2F;2021&#x2F;870&quot;&gt;here&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;description-of-experiments&quot;&gt;Description of Experiments&lt;&#x2F;h1&gt;
+&lt;p&gt;AOCs like Rescue-Prime and Poseidon are designed to have a “small” algebraic description.
+That is, when polynomially modeling their structure, we don&#x27;t need too many polynomials, and those are not of very high degree.&lt;&#x2F;p&gt;
+&lt;p&gt;A use case where an AOC&#x27;s simple algebraic description causes major speedups involves hashes in zero-knowledge proof systems.
+The most popular way to transform a permutation, like Rescue-Prime or Poseidon, into a hash function is the Sponge construction.
+On a high level, a Sponge looks like this:&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-28_sponge.png&quot; &gt;
+    
+    &lt;figcaption&gt;Stylized depiction of the Sponge construction.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Any cryptographic hash function needs to be secure against inversion, i.e., computing a pre-image for a given hash digest must be so difficult as to be infeasible.
+For the Sponge construction, this largely depends on the plugged-in permutation.
+For our experiments, we perform a second pre-image Gröbner basis attack on a Sponge construction with exactly one application of the permutation.
+Furthermore, we set rate = capacity = 1, which is the lowest meaningful value for either parameter.
+This way, we get the smallest Sponge one can build.
+Consequently, if &lt;em&gt;this&lt;&#x2F;em&gt; attack is infeasible, then Gröbner basis attacking a realistically sized Sponge definitely is.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-28_last_squeeze.png&quot; &gt;
+    
+    &lt;figcaption&gt;A super-tiny Sponge. Barely deserves the name.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;As the permutation, we use the two primitives Rescue-Prime and Poseidon with varying numbers of rounds.
+The prime field has size p = 65519, which is the largest 16-bit prime for which gcd(p-1, 3) = 1, meaning we can use exponent 3 in the S-Boxes.
+&lt;label for=&quot;mn-largest_prime&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-largest_prime&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    For the largest 16-bit prime, i.e., 65521, we&#x27;d have to use exponent 11.
+
+&lt;&#x2F;span&gt;
+
+The limitation to 16-bit primes comes from the used Gröbner basis computation implementation, namely &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www-polsys.lip6.fr&#x2F;~jcf&#x2F;FGb&#x2F;&quot;&gt;FGb&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;gb-attacking-tiny-sponge&#x2F;#references&quot;&gt;[2]&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;technical-specifications&quot;&gt;Technical Specifications&lt;&#x2F;h2&gt;
+&lt;p&gt;All the experiments were performed using &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;cocalc.com&#x2F;&quot;&gt;cocalc&lt;&#x2F;a&gt; on an “n2-highmem-32 Cascade Lake Google Compute Engine” and 264141536 KiB (~252 GiB) of total RAM as reported by &lt;code&gt;free&lt;&#x2F;code&gt;.
+The operating system in use was (Ubuntu) Linux 5.4.0-1042-gcp x86_64 as reported by &lt;code&gt;uname -srm&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;reproducibility&quot;&gt;Reproducibility&lt;&#x2F;h2&gt;
+&lt;p&gt;The code for the experiments can be found on &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ASDiscreteMathematics&#x2F;gb_benchmarks&quot;&gt;github&lt;&#x2F;a&gt;.
+Its dependencies are &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.sagemath.org&#x2F;&quot;&gt;sagemath&lt;&#x2F;a&gt;, &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;mwageringel&#x2F;fgb_sage&quot;&gt;fgb_sage&lt;&#x2F;a&gt;, and &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www-polsys.lip6.fr&#x2F;~jcf&#x2F;FGb&#x2F;&quot;&gt;FGb&lt;&#x2F;a&gt; &lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;gb-attacking-tiny-sponge&#x2F;#references&quot;&gt;[2]&lt;&#x2F;a&gt;.
+If you have the abilities and capacity to re-run the code to strengthen or refute the claims made here, I encourage you to do so.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;summary-of-results&quot;&gt;Summary of Results&lt;&#x2F;h1&gt;
+&lt;p&gt;Before looking at the data in a little more detail, here&#x27;s a quick summary of some of my findings.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;We managed to compute a Gröbner basis for 6 rounds of Rescue-Prime, but failed at 7 rounds.&lt;&#x2F;li&gt;
+&lt;li&gt;Poseidon has a two types of rounds, which makes arguing about round limits a little more cumbersome.
+With the exception of one outlier, we could not break any partition totaling 11 rounds – see the matrix below.&lt;&#x2F;li&gt;
+&lt;li&gt;Memory, not time, seems to be the most limiting factor.&lt;&#x2F;li&gt;
+&lt;li&gt;The polynomial system for Poseidon appears to be &lt;em&gt;ir&lt;&#x2F;em&gt;regular, in contrast to the authors&#x27; implicit assumption.
+This directly affects the number of recommended rounds.
+For example, while Poseidon&#x27;s authors recommend (8,9) rounds for p = 65519 and 2 elements in the state, extrapolating the data here suggests that (8,24) rounds might be necessary.&lt;&#x2F;li&gt;
+&lt;li&gt;The interpolation for the degree of regularity for Rescue-Prime is different from the interpolation published with Rescue, but similar in principle. This difference might be explained by the use of Rescue-&lt;em&gt;Prime&lt;&#x2F;em&gt; as the permutation. Sadly, it neither validates nor refutes the authors&#x27; claims.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h1 id=&quot;results-in-detail&quot;&gt;Results in Detail&lt;&#x2F;h1&gt;
+&lt;p&gt;Experiments like the ones described above generate quite a bunch of data.
+We&#x27;re not gonna look at &lt;em&gt;everything&lt;&#x2F;em&gt; here, I just want to highlight some parts.
+If you want to start digging deeper, you can find the raw data at &lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;gb-attacking-tiny-sponge&#x2F;#appendix-data&quot;&gt;the end of this post&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;The metric commonly used to estimate the complexity of a Gröbner basis computation is largely depending on the &lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;hilbert-reg&#x2F;&quot;&gt;degree of regularity&lt;&#x2F;a&gt;.
+&lt;label for=&quot;mn-dreg&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-dreg&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    In this post, I will be using ”degree of regularity“ and “maximum degree reached by F&lt;sub&gt;4&lt;&#x2F;sub&gt; during its execution” interchangeably.
+Indeed, it is an open question whether this is always true.
+
+&lt;&#x2F;span&gt;
+
+This is &lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;dreg-insufficient-for-security&#x2F;&quot;&gt;not based on a totally rigorous argument&lt;&#x2F;a&gt;, but it seems to be “good enough” in practice.
+Consequently, quite a bit of the following will be about the degree of regularity and the Macaulay bound.
+&lt;label for=&quot;mn-sok_gb&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-sok_gb&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    If you want to jog your memory on either of these concepts, I suggest taking a glance at &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;ia.cr&#x2F;2021&#x2F;870&quot;&gt;this document&lt;&#x2F;a&gt;.
+
+&lt;&#x2F;span&gt;
+
+The Macaulay bound is an upper bound for the degree of regularity, and their values coincide if a polynomial system is a &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Regular_sequence&quot;&gt;regular sequence&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;In general, the successful attacks that took the longest time for the two primitives were 6-round Rescue-Prime, and (full=2, partial=9)-round Poseidon.
+They took around 34 and 73 hours, requiring roughly 75 and 228 GiB of memory, respectively.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;rescue-prime&quot;&gt;Rescue-Prime&lt;&#x2F;h2&gt;
+&lt;p&gt;We successfully computed a Gröbner basis for 6-round Rescue-Prime, but ran out of memory during the computation for 7-round Rescue-Prime.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;degree-of-regularity&quot;&gt;Degree of Regularity&lt;&#x2F;h3&gt;
+&lt;p&gt;The most important metric to consider is the growth of the degree of regularity as a function in the number of rounds.
+As we can see, the degree of regularity is pretty consistently 2 less than the Macaulay bound of the polynomials system for Rescue-Prime.
+The only exception happens at r = 2 rounds, an anomaly I don&#x27;t believe deserves a lot of attention.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-28_rescue_prime_dreg_develop.png&quot; &gt;
+    
+    &lt;figcaption&gt;Various metrics of the polynomial system for Rescue-Prime as a function in the number of rounds.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Interestingly, the degree of the highest degree polynomial in the resulting reduced Gröbner basis – abbreviated as the degree of the Gröbner basis – is even lower than that.
+More importantly though, its growth seems to be only piecewise linear:
+between 1 and 4 rounds, the degree of the Gröbner basis grows by 3 with each iteration, where from round 4 on, the difference is 4.&lt;&#x2F;p&gt;
+&lt;p&gt;The limited number of data points makes drawing conclusions difficult.
+However, it&#x27;s not unreasonable to argue that extrapolating the degree of the Gröbner basis linearly might lead to inaccuracies.
+Similarly, it is still an open question whether extrapolating the degree of regularity is a good method to estimate the complexity of computing the Gröbner basis for the full-round primitive.&lt;&#x2F;p&gt;
+&lt;p&gt;The observed growth of the degree of regularity in Rescue-Prime is different from what is reported in the publication of “plain” Rescue.
+Concretely, I observe
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;d_\text{reg} \approx 4r-1&lt;&#x2F;script&gt;
+
+for Rescue-Prime, whereas Rescue&#x27;s authors report
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;d_\text{reg} = 2r+2&lt;&#x2F;script&gt;
+
+for Rescue &lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;gb-attacking-tiny-sponge&#x2F;#references&quot;&gt;[1, Section 6.1]&lt;&#x2F;a&gt;.
+Here is their figure for comparison:&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-28_rescue_dreg_develop_original_paper.png&quot; &gt;
+    
+    &lt;figcaption&gt;Some of the same metrics as above for the polynomial system for Rescue as a function in the number of rounds, as given by the authors. [1]&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Extending this interpolation of the degree of regularity to an extrapolation can be used to estimate the required number of rounds to achieve a given security level.
+For this, we use the known complexity bound for the most performant Gröbner basis algorithm, which is
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\binom{n + d_\text{reg}}{n}^\omega&lt;&#x2F;script&gt;
+.
+Here, &lt;em&gt;n&lt;&#x2F;em&gt; is the number of variables in the polynomial ring,
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;d_\text{reg}&lt;&#x2F;script&gt;
+
+is the degree of regularity, and &lt;em&gt;ω&lt;&#x2F;em&gt; is the linear algebra constant.
+A conservative choice for &lt;em&gt;ω&lt;&#x2F;em&gt; is 2.
+&lt;label for=&quot;mn-lin-alg-constant&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-lin-alg-constant&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    I know of no Gröbner basis algorithm making use of sparse linear algebra techniques, which would imply &lt;em&gt;ω&lt;&#x2F;em&gt; = 2.
+However, it is plausible that they do or can exist.
+
+&lt;&#x2F;span&gt;
+
+For the used parameters of Rescue-Prime, the number of variables, which is equal to the number of equations, is 2r.
+The degree of regularity is estimated to be 4r - 1.
+Putting it all together, we have
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\binom{6r - 1}{2r}^2 &gt; 2^{128}&lt;&#x2F;script&gt;
+
+for r ≥ 13.
+For the same parameters, the authors of Rescue-Prime recommend r = 27 &lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;gb-attacking-tiny-sponge&#x2F;#references&quot;&gt;[4, Algorithm 7]&lt;&#x2F;a&gt;.
+This recommendation also includes a security margin, and considers more attack vectors than just a Gröbner basis attack.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;f4-s-working-degree&quot;&gt;F&lt;sub&gt;4&lt;&#x2F;sub&gt;&#x27;s Working Degree&lt;&#x2F;h3&gt;
+&lt;p&gt;For Rescue-Prime, the working degree of F&lt;sub&gt;4&lt;&#x2F;sub&gt; increases strictly monotonously:
+every iteration of F&lt;sub&gt;4&lt;&#x2F;sub&gt;&#x27;s main loop means working with polynomials of degree exactly 1 higher than in the preceding iteration.
+That makes for a pretty dull figure:&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-28_rescue_prime_f4_degs.png&quot; &gt;
+    
+    &lt;figcaption&gt;For Rescue-Prime, F&lt;sub&gt;4&lt;&#x2F;sub&gt;&#x27;s working degree increases by 1 per iteration, independent of the number of rounds.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;h2 id=&quot;poseidon&quot;&gt;Poseidon&lt;&#x2F;h2&gt;
+&lt;p&gt;Since Poseidon has two types of rounds, namely full rounds and partial rounds, we have conducted a lot more experiments for Poseidon than for Rescue.
+The following matrix summarizes which ones we ran, and whether the Gröbner basis could be computed successfully.
+The value of a cell indicates how many polynomials the polynomial system had.
+This is equal to the number of variables in the polynomial ring for this problem instance.
+The number of full rounds differ across columns, the number of partial rounds across rows.&lt;&#x2F;p&gt;
+&lt;table cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;
+  &lt;colgroup span=&quot;7&quot; width=&quot;1&quot;&gt;&lt;&#x2F;colgroup&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;2&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;4&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;6&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;10&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;12&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;0&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;3&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;7&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;11&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;15&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;19&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#F10D0C&quot; style=&quot;color: #444;&quot;&gt;23&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;1&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;4&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;12&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;16&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#F10D0C&quot; style=&quot;color: #444;&quot;&gt;20&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;2&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;5&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;9&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;13&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;17&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#F10D0C&quot; style=&quot;color: #444;&quot;&gt;21&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;3&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;6&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;10&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;14&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#F10D0C&quot; style=&quot;color: #444;&quot;&gt;18&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;4&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;7&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;11&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;15&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#F10D0C&quot; style=&quot;color: #444;&quot;&gt;19&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;5&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;12&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#F10D0C&quot; style=&quot;color: #444;&quot;&gt;16&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;6&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;9&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;13&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#E6E905&quot; style=&quot;color: #444;&quot;&gt;17&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;7&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;10&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#F10D0C&quot; style=&quot;color: #444;&quot;&gt;14&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;11&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#F10D0C&quot; style=&quot;color: #444;&quot;&gt;15&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td colspan=3 align=&quot;center&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444&quot;&gt;GB computed&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;9&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#5EB91E&quot; style=&quot;color: #444;&quot;&gt;12&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#E6E905&quot; style=&quot;color: #444;&quot;&gt;16&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td colspan=3 align=&quot;center&quot; bgcolor=&quot;#F10D0C&quot; style=&quot;color: #444&quot;&gt;out of memory&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td width=&quot;24&quot; align=&quot;right&quot;&gt;10&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; bgcolor=&quot;#F10D0C&quot; style=&quot;color: #444;&quot;&gt;13&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td colspan=3 align=&quot;center&quot; bgcolor=&quot;#E6E905&quot; style=&quot;color: #444&quot;&gt;manually aborted&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+&lt;&#x2F;table&gt;
+&lt;p&gt;A total of 11 rounds seems to the barrier we couldn&#x27;t break with the available machine, the (2,9)-instance being a notable exception.
+Note that the number of equations seems to not be the cutoff point – for (2,10)-Poseidon, we have 13 equations and variables but cannot compute the Gröbner basis, whereas for (10,0)-Poseidon with its 19 equations, we can compute the Gröbner basis.
+For some of the figures below, we look at the series for
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;r_\text{full} = 4&lt;&#x2F;script&gt;
+
+full rounds in more detail to simplify presentation.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;degree-of-regularity-1&quot;&gt;Degree of Regularity&lt;&#x2F;h3&gt;
+&lt;p&gt;As before, the degree of regularity is the metric we&#x27;re interested in the most.
+For example, for Poseidon (4,٭), i.e., 4 full rounds and a varying number of partial rounds, we get the following figure when plotting both the Macaulay bound and the system&#x27;s degree of regularity.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-28_poseidon_f4_dreg_develop.png&quot; &gt;
+    
+    &lt;figcaption&gt;Degree of regularity and Macaulay bound of the polynomial system for (4,٭)-round Poseidon as a function in the number of partial rounds.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;It appears the degree of regularity is growing slower than the Macaulay bound.
+For a more complete picture, the degrees of regularity for all successfully computed Gröbner bases are listed in the following table.
+A grayed-out value means that the Gröbner basis computation did not terminate, but reached the indicated degree at its maximum before running out of memory or being aborted manually.&lt;&#x2F;p&gt;
+&lt;table cellspacing=&quot;0&quot; border=&quot;0&quot;&gt;
+  &lt;colgroup span=&quot;7&quot; width=&quot;85&quot;&gt;&lt;&#x2F;colgroup&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;2&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;4&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;6&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;10&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot;&gt;12&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;0&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#FFB66C&quot;&gt;4&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#FFAA95&quot;&gt;5&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#EC9BA4&quot;&gt;6&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#BF819E&quot;&gt;7&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#B7B3CA&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #999&quot;&gt;8&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;1&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#FFAA95&quot;&gt;5&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#EC9BA4&quot;&gt;6&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#EC9BA4&quot;&gt;6&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#BF819E&quot;&gt;7&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #999&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;2&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#FFAA95&quot;&gt;5&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#EC9BA4&quot;&gt;6&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#BF819E&quot;&gt;7&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#B7B3CA&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #999&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;3&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#EC9BA4&quot;&gt;6&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#BF819E&quot;&gt;7&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#B7B3CA&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #999&quot;&gt;9&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;4&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#BF819E&quot;&gt;7&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#B7B3CA&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#B4C7DC&quot;&gt;9&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #999&quot;&gt;9&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;5&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#B7B3CA&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#B4C7DC&quot;&gt;9&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #999&quot;&gt;9&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;6&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#B4C7DC&quot;&gt;9&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#B3CAC7&quot;&gt;10&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #999&quot;&gt;10&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;7&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#B3CAC7&quot;&gt;10&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #999&quot;&gt;11&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;8&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#AFD095&quot;&gt;11&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #999&quot;&gt;12&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;9&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #444&quot; bgcolor=&quot;#E8F2A1&quot;&gt;12&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #999&quot;&gt;13&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+  &lt;tr&gt;
+    &lt;td align=&quot;right&quot;&gt;10&lt;&#x2F;td&gt;
+    &lt;td align=&quot;right&quot; style=&quot;color: #999&quot;&gt;13&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+    &lt;td&gt;&lt;&#x2F;td&gt;
+  &lt;&#x2F;tr&gt;
+&lt;&#x2F;table&gt;
+&lt;p&gt;We can compute the Macaulay bound for the polynomial system arising from
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;(r_\text{full}, r_\text{partial})&lt;&#x2F;script&gt;
+-Poseidon
+as
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;4r_\text{full} + 2r_\text{part} - 1&lt;&#x2F;script&gt;
+.
+A closely fitting linear approximation for the degree of regularity based on above data is
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;d_\text{reg} \approx  \frac{r_\text{full}}{2} + r_\text{part} + 2&lt;&#x2F;script&gt;
+.
+The (limited) data suggests that the degree of regularity depends on a full round a lot less than the Macaulay bound makes it seem.
+Overall, the degree of regularity does not stay very close to the Macaulay bound.&lt;&#x2F;p&gt;
+&lt;p&gt;Based on the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;extgit.iaik.tugraz.at&#x2F;krypto&#x2F;hadesmimc&#x2F;-&#x2F;blob&#x2F;master&#x2F;code&#x2F;calc_round_numbers.py&quot;&gt;script&lt;&#x2F;a&gt; supplied by the authors of Poseidon, the recommended number of rounds for 128 bits of security when using a state size of 2 is (8, 9).
+Using the number of full rounds as a given, and plugging the interpolated degree of regularity, i.e., r + 6, and the required number of variables, i.e., r + 15, into the complexity bound for the most performant Gröbner basis algorithm leads us to the conclusion that r ≥ 24 partial rounds are necessary to achieve 128 bits of security against Gröbner basis attacks, i.e.,
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\binom{2r+21}{r+15}^2 &gt; 2^{128}&lt;&#x2F;script&gt;
+
+for r ≥ 24.
+This discrepancy is the direct consequence of the observed degree of regularity not equaling the Macaulay bound – plugging the Macaulay bound into the same formula results in r ≥ 10.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;f4-s-working-degree-1&quot;&gt;F&lt;sub&gt;4&lt;&#x2F;sub&gt;&#x27;s Working Degree&lt;&#x2F;h3&gt;
+&lt;p&gt;The working degree of F&lt;sub&gt;4&lt;&#x2F;sub&gt; is quite “bouncy” for the polynomial systems derived from Poseidon.
+For example, for
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;r_\text{full} = 4&lt;&#x2F;script&gt;
+
+with varying number of partial rounds, we can plot the working degree of F&lt;sub&gt;4&lt;&#x2F;sub&gt; against the iteration that degree occurred in.
+While the overall tendency is “up,” there are many iterations for which the working degree does not change, or even drops.
+I am unsure what exactly this means in terms of security, or if it means anything at all.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-28_poseidon_4_f4_degs.png&quot; &gt;
+    
+    &lt;figcaption&gt;For Poseidon, F&lt;sub&gt;4&lt;&#x2F;sub&gt;&#x27;s working degree develops… interestingly.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;h1 id=&quot;comparison&quot;&gt;Comparison: Rescue-Prime vs Poseidon&lt;&#x2F;h1&gt;
+&lt;p&gt;One of the most notable differences between the polynomial systems for Rescue-Prime and Poseidon is the growth rate of their respective degrees of regularity.
+For example, consider the following plot, where I have repeated the data for Rescue-Prime from above and added the Macaulay bound and degree of regularity for (٭,0)-Poseidon, i.e., varying the number of full rounds.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-28_mac-bound_f4-deg_comparison.png&quot; &gt;
+    
+    &lt;figcaption&gt;
+  For Rescue-Prime, the degree of regularity closely matches the Macaulay bound.
+  For Poseidon, the Macaulay bound vastly overestimates the actual degree of regularity.
+&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;While the Macaulay bounds are almost identical, the observed degrees of regularity differ greatly.&lt;&#x2F;p&gt;
+&lt;p&gt;It&#x27;s also nice to see the development of the used memory for a few instances, even though that comparison is not very important.
+Below figure shows the required memory over time for 5, 6, and 7-round Rescue-Prime and (4,5), (4,6), (4,7)-round Poseidon.
+Recall that 7-round Rescue-Prime and (4,7)-round Poseidon both ran out of memory, i.e., terminated abnormally.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-28_memory_vs_time.png&quot; &gt;
+    
+    &lt;figcaption&gt;Not significant but interesting: memory consumption over time for various polynomial systems.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;By the jumps in memory consumption you can pretty clearly see where a new, bigger matrix was constructed.
+This corresponds to the iterations of F&lt;sub&gt;4&lt;&#x2F;sub&gt;.
+Exponential – or binomial – growth being what it is, it does not make sense to plot instances with less rounds.
+Already, 5-round Rescue-Prime and (4,5)-round Poseidon are barely visible in the lower-left corner of the figure.
+The dotted line corresponds to the total available memory.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;conclusion&quot;&gt;Conclusion&lt;&#x2F;h1&gt;
+&lt;p&gt;The data suggests that the implicit assumption about the regularity of the polynomial system arising from Poseidon is wrong:
+the difference between the Macaulay bound and the observed degree of regularity implies that the system is irregular.
+This has direct consequences for the minimum number of rounds required to achieve a target security level.
+For example, for p = 65519 and state size 2, we recommend (8,24) rounds as opposed to (8,9) rounds.&lt;&#x2F;p&gt;
+&lt;p&gt;An interesting open question is how to interpret the “bounciness” of F&lt;sub&gt;4&lt;&#x2F;sub&gt;&#x27;s working degree when computing a Gröbner basis for a Poseidon-derived system.
+The significance of this behavior is completely unclear.&lt;&#x2F;p&gt;
+&lt;p&gt;Another open question regards the discrepancy in the observed growth of the degree of regularity for Rescue and Rescue-Prime.
+Regardless, the data supports the security argument of Rescue-Prime:
+adding one half round at either end, i.e., transforming “plain” Rescue into Rescue-Prime, does not seem to decrease security.&lt;&#x2F;p&gt;
+&lt;p&gt;All things told, no successful Gröbner basis attack could be performed for anything approaching realistic round numbers – even for this tiny Sponge construction.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;references&quot;&gt;References&lt;&#x2F;h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Aly, A., Ashur, T., Ben-Sasson, E., Dhooghe, S., Szepieniec, A.:
+&lt;em&gt;Design  of Symmetric Primitives for Advanced Cryptographic Protocols&lt;&#x2F;em&gt;.
+IACR ToSC  2020(3), 1–45 (2020)&lt;&#x2F;li&gt;
+&lt;li&gt;J.-C. Faugère:
+&lt;em&gt;FGb: A Library for Computing Gröbner Bases&lt;&#x2F;em&gt;.
+In Komei Fukuda, Joris Hoeven, Michael Joswig, and Nobuki Takayama, editors, Mathematical Software ICMS 2010, volume 6327 of Lecture Notes in Computer Science, pages 84-87, Berlin, Heidelberg, September 2010.
+Springer Berlin &#x2F; Heidelberg.&lt;&#x2F;li&gt;
+&lt;li&gt;Grassi, L., Khovratovich, D., Rechberger, C., Roy, A., Schofnegger, M.:
+&lt;em&gt;Poseidon: A New Hash Function for Zero-Knowledge Proof Systems&lt;&#x2F;em&gt;.
+In: USENIX Security. USENIX Association (2020)&lt;&#x2F;li&gt;
+&lt;li&gt;Szepieniec, A., Ashur, T., Dhooghe, S.:
+&lt;em&gt;Rescue-Prime: a Standard Specification (SoK)&lt;&#x2F;em&gt;.
+Cryptology ePrint Archive, Report 2020&#x2F;1143 (2020)&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h1 id=&quot;appendix-summary&quot;&gt;Appendix – Summary of the Hash Functions&lt;&#x2F;h1&gt;
+&lt;p&gt;Below, I have put some figures summarizing the AOCs Rescue-Prime and Poseidon, respectively.
+The input, output, and constants are all vectors of the same length.
+They are contracted here to simplify presentation.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-28_rescue_prime.png&quot; &gt;
+    
+    &lt;figcaption&gt;2-round Rescue-Prime. Note that a single round, made up of two half rounds, first uses exponent 3 and then ⅓.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-28_poseidon.png&quot; &gt;
+    
+    &lt;figcaption&gt;(2,1)-round Poseidon, i.e., the instance has 2 full rounds – 1 at the beginning, 1 at the end – and 1 partial round.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;h1 id=&quot;appendix-data&quot;&gt;Appendix – Raw Data&lt;&#x2F;h1&gt;
+&lt;p&gt;&lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;gb-attacking-tiny-sponge&#x2F;2021-06-28_last_squeeze_attack_data.zip&quot;&gt;Here&#x27;s the data&lt;&#x2F;a&gt; this post is based on!
+Each experiment, say, (4,3)-Poseidon, comes with 4 files:
+&lt;label for=&quot;mn-spaces&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-spaces&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    Yes, there are spaces in the filename. 🤦 Sorry.
+
+&lt;&#x2F;span&gt;
+&lt;&#x2F;p&gt;
+&lt;dl&gt;
+  &lt;dt&gt;&lt;strong&gt;&lt;code&gt;poseidon_65519_(4, 3)_fgb_debug.txt&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;dt&gt;
+  &lt;dd&gt;debug information of FGb, described on page 12 in &lt;a href=&quot;https:&#x2F;&#x2F;www-polsys.lip6.fr&#x2F;~jcf&#x2F;FGb&#x2F;C&#x2F;Cdoc.pdf&quot;&gt;this document&lt;&#x2F;a&gt;.&lt;&#x2F;dd&gt;
+  &lt;br&gt;
+  &lt;dt&gt;&lt;strong&gt;&lt;code&gt;poseidon_65519_(4, 3)_mem.txt&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;dt&gt;
+  &lt;dd&gt;memory requirements over time, in KiB, one row per second.&lt;&#x2F;dd&gt;
+  &lt;br&gt;
+  &lt;dt&gt;&lt;strong&gt;&lt;code&gt;poseidon_65519_(4, 3)_summary.txt&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;dt&gt;
+  &lt;dd&gt;includes time &amp; memory measurements, degrees, data from FGb.&lt;&#x2F;dd&gt;
+  &lt;br&gt;
+  &lt;dt&gt;&lt;strong&gt;&lt;code&gt;poseidon_65519_(4, 3)_sys.txt&lt;&#x2F;code&gt;&lt;&#x2F;strong&gt;&lt;&#x2F;dt&gt;
+  &lt;dd&gt;the polynomial system for which the Gröbner basis was computed.&lt;&#x2F;dd&gt;
+&lt;&#x2F;dl&gt;
+</description>
+      </item>
+      <item>
+          <title>Understanding and Computing the Hilbert Regularity</title>
+          <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://jfs.sh/blog/hilbert-reg/</link>
+          <guid>https://jfs.sh/blog/hilbert-reg/</guid>
+          <description xml:base="https://jfs.sh/blog/hilbert-reg/">&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;🛈&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;I originally wrote this post when working at &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;asdm.gmbh&quot;&gt;AS Discrete Mathematics&lt;&#x2F;a&gt; as part of a project sponsored by the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;ethereum.foundation&#x2F;&quot;&gt;Ethereum Foundation&lt;&#x2F;a&gt;. It is reproduced here with friendly permission.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;When attacking &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;asdm.gmbh&#x2F;arithmetization-oriented-ciphers&#x2F;aoc-project&#x2F;&quot;&gt;AOCs&lt;&#x2F;a&gt; using Gröbner bases, the most relevant question is:
+how complex is the Gröbner basis computation?
+One commonly used estimation is based on the &lt;em&gt;degree of regularity&lt;&#x2F;em&gt;.
+Intuitively, the degree of regularity is the degree of the highest-degree polynomials to appear during the Gröbner basis computation.
+(&lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;dreg-insufficient-for-security&#x2F;&quot;&gt;Whether this metric is good for estimating the AOC&#x27;s security is a different matter&lt;&#x2F;a&gt;.)&lt;&#x2F;p&gt;
+&lt;p&gt;Unfortunately, different authors define the term “degree of regularity” differently.
+In this post, I use the understanding of Bardet et al. [1,2], which coincides with the well-defined &lt;em&gt;Hilbert regularity&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;I first introduce the required concepts, and then make them more tangible with some examples.
+Lastly, there is some &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.sagemath.org&#x2F;&quot;&gt;sagemath&lt;&#x2F;a&gt; code with which the Hilbert regularity can be computed.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;definition-of-the-hilbert-regularity&quot;&gt;Definition of the Hilbert Regularity&lt;&#x2F;h1&gt;
+&lt;p&gt;Let &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathbb{F}&lt;&#x2F;script&gt;
+
+be some field,
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;R = \mathbb{F}[x_0, \dots, x_{n-1}]&lt;&#x2F;script&gt;
+
+a polynomial ring in &lt;script type=&quot;math&#x2F;tex&quot;&gt;n&lt;&#x2F;script&gt;
+ variables over
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathbb{F}&lt;&#x2F;script&gt;
+,
+and
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;I \subseteq R&lt;&#x2F;script&gt;
+
+a polynomial ideal of &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&lt;&#x2F;script&gt;
+.&lt;&#x2F;p&gt;
+&lt;p&gt;The affine Hilbert function of quotient ring &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&#x2F;I&lt;&#x2F;script&gt;
+ is defined as
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;{}^a\textsf{HF}_{R&#x2F;I}(s) = \dim_\mathbb{F}\!\left(R_{\leqslant s} \middle&#x2F; I_{\leqslant s}\right).&lt;&#x2F;script&gt;
+
+For some large enough value &lt;script type=&quot;math&#x2F;tex&quot;&gt;s_0&lt;&#x2F;script&gt;
+, the Hilbert function of all &lt;script type=&quot;math&#x2F;tex&quot;&gt;s \geqslant s_0&lt;&#x2F;script&gt;
+ can be expressed as a polynomial in &lt;script type=&quot;math&#x2F;tex&quot;&gt;s&lt;&#x2F;script&gt;
+.
+&lt;label for=&quot;mn-background&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-background&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    For a general treatment of the &lt;em&gt;how?&lt;&#x2F;em&gt; and &lt;em&gt;why?&lt;&#x2F;em&gt;, have a look at the excellent book “Ideals, Varieties, and Algorithms,” [3] in particular Chapter 9, §2, Theorem 6, and Chapter 9, §3.
+The examples in this post hopefully shed some light, too.
+
+&lt;&#x2F;span&gt;
+
+This polynomial, denoted &lt;script type=&quot;math&#x2F;tex&quot;&gt;{}^a\textsf{HP}_{R&#x2F;I}(s)&lt;&#x2F;script&gt;
+, is called &lt;em&gt;Hilbert polynomial&lt;&#x2F;em&gt;.
+By definition, the values of the Hilbert function and the Hilbert polynomial coincide for values greater than &lt;script type=&quot;math&#x2F;tex&quot;&gt;s_0&lt;&#x2F;script&gt;
+.&lt;&#x2F;p&gt;
+&lt;p&gt;The &lt;strong&gt;Hilbert regularity&lt;&#x2F;strong&gt; is the smallest &lt;script type=&quot;math&#x2F;tex&quot;&gt;s_0&lt;&#x2F;script&gt;
+ such that for all &lt;script type=&quot;math&#x2F;tex&quot;&gt;s \geqslant s_0&lt;&#x2F;script&gt;
+, the evaluation of the Hilbert function in &lt;script type=&quot;math&#x2F;tex&quot;&gt;s&lt;&#x2F;script&gt;
+ equals the evaluation of the Hilbert polynomial in &lt;script type=&quot;math&#x2F;tex&quot;&gt;s.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;By the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Rank%E2%80%93nullity_theorem&quot;&gt;rank-nullity theorem&lt;&#x2F;a&gt;, we can equivalently write the Hilbert function as
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;{}^a\textsf{HF}_{R&#x2F;I}(s) = \dim_\mathbb{F}\! \left( R_{\leqslant s} \right) - \dim_\mathbb{F}\! \left( I_{\leqslant s}\right).&lt;&#x2F;script&gt;
+
+This is a little bit easier to handle, because we can look at &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&lt;&#x2F;script&gt;
+ and &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ separately and can ignore the quotient ring &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&#x2F;I&lt;&#x2F;script&gt;
+ for the moment.
+By augmenting &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&lt;&#x2F;script&gt;
+ with a graded monomial order, like &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Monomial_order#Graded_reverse_lexicographic_order&quot;&gt;degrevlex&lt;&#x2F;a&gt;, we can go one step further and look at leading monomials &lt;script type=&quot;math&#x2F;tex&quot;&gt;\textsf{lm}&lt;&#x2F;script&gt;
+ only:
+the set
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\{ \textsf{lm}(f) \mid f \in I, \deg(f) \leqslant s \}&lt;&#x2F;script&gt;
+
+is a basis for
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;I_{\leqslant s}&lt;&#x2F;script&gt;
+ as an &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathbb{F}&lt;&#x2F;script&gt;
+-vector space.
+&lt;label for=&quot;mn-f_v_space&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-f_v_space&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    See [3, Chapter 9, §3, Proposition 4] for a full proof.
+
+&lt;&#x2F;span&gt;
+
+Meaning we don&#x27;t even need to look at &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+, but can restrict ourselves to the ideal of leading monomials &lt;script type=&quot;math&#x2F;tex&quot;&gt;\langle \textsf{lm}(I) \rangle&lt;&#x2F;script&gt;
+.
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;{}^a\textsf{HF}_{R&#x2F;I}(s) = \dim_\mathbb{F}\!\left(R_{\leqslant s}\right) - \dim_\mathbb{F}\!\left( \langle \textsf{lm}(I) \rangle_{\leqslant s}\right).&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;One way to get a good grip on &lt;script type=&quot;math&#x2F;tex&quot;&gt;\langle I \rangle&lt;&#x2F;script&gt;
+ is through reduced Gröbner bases.
+A Gröbner basis &lt;script type=&quot;math&#x2F;tex&quot;&gt;G&lt;&#x2F;script&gt;
+ for ideal &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ is a finite set of polynomials with the property
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\langle G \rangle = \langle I \rangle&lt;&#x2F;script&gt;
+
+and, more relevant right now,
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\langle \textsf{lm}(G) \rangle = \langle \textsf{lm}(I) \rangle.&lt;&#x2F;script&gt;
+
+This means it&#x27;s sufficient to look at (the right combinations) of elements of &lt;script type=&quot;math&#x2F;tex&quot;&gt;\textsf{lm}(G).&lt;&#x2F;script&gt;
+
+This, in turn, is more manageable because &lt;script type=&quot;math&#x2F;tex&quot;&gt;G&lt;&#x2F;script&gt;
+ always has finitely many elements, but &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ might not.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;example-0-dimensional-ideal&quot;&gt;Example: 0-Dimensional Ideal&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s start with a super simple polynomial system:
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;G = \{x^6, x^2y^2, y^5\} \subseteq \mathbb{F}[x,y], \quad I = \langle G \rangle&lt;&#x2F;script&gt;
+
+for some finite field
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathbb{F}.&lt;&#x2F;script&gt;
+
+This is a zero-dimensional, monomial (thus homogeneous) ideal.
+That&#x27;s about as special as a special case can get.
+Note that here, we have
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;I = \langle \textsf{lm}(I) \rangle&lt;&#x2F;script&gt;
+, but this doesn&#x27;t generally hold.
+Dealing with a super-special case also means that the Hilbert polynomial is relatively boring, but that&#x27;s fine for starting out.
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;G&lt;&#x2F;script&gt;
+ is the reduced Gröbner basis for &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+, and we&#x27;ll use its elements to help computing the Hilbert function.&lt;&#x2F;p&gt;
+&lt;p&gt;A benefit of ideals in two variables is:
+we can draw pictures.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal-1.png&quot; &gt;
+    
+    &lt;figcaption&gt;The monomials of 𝔽[&lt;em&gt;x&lt;&#x2F;em&gt;,&lt;em&gt;y&lt;&#x2F;em&gt;] seen as 𝔽-vector space.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;This is what the monomials of &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathbb{F}[x,y]&lt;&#x2F;script&gt;
+ as an &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathbb{F}&lt;&#x2F;script&gt;
+-vector space look like.
+Well, at least the part &lt;script type=&quot;math&#x2F;tex&quot;&gt;\{x^ay^b \mid a \leqslant 8, b \leqslant 7 \}.&lt;&#x2F;script&gt;
+
+After all, &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathbb{F}[x,y]&lt;&#x2F;script&gt;
+ as an &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathbb{F}&lt;&#x2F;script&gt;
+-vector space has infinite dimension.
+I have (arbitrarily) highlighted &lt;script type=&quot;math&#x2F;tex&quot;&gt;x^3y^2,&lt;&#x2F;script&gt;
+ i.e., coordinate (3,2), to give a better understanding of what the picture means.&lt;&#x2F;p&gt;
+&lt;p&gt;Since &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ is a monomial ideal, we can highlight every element in &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+.
+The circles of the elements of the Gröbner basis &lt;script type=&quot;math&#x2F;tex&quot;&gt;G&lt;&#x2F;script&gt;
+ are red.
+The zig-zig pattern of the boundary between &lt;script type=&quot;math&#x2F;tex&quot;&gt;x^ay^b \in I&lt;&#x2F;script&gt;
+ and &lt;script type=&quot;math&#x2F;tex&quot;&gt;x^ay^b \notin I&lt;&#x2F;script&gt;
+ is inherent, and generalizes to higher dimensions, i.e., more variables.
+Because of the zig-zagging, the set of monomials not in &lt;script type=&quot;math&#x2F;tex&quot;&gt;\langle \textsf{lm}(I) \rangle&lt;&#x2F;script&gt;
+ is referred to as &lt;em&gt;staircase&lt;&#x2F;em&gt; of &lt;script type=&quot;math&#x2F;tex&quot;&gt;I.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal-2.png&quot; &gt;
+    
+    &lt;figcaption&gt;The &lt;em&gt;staircase&lt;&#x2F;em&gt; of &amp;langle;G&amp;rangle;.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Let&#x27;s start computing the Hilbert function for &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&#x2F;I.&lt;&#x2F;script&gt;
+
+The &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathbb{F}&lt;&#x2F;script&gt;
+-vector space dimensions of &lt;script type=&quot;math&#x2F;tex&quot;&gt;R_{\leqslant s}&lt;&#x2F;script&gt;
+ and &lt;script type=&quot;math&#x2F;tex&quot;&gt;I_{\leqslant s}&lt;&#x2F;script&gt;
+ are simply the number of monomials in &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&lt;&#x2F;script&gt;
+ respectively &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ with degree &lt;script type=&quot;math&#x2F;tex&quot;&gt;\leqslant s.&lt;&#x2F;script&gt;
+
+Getting those numbers is easy – it amounts to counting dots in the picture!
+For example, for &lt;script type=&quot;math&#x2F;tex&quot;&gt;s=2,&lt;&#x2F;script&gt;
+, we have &lt;script type=&quot;math&#x2F;tex&quot;&gt;{}^a\textsf{HF}_{R&#x2F;I}(2)=5-0=5:&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal-3.png&quot; &gt;
+    
+    &lt;figcaption&gt;The Hilbert Function of &lt;em&gt;I&lt;&#x2F;em&gt; at &lt;em&gt;s = 2&lt;&#x2F;em&gt;.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;No monomial of total degree less than or equal to 2 is in &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+, so computing the Hilbert function is a little bit boring here.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal-5.png&quot; &gt;
+    
+    &lt;figcaption&gt;The Hilbert Function of &lt;em&gt;I&lt;&#x2F;em&gt; at &lt;em&gt;s = 5&lt;&#x2F;em&gt;.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;The value of the Hilbert function
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;{}^a\textsf{HF}_{R&#x2F;I}(5)&lt;&#x2F;script&gt;
+
+is more interesting:
+some monomials of degree &lt;script type=&quot;math&#x2F;tex&quot;&gt;\leqslant 5&lt;&#x2F;script&gt;
+ are indeed elements of &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+, and thus &lt;script type=&quot;math&#x2F;tex&quot;&gt;\dim I_{\leqslant 5}&lt;&#x2F;script&gt;
+ is not 0 but 4.
+In particular, we have &lt;script type=&quot;math&#x2F;tex&quot;&gt;{}^a\textsf{HF}_{R&#x2F;I}(5)=21 - 4=17.&lt;&#x2F;script&gt;
+
+For &lt;script type=&quot;math&#x2F;tex&quot;&gt;s=6,&lt;&#x2F;script&gt;
+ we have &lt;script type=&quot;math&#x2F;tex&quot;&gt;{}^a\textsf{HF}_{R&#x2F;I}(6)=28-10=18:&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal-6.png&quot; &gt;
+    
+    &lt;figcaption&gt;The Hilbert Function of &lt;em&gt;I&lt;&#x2F;em&gt; at &lt;em&gt;s = 6&lt;&#x2F;em&gt;.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;From this point forward, increasing &lt;script type=&quot;math&#x2F;tex&quot;&gt;s&lt;&#x2F;script&gt;
+ will not change the value of the Hilbert function –
+the dimension of &lt;script type=&quot;math&#x2F;tex&quot;&gt;I_{\leqslant s}&lt;&#x2F;script&gt;
+ as an &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathbb{F}&lt;&#x2F;script&gt;
+-vector space grows with the same rate as the dimension of &lt;script type=&quot;math&#x2F;tex&quot;&gt;R_{\leqslant s}&lt;&#x2F;script&gt;
+, since all monomials &lt;em&gt;not&lt;&#x2F;em&gt; in &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ are of lesser total degree.
+Expressed differently, all monomials above the line are elements of both &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ and &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&lt;&#x2F;script&gt;
+ –
+the values of the Hilbert function doesn&#x27;t change by increasing &lt;script type=&quot;math&#x2F;tex&quot;&gt;s.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal-7.png&quot; &gt;
+    
+    &lt;figcaption&gt;The Hilbert Function of &lt;em&gt;I&lt;&#x2F;em&gt; at &lt;em&gt;s = 7&lt;&#x2F;em&gt;.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;From this, two things follow:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;The Hilbert polynomial of &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&#x2F;I&lt;&#x2F;script&gt;
+ is the constant 18.
+(That&#x27;s why I said it&#x27;s relatively boring.
+A more interesting case follows.)&lt;&#x2F;li&gt;
+&lt;li&gt;The Hilbert regularity of &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&#x2F;I&lt;&#x2F;script&gt;
+ is 6, since &lt;script type=&quot;math&#x2F;tex&quot;&gt;{}^a\textsf{HF}_{R&#x2F;I}(s) = {}^a\textsf{HP}_{R&#x2F;I}(s)&lt;&#x2F;script&gt;
+ for all &lt;script type=&quot;math&#x2F;tex&quot;&gt;s \geqslant 6.&lt;&#x2F;script&gt;
+&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;h2 id=&quot;example-ideal-of-positive-dimension&quot;&gt;Example: Ideal of Positive Dimension&lt;&#x2F;h2&gt;
+&lt;p&gt;As hinted at above, whether or not &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ is a monomial ideal does not matter for computing the Hilbert function or the Hilbert polynomial, because &lt;script type=&quot;math&#x2F;tex&quot;&gt;\textsf{lm}(I)&lt;&#x2F;script&gt;
+ behaves exactly the same.
+What does matter, though, is the dimension of &lt;script type=&quot;math&#x2F;tex&quot;&gt;I.&lt;&#x2F;script&gt;
+
+In the previous example, &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ was of dimension 0, and the Hilbert polynomial of &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&#x2F;I&lt;&#x2F;script&gt;
+ was a constant.
+That&#x27;s not a coincidence.&lt;&#x2F;p&gt;
+&lt;p&gt;Even though the ideal spanned by the polynomial system modelling an AOC will usually be zero-dimensional, it&#x27;s interesting to see what happens if it isn&#x27;t.
+Let&#x27;s take &lt;script type=&quot;math&#x2F;tex&quot;&gt;G = \{x^4y^3, x^2y^5\} \subseteq \mathbb{F}[x,y]&lt;&#x2F;script&gt;
+ and &lt;script type=&quot;math&#x2F;tex&quot;&gt;I = \langle G \rangle.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal_poly-0.png&quot; &gt;
+    
+    &lt;figcaption&gt;The “staircase” of &amp;langle;G&amp;rangle;. Some of the stairs&#x27; steps are pretty large.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;As you can see, there are parts of the staircase that extend to infinity.
+That&#x27;s a direct consequence of &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ having positive dimension, or, equivalently, variety &lt;script type=&quot;math&#x2F;tex&quot;&gt;V(I)&lt;&#x2F;script&gt;
+ not having finitely many solutions.
+In the picture below, I&#x27;ve indicated the staircase&#x27;s five subspaces of dimension &lt;script type=&quot;math&#x2F;tex&quot;&gt;1&lt;&#x2F;script&gt;
+ by dashed, gray lines.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal_poly-1.png&quot; &gt;
+    
+    &lt;figcaption&gt;The five subspaces of &lt;em&gt;I&lt;&#x2F;em&gt; with dimension 1.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;For the Hilbert function, only monomials in &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ of degree &lt;script type=&quot;math&#x2F;tex&quot;&gt;\leqslant s&lt;&#x2F;script&gt;
+ are relevant.
+For each of the five subspaces, we can express the matching number of elements as a polynomial in &lt;script type=&quot;math&#x2F;tex&quot;&gt;s.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal_poly-2.png&quot; &gt;
+    
+    &lt;figcaption&gt;The number of monomials in each of the 1-dimensional subspaces as a function of s.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;The sum of these five polynomials is &lt;script type=&quot;math&#x2F;tex&quot;&gt;5s+1,&lt;&#x2F;script&gt;
+ which corresponds to the total number of monomials in the staircase of &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ of degree &lt;script type=&quot;math&#x2F;tex&quot;&gt;\leqslant s&lt;&#x2F;script&gt;
+ that lie in the staircase&#x27;s 1-dimensional subspaces –
+except that some elements are counted more than once.
+Since the intersection of two orthogonal 1-dimensional subspaces is of dimension &lt;script type=&quot;math&#x2F;tex&quot;&gt;0&lt;&#x2F;script&gt;
+, we can simply add a constant correction term.
+&lt;label for=&quot;mn-higher_dim_correction&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-higher_dim_correction&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    For ideals with more than two variables, we generally need to add correction terms of higher dimension, corresponding to polynomial summands of degree higher than 0.
+
+&lt;&#x2F;span&gt;
+&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal_poly-3.png&quot; &gt;
+    
+    &lt;figcaption&gt;The correction term for monomials counted twice is 6.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Adding the correction term of &lt;script type=&quot;math&#x2F;tex&quot;&gt;-6&lt;&#x2F;script&gt;
+ gives &lt;script type=&quot;math&#x2F;tex&quot;&gt;5s-5&lt;&#x2F;script&gt;
+ as a (preliminary) Hilbert polynomial for &lt;script type=&quot;math&#x2F;tex&quot;&gt;I.&lt;&#x2F;script&gt;
+
+We&#x27;re not completely done yet:
+for &lt;script type=&quot;math&#x2F;tex&quot;&gt;s &gt; 4&lt;&#x2F;script&gt;
+, there are monomials not in &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ that are also not in any of the 1-dimensional subspaces –
+for example &lt;script type=&quot;math&#x2F;tex&quot;&gt;x^3y^3.&lt;&#x2F;script&gt;
+
+Of those, we only have finitely many.
+In the example, it&#x27;s 4.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal_poly-4.png&quot; &gt;
+    
+    &lt;figcaption&gt;The correction term for monomials not counted at all is 4.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;After adding the second correction term, we have &lt;script type=&quot;math&#x2F;tex&quot;&gt;{}^a\textsf{HP}_{I&#x2F;R}(s)=5s-1&lt;&#x2F;script&gt;
+.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal_poly-5.png&quot; &gt;
+    
+    &lt;figcaption&gt;The staircase of &amp;langle;G&amp;rangle; with 1-dimensional subspaces and both correction terms.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;By finding the Hilbert polynomial, we also computed the Hilbert regularity of &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&#x2F;I:&lt;&#x2F;script&gt;
+
+it&#x27;s &lt;script type=&quot;math&#x2F;tex&quot;&gt;7.&lt;&#x2F;script&gt;
+
+In other words, for &lt;script type=&quot;math&#x2F;tex&quot;&gt;s\geqslant 7,&lt;&#x2F;script&gt;
+ we have &lt;script type=&quot;math&#x2F;tex&quot;&gt;\dim_\mathbb{F}(R&#x2F;I) = {}^a\textsf{HF}_{R&#x2F;I}(s) = {}^a\textsf{HP}_{R&#x2F;I}(s) = 5s-1.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;This coincides with the distance of the closest diagonal
+&lt;label for=&quot;mn-hyperplane&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-hyperplane&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    Generally speaking, the diagonal is a hyperplane.
+
+&lt;&#x2F;span&gt;
+
+such that all “overlapping” as well as all zero-dimensional parts of the staircase are enclosed –
+the red and blue dashed circles, respectively, in above picture.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;more-variables-more-dimensions&quot;&gt;More Variables, More Dimensions&lt;&#x2F;h1&gt;
+&lt;p&gt;The intuition of the 2-dimensional examples above translate to higher dimensions:
+find the most distant corner of the blue circle –
+the parts where positive-dimensional subspaces of the variety overlap –
+and the red circle –
+the variety&#x27;s part of dimension zero –
+and take the distance of the farther of these two corners as the Hilbert regularity.
+However, finding the corners becomes less trivial.
+Let me demonstrate with a staircase consisting of three “tunnels” that we&#x27;ll successively modify.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal_3D-0.png&quot; &gt;
+    
+    &lt;figcaption&gt;Ideal &amp;langle;G&amp;rangle; as 3-dimensional 𝔽-vector space.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Above staircase is defined by &lt;script type=&quot;math&#x2F;tex&quot;&gt;G=\{x^2y, x^2z^3, yz^2\}.&lt;&#x2F;script&gt;
+
+No monomials exist in the red bubble –
+every point is part of a subspace of dimension 1.
+The blue corner is the monomial defining the enclosing space of the parts where positive-dimensional subspaces overlap.
+It coincides with the least common multiple (lcm) of the three elements of &lt;script type=&quot;math&#x2F;tex&quot;&gt;G,&lt;&#x2F;script&gt;
+ namely &lt;script type=&quot;math&#x2F;tex&quot;&gt;m=x^2yz^3.&lt;&#x2F;script&gt;
+
+The Hilbert regularity can be read off from &lt;script type=&quot;math&#x2F;tex&quot;&gt;m\!&lt;&#x2F;script&gt;
+:
+the hyperplane&#x27;s required distance is &lt;script type=&quot;math&#x2F;tex&quot;&gt;\deg(x^{(2-1)}y^{(1-1)}z^{(3-1)})=3.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;That was easy enough.
+Let&#x27;s take a look at &lt;script type=&quot;math&#x2F;tex&quot;&gt;G&#x27; = \{x^2y, yz^2, z^3\}.&lt;&#x2F;script&gt;
+
+The staircase looks similar, with the exception for the “&lt;script type=&quot;math&#x2F;tex&quot;&gt;z&lt;&#x2F;script&gt;
+-tunnel.”&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal_3D-1.png&quot; &gt;
+    
+    &lt;figcaption&gt;Closing off the “tunnel” along the z-axis changes the Hilbert regularity.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Even though &lt;script type=&quot;math&#x2F;tex&quot;&gt;m&lt;&#x2F;script&gt;
+ from above is still on the “border” of &lt;script type=&quot;math&#x2F;tex&quot;&gt;\langle G&#x27; \rangle,&lt;&#x2F;script&gt;
+ just as it was for &lt;script type=&quot;math&#x2F;tex&quot;&gt;\langle G \rangle,&lt;&#x2F;script&gt;
+ it no longer defines the enclosing space we&#x27;re looking for.
+Note that the lcm of the elements in &lt;script type=&quot;math&#x2F;tex&quot;&gt;G&#x27;&lt;&#x2F;script&gt;
+ is still &lt;script type=&quot;math&#x2F;tex&quot;&gt;m,&lt;&#x2F;script&gt;
+ but the Hilbert regularity is now defined by the lcm of only two elements, &lt;script type=&quot;math&#x2F;tex&quot;&gt;x^2y&lt;&#x2F;script&gt;
+ and &lt;script type=&quot;math&#x2F;tex&quot;&gt;yz^2,&lt;&#x2F;script&gt;
+ giving &lt;script type=&quot;math&#x2F;tex&quot;&gt;m&#x27; = x^2yz^2.&lt;&#x2F;script&gt;
+
+The Hilbert regularity has changed to &lt;script type=&quot;math&#x2F;tex&quot;&gt;2.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;Let&#x27;s modify the staircase a little bit more, and look at &lt;script type=&quot;math&#x2F;tex&quot;&gt;G^\dagger = \{x^2, yz^2, z^3\}.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal_3D-2.png&quot; &gt;
+    
+    &lt;figcaption&gt;Additionally closing off the “tunnel” along the x-axis changes the Hilbert regularity again.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;he Hilbert regularity can once again be found by looking at &lt;script type=&quot;math&#x2F;tex&quot;&gt;m = x^2yz^3,&lt;&#x2F;script&gt;
+ but the reason has changed.
+This time around, &lt;script type=&quot;math&#x2F;tex&quot;&gt;m&lt;&#x2F;script&gt;
+ is the most distant corner of the volume enclosing all monomials not appearing in positive-dimensional subspaces of the variety –
+that&#x27;s the red bubble from before.
+And since only one “tunnel” remains, there&#x27;s no more overlap in positive-dimensional subspaces –
+the blue bubble, and with it the blue dot, have disappeared.
+Note that &lt;script type=&quot;math&#x2F;tex&quot;&gt;m&lt;&#x2F;script&gt;
+ is once again the lcm of the three elements of &lt;script type=&quot;math&#x2F;tex&quot;&gt;G^\dagger.&lt;&#x2F;script&gt;
+
+The Hilbert regularity is now again 3.&lt;&#x2F;p&gt;
+&lt;p&gt;For completeness sake, let&#x27;s close off the last of the tunnels by adding &lt;script type=&quot;math&#x2F;tex&quot;&gt;y^4&lt;&#x2F;script&gt;
+ to &lt;script type=&quot;math&#x2F;tex&quot;&gt;G^\dagger.&lt;&#x2F;script&gt;
+
+Monomial &lt;script type=&quot;math&#x2F;tex&quot;&gt;m^\dagger = x^2y^4z^2,&lt;&#x2F;script&gt;
+ being the lcm of &lt;script type=&quot;math&#x2F;tex&quot;&gt;x^2,&lt;&#x2F;script&gt;
+ &lt;script type=&quot;math&#x2F;tex&quot;&gt;yz^2,&lt;&#x2F;script&gt;
+ and &lt;script type=&quot;math&#x2F;tex&quot;&gt;y^4,&lt;&#x2F;script&gt;
+ is the Hilbert regularity-defining corner.
+The Hilbert regularity for &lt;script type=&quot;math&#x2F;tex&quot;&gt;G^\dagger&lt;&#x2F;script&gt;
+ is 5.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_monomial_ideal_3D-3.png&quot; &gt;
+    
+    &lt;figcaption&gt;Additionally closing off the “tunnel” along the y-axis again changes the Hilbert regularity.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;h1 id=&quot;computing-the-regularity-in-sagemath&quot;&gt;Computing the Regularity in sagemath&lt;&#x2F;h1&gt;
+&lt;p&gt;After having understood the Hilbert regularity, it&#x27;s time to throw some &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.sagemath.org&#x2F;&quot;&gt;sagemath&lt;&#x2F;a&gt; at the problem.
+Below, you can find two approaches.
+The first uses the staircase, like in the examples above.
+The second is based on the &lt;em&gt;Hilbert series&lt;&#x2F;em&gt;, which is explained &lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;hilbert-reg&#x2F;#math-approach&quot;&gt;further below&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-nice-to-visualize-geometric-approach&quot;&gt;The nice-to-visualize geometric approach&lt;&#x2F;h2&gt;
+&lt;p&gt;Using the geometric intuitions from above, we can compute the Hilbert regularity by finding all of the staircase&#x27;s corners.
+The code below only works for ideals of dimension 0
+&lt;label for=&quot;mn-negative_dim&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-negative_dim&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    Technically, the code works for any dimension ≤ 0, i.e., if there are no common solutions to the polynomials in the ideal, it also works.
+
+&lt;&#x2F;span&gt;
+
+since the polynomial models I do research on are always of that kind.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_finding_corners.png&quot; &gt;
+    
+    &lt;figcaption&gt;A general method to identify whether the lcm of some elements of G are a corner of the staircase.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;The code computes all lcm&#x27;s of subsets of size &lt;script type=&quot;math&#x2F;tex&quot;&gt;n&lt;&#x2F;script&gt;
+ of the Gröbner basis&#x27; leading monomials, which we have determined as the points of interest above.
+Any such lcm corresponding to a monomial that&#x27;s flush to one of the 0-planes is ignored as being degenerate –
+for example, the turquoise cross in below picture.
+Next, we check if the lcm-monomial is actually a corner of the staircase, by moving one step towards the origin along all axes.
+If the resulting monomial is in the ideal, it is not in the staircase, and thus not a corner –
+for example, the red cross in above picture.
+If, from the moved-to monomial, moving one step along any axis crosses the border of the staircase, we found a corner –
+for example, both of the blue crosses in above picture, but not the orange cross in the picture below.
+The distance of the furthest such corner corresponds to the Hilbert regularity.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2021-06-08_finding_corners_3D.png&quot; &gt;
+    
+    &lt;figcaption&gt;Some edge cases when determining whether a monomial is a corner are most clearly seen in the 3-dimensional case.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;With those pictures in mind, following the code should be fairly doable:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;py&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-py &quot;&gt;&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;import &lt;&#x2F;span&gt;&lt;span&gt;combinations
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;hilbert_regularity_staircase&lt;&#x2F;span&gt;&lt;span&gt;(I):
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;&amp;#39;&amp;#39;&amp;#39;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    Compute the Hilbert regularity of R&#x2F;I where R = I.ring() and I.dimension() &amp;lt;= 0.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    This is done by iterating through all n-tuples of the Gröbner basis&amp;#39; leading monomials,
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    computing their lcm, then determining if that lcm is actually a corner of the staircase.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    The corner that is the furthest from the origin determines the Hilbert regularity.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    &amp;#39;&amp;#39;&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;I&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;dimension&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;&amp;gt; &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;0&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;raise &lt;&#x2F;span&gt;&lt;span style=&quot;color:#8fbcbb;&quot;&gt;NotImplementedError&lt;&#x2F;span&gt;&lt;span&gt;(&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;f&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;Ideal must be of dimension 0 or less, but has dim &lt;&#x2F;span&gt;&lt;span&gt;{I&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;dimension&lt;&#x2F;span&gt;&lt;span&gt;()}&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;.&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;    gens &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;I&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;ring&lt;&#x2F;span&gt;&lt;span&gt;()&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;gens&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;# all variables
+&lt;&#x2F;span&gt;&lt;span&gt;    n &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#88c0d0;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(gens)
+&lt;&#x2F;span&gt;&lt;span&gt;    xyz &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#88c0d0;&quot;&gt;reduce&lt;&#x2F;span&gt;&lt;span&gt;(operator&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span&gt;mul&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;gens&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;)
+&lt;&#x2F;span&gt;&lt;span&gt;    gb_lm &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;[f&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;lm&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;f &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;I&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;groebner_basis&lt;&#x2F;span&gt;&lt;span&gt;()]
+&lt;&#x2F;span&gt;&lt;span&gt;    I_lm &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;Ideal&lt;&#x2F;span&gt;&lt;span&gt;(gb_lm)
+&lt;&#x2F;span&gt;&lt;span&gt;    hil_reg &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;0
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;lms &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;combinations&lt;&#x2F;span&gt;&lt;span&gt;(gb_lm&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;n):
+&lt;&#x2F;span&gt;&lt;span&gt;        m &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;lcm&lt;&#x2F;span&gt;&lt;span&gt;(lms)
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;# are we considering a meaningful combination of lm&amp;#39;s?
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;# i.e., does every variable make an appearance in m?
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#88c0d0;&quot;&gt;len&lt;&#x2F;span&gt;&lt;span&gt;(m&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;degrees&lt;&#x2F;span&gt;&lt;span&gt;()) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;!= &lt;&#x2F;span&gt;&lt;span&gt;n &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;or not &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#88c0d0;&quot;&gt;all&lt;&#x2F;span&gt;&lt;span&gt;(m&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;degrees&lt;&#x2F;span&gt;&lt;span&gt;()):
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;continue
+&lt;&#x2F;span&gt;&lt;span&gt;        m &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;m &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;&#x2F; &lt;&#x2F;span&gt;&lt;span&gt;xyz &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;# 1 step towards origin along all axes
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;assert &lt;&#x2F;span&gt;&lt;span&gt;I&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;ring&lt;&#x2F;span&gt;&lt;span&gt;()(m) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;== &lt;&#x2F;span&gt;&lt;span&gt;m&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;numerator&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;# no negative exponents, please
+&lt;&#x2F;span&gt;&lt;span&gt;        m &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;I&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;ring&lt;&#x2F;span&gt;&lt;span&gt;()(m)
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;# are we in a corner of the staircase?
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;# i.e., not in the ideal, but moving 1 step along any axis, we end up in the ideal?
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;if not &lt;&#x2F;span&gt;&lt;span&gt;m &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;I_lm &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;and &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#88c0d0;&quot;&gt;all&lt;&#x2F;span&gt;&lt;span&gt;([v&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;*&lt;&#x2F;span&gt;&lt;span&gt;m &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;I_lm &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;v &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;gens]):
+&lt;&#x2F;span&gt;&lt;span&gt;            hil_reg &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#88c0d0;&quot;&gt;max&lt;&#x2F;span&gt;&lt;span&gt;(hil_reg&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;m&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;degree&lt;&#x2F;span&gt;&lt;span&gt;())
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span&gt;hil_reg
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;math-approach&quot;&gt;The rigorous mathematical approach&lt;&#x2F;h2&gt;
+&lt;p&gt;The Hilbert regularity can also be computed using the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Hilbert_series_and_Hilbert_polynomial&quot;&gt;&lt;em&gt;Hilbert series&lt;&#x2F;em&gt;&lt;&#x2F;a&gt;.
+The Hilbert series is the formal power series of the (projective) Hilbert function:
+&lt;label for=&quot;mn-projective&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-projective&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    We can either look at the projective Hilbert function, or equivalently subtract two consecutive values of the affine Hilbert function, as I am doing here.
+
+&lt;&#x2F;span&gt;
+
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\textsf{HS}_{R&#x2F;I}(t) = \sum_{s=1}^{\infty}({}^a\textsf{HF}_{R&#x2F;I}(s) - {}^a\textsf{HF}_{R&#x2F;I}(s-1))t^s&lt;&#x2F;script&gt;
+
+The Hilbert series&#x27; coefficient of monomial &lt;script type=&quot;math&#x2F;tex&quot;&gt;t^d&lt;&#x2F;script&gt;
+ is the number of monomials of degree &lt;script type=&quot;math&#x2F;tex&quot;&gt;d&lt;&#x2F;script&gt;
+
+&lt;label for=&quot;mn-equality&quot; class=&quot;margin-toggle&quot;&gt;🛈&lt;&#x2F;label&gt;&lt;input type=&quot;checkbox&quot; id=&quot;mn-equality&quot; class=&quot;margin-toggle&quot;&#x2F;&gt;
+&lt;span class=&quot;marginnote&quot;&gt;
+    Unlike before, we only consider equality now!
+
+&lt;&#x2F;span&gt;
+
+that are in &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&lt;&#x2F;script&gt;
+ but not in &lt;script type=&quot;math&#x2F;tex&quot;&gt;I.&lt;&#x2F;script&gt;
+
+The Hilbert regularity coincides with the degree of the highest-degree consecutive term having positive coefficient.&lt;&#x2F;p&gt;
+&lt;p&gt;For example, take &lt;script type=&quot;math&#x2F;tex&quot;&gt;I&lt;&#x2F;script&gt;
+ from the very first example again, where we had &lt;script type=&quot;math&#x2F;tex&quot;&gt;G = \{x^6, x^2y^2, y^5\}.&lt;&#x2F;script&gt;
+
+Evaluating the Hilbert function of &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&#x2F;I&lt;&#x2F;script&gt;
+ gives &lt;script type=&quot;math&#x2F;tex&quot;&gt;(1, 3, 6, 10, 14, 17, 18, 18, \dots).&lt;&#x2F;script&gt;
+
+The Hilbert series of &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&#x2F;I&lt;&#x2F;script&gt;
+ is
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\textsf{HS}_{R&#x2F;I}(t) = 1 + 2t + 3t^2 + 4t^3 + 4t^4 + 3t^5 + t^6.&lt;&#x2F;script&gt;
+
+And indeed, the sought-for term has degree &lt;script type=&quot;math&#x2F;tex&quot;&gt;6,&lt;&#x2F;script&gt;
+ which we have seen to be the Hilbert regularity of &lt;script type=&quot;math&#x2F;tex&quot;&gt;R&#x2F;I.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;Conveniently, sagemath has a method for computing the Hilbert series of an ideal, albeit only for homogeneous ideals.
+As we have established above, the Hilbert regularity does not change when looking only at the leading monomials of the ideal&#x27;s Gröbner basis, which is a homogeneous ideal.
+Thus, finally, we have a catch-all piece of code for computing the Hilbert regularity.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;py&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-py &quot;&gt;&lt;code class=&quot;language-py&quot; data-lang=&quot;py&quot;&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;hilbert_regularity&lt;&#x2F;span&gt;&lt;span&gt;(I):
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;&amp;#39;&amp;#39;&amp;#39;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    Compute the Hilbert regularity of R&#x2F;I using the Hilbert series of R&#x2F;I.
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;    &amp;#39;&amp;#39;&amp;#39;
+&lt;&#x2F;span&gt;&lt;span&gt;    gb_lm &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;[f&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;lm&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;f &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;I&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;groebner_basis&lt;&#x2F;span&gt;&lt;span&gt;()]
+&lt;&#x2F;span&gt;&lt;span&gt;    I_lm &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;Ideal&lt;&#x2F;span&gt;&lt;span&gt;(gb_lm)
+&lt;&#x2F;span&gt;&lt;span&gt;    hil_ser &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;I_lm&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;hilbert_series&lt;&#x2F;span&gt;&lt;span&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;    hil_reg &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;hil_ser&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;numerator&lt;&#x2F;span&gt;&lt;span&gt;()&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;degree&lt;&#x2F;span&gt;&lt;span&gt;() &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;- &lt;&#x2F;span&gt;&lt;span&gt;hil_ser&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;denominator&lt;&#x2F;span&gt;&lt;span&gt;()&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;degree&lt;&#x2F;span&gt;&lt;span&gt;()
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span&gt;hil_reg
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h1 id=&quot;summary&quot;&gt;Summary&lt;&#x2F;h1&gt;
+&lt;p&gt;In this post, we have looked at the Hilbert function, the Hilbert polynomial, the Hilbert regularity, and the Hilbert series.
+For the first two of those, extensive examples have built intuition for what the Hilbert regularity is –
+and why it is not trivial to compute using this intuition.
+Instead, the Hilbert series gives us a tool to find the Hilbert regularity fairly easily.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;references&quot;&gt;References&lt;&#x2F;h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Magali Bardet, Jean-Charles Faugère, Bruno Salvy, and Bo-Yin Yang.
+&lt;em&gt;Asymptotic behaviour of the degree of regularity of semi-regular polynomial systems&lt;&#x2F;em&gt;.
+In Proceedings of MEGA, volume 5, 2005.&lt;&#x2F;li&gt;
+&lt;li&gt;Alessio Caminata and Elisa Gorla.
+&lt;em&gt;Solving multivariate polynomial systems and an invariant from commutative algebra&lt;&#x2F;em&gt;.
+arXiv preprint arXiv:1706.06319, 2017.&lt;&#x2F;li&gt;
+&lt;li&gt;David A. Cox, John Little, and Donal O’Shea.
+&lt;em&gt;Ideals, Varieties, and Algorithms: An Introduction to Computational Algebraic Geometry and Commutative Algebra&lt;&#x2F;em&gt;.
+Springer Science &amp;amp; Business Media, 2013.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</description>
+      </item>
+      <item>
+          <title>Why the Degree of Regularity Alone is Bad for Estimating Security – a Counter Example to Common Arguments</title>
+          <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://jfs.sh/blog/dreg-insufficient-for-security/</link>
+          <guid>https://jfs.sh/blog/dreg-insufficient-for-security/</guid>
+          <description xml:base="https://jfs.sh/blog/dreg-insufficient-for-security/">&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;🛈&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;I originally wrote this post when working at &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;asdm.gmbh&quot;&gt;AS Discrete Mathematics&lt;&#x2F;a&gt; as part of a project sponsored by the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;ethereum.foundation&#x2F;&quot;&gt;Ethereum Foundation&lt;&#x2F;a&gt;. It is reproduced here with friendly permission.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;Cryptographic primitives designed to be algebraically simple – &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;asdm.gmbh&#x2F;arithmetization-oriented-ciphers&#x2F;&quot;&gt;AOCs&lt;&#x2F;a&gt; – might be particularly vulnerable to algebraic attacks.
+One of the most threatening attack vectors in this category is the &lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;introduction-to-gb-attacks-on-aoc&#x2F;&quot;&gt;Gröbner basis analysis&lt;&#x2F;a&gt;.
+For a cipher or hash function to be considered secure, the Gröbner basis for any polynomial system derivable from the primitive needs to be intractable to compute.&lt;&#x2F;p&gt;
+&lt;p&gt;Unfortunately, the complexity of computing a Gröbner basis for a specific polynomial system is generally not known before the computation is completed.
+However, some complexity bounds exist.
+One of the most prominently used bounds is based on a polynomial system&#x27;s &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;asdm.gmbh&#x2F;2021&#x2F;03&#x2F;15&#x2F;d_reg&#x2F;&quot;&gt;degree of regularity&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Generally, computing the degree of regularity for a polynomial system is as hard as &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;asdm.gmbh&#x2F;2021&#x2F;04&#x2F;16&#x2F;dreg-from-gb&#x2F;&quot;&gt;computing the Gröbner basis&lt;&#x2F;a&gt; itself.
+Luckily, for an “&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;staff.math.su.se&#x2F;shapiro&#x2F;ProblemSolving&#x2F;Pardue.pdf&quot;&gt;average&lt;&#x2F;a&gt;”&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Regular_sequence&quot;&gt;regular&lt;&#x2F;a&gt; determined system, the degree of regularity equals the &lt;em&gt;Macaulay bound&lt;&#x2F;em&gt;.
+That is, for &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F} = \{f_0, \dots, f_{s-1}\} \subseteq \mathbb{F}[x_0, \dots, x_{n-1}]&lt;&#x2F;script&gt;
+ we have &lt;script type=&quot;math&#x2F;tex&quot;&gt;d_\text{reg} = 1 + \sum_{i=0}^{s-1}\deg(f_i) - 1.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;how-current-aocs-argue-resistance-to-grobner-basis-analysis&quot;&gt;How Current AOCs Argue Resistance to Gröbner Basis Analysis&lt;&#x2F;h1&gt;
+&lt;p&gt;The &lt;strong&gt;Poseidon&lt;&#x2F;strong&gt; [6] paper mentions the Macaulay bound, and implicitly assumes that the polynomial system arising from Poseidon is a regular sequence.
+My own experiments indicate that this assumption is &lt;em&gt;false&lt;&#x2F;em&gt;.
+Similarly, &lt;strong&gt;GMiMC&lt;&#x2F;strong&gt; [1] uses the Macaulay bound and assumes the regularity of the system implicitly.
+My own experiments indicate that this assumption is also &lt;em&gt;false&lt;&#x2F;em&gt;.
+The authors of &lt;strong&gt;Ciminion&lt;&#x2F;strong&gt; [4] explicitly assume the derived system to be regular, but mistakenly describe this to be “the best adversarial scenario” where in fact the opposite is true.
+Furthermore, my own experiments indicate that the polynomial sequence is &lt;em&gt;not&lt;&#x2F;em&gt; regular.
+For &lt;strong&gt;Rescue&lt;&#x2F;strong&gt; [2], the authors perform Gröbner basis attacks on round-reduced variants, showing that the system arising from Rescue is &lt;em&gt;not&lt;&#x2F;em&gt; regular.
+They then extrapolate the observed degrees to estimate the degree of regularity for the full-round primitive.&lt;&#x2F;p&gt;
+&lt;p&gt;In summary, two approaches can be observed:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;assume regularity of the system, then use the Macaulay bound to compute the degree of regularity, or&lt;&#x2F;li&gt;
+&lt;li&gt;extrapolate the degree of regularity from round-reduced variants.
+Both approaches then use the degree of regularity to estimate the complexity for computing the Gröbner basis.
+This is generally done by looking at the complexity bound of the most efficient Gröbner basis algorithm, F&lt;sub&gt;5&lt;&#x2F;sub&gt;.
+This bound is
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;O\left(\binom{n + d_\text{reg}}{n}^\omega\right)&lt;&#x2F;script&gt;
+
+where &lt;script type=&quot;math&#x2F;tex&quot;&gt;n&lt;&#x2F;script&gt;
+ is the number of variables in the polynomial ring [3].&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;But:
+this is an upper bound.
+We need a &lt;em&gt;lower&lt;&#x2F;em&gt; bound.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;the-degree-of-regularity-does-not-suffice&quot;&gt;The Degree of Regularity does not Suffice&lt;&#x2F;h1&gt;
+&lt;p&gt;I&#x27;ll make a series of increasingly complex and decreasingly pathological examples why the degree of regularity derived from the Macaulay bound does not suffice to accurately estimate the &lt;em&gt;concrete&lt;&#x2F;em&gt; complexity of computing a Gröbner basis.
+The ideals of all the systems below are of dimension 0, meaning that the respective sets of common solutions are non-empty and contain finitely many elements.
+This accurately reflects the properties of polynomial systems modeling a cryptographic primitive.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;example-1-the-system-is-already-a-grobner-basis&quot;&gt;Example 1: The system is already a Gröbner basis&lt;&#x2F;h2&gt;
+&lt;p&gt;Let&#x27;s say we want to compute the Gröbner basis for
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{gb} = \{x^7, y^7, z^7\} \subseteq \mathbb{F}[x,y,z].&lt;&#x2F;script&gt;
+
+We quickly see that &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}&lt;&#x2F;script&gt;
+ is a &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Regular_sequence&quot;&gt;regular sequence&lt;&#x2F;a&gt;, and determine that the degree of regularity is &lt;script type=&quot;math&#x2F;tex&quot;&gt;d_\text{reg} = 1 + \sum_{i=0}^2 7 - 1 = 19.&lt;&#x2F;script&gt;
+
+Consequently, or so the roughly sketched argument above goes, a Gröbner basis algorithm like F&lt;sub&gt;4&lt;&#x2F;sub&gt; or F&lt;sub&gt;5&lt;&#x2F;sub&gt; should have to perform computations on polynomials of up to degree 19 before being able to output a Gröbner basis.&lt;&#x2F;p&gt;
+&lt;p&gt;However, &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{gb}&lt;&#x2F;script&gt;
+ is already a Gröbner basis – no computation at all is required!&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;example-2-the-system-can-be-split-up&quot;&gt;Example 2: The system can be split up&lt;&#x2F;h2&gt;
+&lt;p&gt;Deriving a polynomial system from a cryptographic primitive rarely gives you a Gröbner basis – although there are exceptions, like GMiMC.
+Instead, let&#x27;s look at the following polynomial system.
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\mathcal{F}_\text{indep} = \left\{
+    \begin{aligned}
+        &amp;u^2 v w + u^2, &amp;&amp; x^2 y z + x^2, \\
+        &amp;u v^2 w + v^2 + 1, &amp;&amp; x y^2 z + y^2 + 1, \\
+        &amp;u v w^2 + w^2, &amp;&amp; x y z^2 + z^2 \\
+    \end{aligned}
+\right\}
+\subseteq \mathbb{F}[u,v,w,x,y,z].&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;The polynomials containing variables &lt;script type=&quot;math&#x2F;tex&quot;&gt;u&lt;&#x2F;script&gt;
+, &lt;script type=&quot;math&#x2F;tex&quot;&gt;v&lt;&#x2F;script&gt;
+ and &lt;script type=&quot;math&#x2F;tex&quot;&gt;w&lt;&#x2F;script&gt;
+ are completely independent from the polynomials where &lt;script type=&quot;math&#x2F;tex&quot;&gt;x&lt;&#x2F;script&gt;
+, &lt;script type=&quot;math&#x2F;tex&quot;&gt;y,&lt;&#x2F;script&gt;
+ and &lt;script type=&quot;math&#x2F;tex&quot;&gt;z&lt;&#x2F;script&gt;
+ make an appearance.
+For the Macaulay bound, this fact is irrelevant.
+Since &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{indep}&lt;&#x2F;script&gt;
+ is a regular sequence, we might derive &lt;script type=&quot;math&#x2F;tex&quot;&gt;d_\text{reg} = 1 + \sum_{i=0}^5 4 - 1 = 19.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;However, the F&lt;sub&gt;4&lt;&#x2F;sub&gt; implementations of &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;http:&#x2F;&#x2F;magma.maths.usyd.edu.au&#x2F;magma&#x2F;&quot;&gt;magma&lt;&#x2F;a&gt; and &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www-polsys.lip6.fr&#x2F;~jcf&#x2F;FGb&#x2F;&quot;&gt;FGb&lt;&#x2F;a&gt; as well as the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ASDiscreteMathematics&#x2F;gb-voodoo&#x2F;&quot;&gt;python implementation of F&lt;sub&gt;5&lt;&#x2F;sub&gt;&lt;&#x2F;a&gt; all compute on polynomials of only degree 5 and lower before finding the Gröbner basis –
+they are not fooled by this attempt to artificially increase the complexity.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;example-3-the-system-is-not-very-involved&quot;&gt;Example 3: The system is not very “involved”&lt;&#x2F;h2&gt;
+&lt;p&gt;When deriving a polynomial system from a (single) cryptographic primitive, a partition in the set of polynomials like above is unlikely to appear –
+intuitively, that would lead to weak &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Confusion_and_diffusion#Diffusion&quot;&gt;diffusion&lt;&#x2F;a&gt;.
+Let&#x27;s change the system a little, then.
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\mathcal{F}_\text{invlv} = \left\{
+    \begin{aligned}
+        &amp;u^2 v w + u^2, &amp;&amp; x^2 y z + x^2, \\
+        &amp;u v^2 w + v^2 + 1, &amp;&amp; x y^2 z + y^2 + 1, \\
+        &amp;u v w^2 + w^2, &amp;&amp; u^4 + z^4 \\
+    \end{aligned}
+\right\}
+\subseteq \mathbb{F}[u,v,w,x,y,z].&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;The sets &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{indep}&lt;&#x2F;script&gt;
+ and &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{invlv}&lt;&#x2F;script&gt;
+ differ in one polynomial, and this polynomial &lt;script type=&quot;math&#x2F;tex&quot;&gt;(u^4 + z^4) = f_\text{link}&lt;&#x2F;script&gt;
+ links the two independent subsets of &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{indep}.&lt;&#x2F;script&gt;
+
+I didn&#x27;t derive the system from any concrete primitive, but a polynomial like &lt;script type=&quot;math&#x2F;tex&quot;&gt;f_\text{link}&lt;&#x2F;script&gt;
+ might express how to move from one round to the next in a cipher.&lt;&#x2F;p&gt;
+&lt;p&gt;The Macaulay bound for &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{invlv}&lt;&#x2F;script&gt;
+ does not change from the bound for &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{indep}&lt;&#x2F;script&gt;
+ since &lt;script type=&quot;math&#x2F;tex&quot;&gt;f_\text{link}&lt;&#x2F;script&gt;
+ is of the same degree as the polynomial it replaced.
+Also, &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{invlv}&lt;&#x2F;script&gt;
+ is still a regular sequence, so we still have &lt;script type=&quot;math&#x2F;tex&quot;&gt;d_\text{reg} = 19.&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;You might have guessed it by now:
+the highest polynomials appearing during a Gröbner basis computation for &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{invlv}&lt;&#x2F;script&gt;
+ is not 19.
+Magma&#x27;s F&lt;sub&gt;4&lt;&#x2F;sub&gt; reports a maximum degree of &lt;script type=&quot;math&#x2F;tex&quot;&gt;6,&lt;&#x2F;script&gt;
+ FGb only reaches degree 5, and so does python-F&lt;sub&gt;5&lt;&#x2F;sub&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;While I don&#x27;t fully understand why this happens, &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;ASDiscreteMathematics&#x2F;gb-voodoo&#x2F;&quot;&gt;vectors of origin&lt;&#x2F;a&gt; give some hints.
+Briefly, &lt;script type=&quot;math&#x2F;tex&quot;&gt;v_i&lt;&#x2F;script&gt;
+ is a vector of origin for Gröbner basis element &lt;script type=&quot;math&#x2F;tex&quot;&gt;g_i&lt;&#x2F;script&gt;
+ if &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{invlv} \cdot v_i = g_i.&lt;&#x2F;script&gt;
+
+Below are the vectors of origin for &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathcal{F}_\text{invlv},&lt;&#x2F;script&gt;
+ where any big polynomial is replaced by &lt;script type=&quot;math&#x2F;tex&quot;&gt;\bullet&lt;&#x2F;script&gt;
+ to ease reading.
+&lt;script type=&quot;math&#x2F;tex;mode=display&quot;&gt;\begin{align*}
+    v_1 &amp;= (\bullet, \bullet, {\small 0}, {\small 0}, {\small 0}, {\small 0}), \\
+    v_2 &amp;= (\bullet, \bullet, {\small 0}, {\small 0}, {\small 0}, {\small 0}), \\
+    v_3 &amp;= ({\small 0}, {\small 0}, \bullet, 3, {\small 0}, {\small 0}), \\
+    v_4 &amp;= ({\small 0}, {\small 0}, \bullet, \bullet, {\small 0}, {\small 0}), \\
+    v_5 &amp;= ({\small 0}, {\small 0}, \bullet, \bullet, 1, {\small 0}), \\
+    v_6 &amp;= ({\small 0}, {\small 0}, \bullet, \bullet, \bullet, 1) \\
+\end{align*}&lt;&#x2F;script&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;A zero in position &lt;script type=&quot;math&#x2F;tex&quot;&gt;i&lt;&#x2F;script&gt;
+ in a vector of origin means that &lt;script type=&quot;math&#x2F;tex&quot;&gt;f_i&lt;&#x2F;script&gt;
+ was unnecessary for computing the Gröbner basis element.
+Above vectors of origin have a lot of zeros –
+in fact, even though all polynomials are linked to one another in some (potentially indirect) way, there seems to be a partition.&lt;&#x2F;p&gt;
+&lt;p&gt;I describe polynomial systems for which the Gröbner bases&#x27; elements can be computed from a few input polynomials at a time as having low “involvement.”
+As of yet, there is no mathematically rigourous way to define this notion, but above example should give a rough intuition.
+My observations indicate that low involvement means low complexity for computing a Gröbner basis.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Note.&lt;&#x2F;strong&gt;
+Above counter-examples do not disprove the equality of the degree of regularity and the Macaulay bound for &lt;em&gt;generic&lt;&#x2F;em&gt; polynomial systems –
+they only show that regularity of the sequence is not a sufficient requirement.&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;existing-lower-bounds&quot;&gt;Existing Lower Bounds&lt;&#x2F;h1&gt;
+&lt;p&gt;The main message of this post is that we need (tight-ish) &lt;em&gt;lower&lt;&#x2F;em&gt;, not upper, bounds for estimating the complexity of a Gröbner basis computation in order to accurately asses the security of cryptographic primitives against this vector of attack.
+Unfortunately, the scientific literature currently has little to offer in this regard.&lt;&#x2F;p&gt;
+&lt;p&gt;Hyun [5] exclusively deals with field &lt;script type=&quot;math&#x2F;tex&quot;&gt;\mathbb{Q},&lt;&#x2F;script&gt;
+ while we are interested in finite fields.
+Möller &amp;amp; Mora [7] look at ideals of positive dimension, while we are only interested in zero-dimensional ideals.
+Furthermore, all given bounds are &lt;em&gt;existential&lt;&#x2F;em&gt; while we need a &lt;em&gt;constructive&lt;&#x2F;em&gt; bound.&lt;&#x2F;p&gt;
+&lt;p&gt;In summary, current strategies for arguing that some Arithmetization Oriented Primitive is resistant against Gröbner basis attacks make too many unbacked assumptions, often implicitly.
+The tools to make these arguments rigorously don&#x27;t currently exist.
+Or in other words: “&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.youtube.com&#x2F;watch?v=AgMLPFCFE90&quot;&gt;look at me still talking when there&#x27;s science to do.&lt;&#x2F;a&gt;”&lt;&#x2F;p&gt;
+&lt;h1 id=&quot;references&quot;&gt;References&lt;&#x2F;h1&gt;
+&lt;ol&gt;
+&lt;li&gt;Albrecht, M.R., Grassi, L., Perrin, L., Ramacher, S., Rechberger, C., Rotaru, D.,Roy, A., Schofnegger, M.:
+&lt;em&gt;Feistel Structures for MPC, and More&lt;&#x2F;em&gt;.
+In: ESORICS. pp.151–171. Springer (2019)&lt;&#x2F;li&gt;
+&lt;li&gt;Aly, A., Ashur, T., Ben-Sasson, E., Dhooghe, S., Szepieniec, A.:
+&lt;em&gt;Design of Symmetric Primitives for Advanced Cryptographic Protocols&lt;&#x2F;em&gt;.
+IACR ToSC 2020(3), 1–45(2020)&lt;&#x2F;li&gt;
+&lt;li&gt;Bardet, M., Faugère, J.C., Salvy, B.:
+&lt;em&gt;On the complexity of the F5 Gröbner basis algorithm&lt;&#x2F;em&gt;.
+Journal of Symbolic Computation 70, 49–70 (2015)&lt;&#x2F;li&gt;
+&lt;li&gt;Dobraunig, C.E., Grassi, L., Guinet, A., Kuijsters, D.:
+&lt;em&gt;Ciminion: Symmetric Encryption Based on Toffoli-Gates over Large Finite Fields&lt;&#x2F;em&gt;.
+In: Eurocrypt 2021 (2021)&lt;&#x2F;li&gt;
+&lt;li&gt;Huynh, Dung T.:
+&lt;em&gt;A superexponential lower bound for Gröbner bases and Church-Rosser commutative Thue systems&lt;&#x2F;em&gt;.
+Information and Control, 68(1- 3):196–206 (1986)&lt;&#x2F;li&gt;
+&lt;li&gt;Grassi, L., Khovratovich, D., Rechberger, C., Roy, A., Schofnegger, M.:
+&lt;em&gt;Poseidon: A New Hash Function for Zero-Knowledge Proof Systems&lt;&#x2F;em&gt;.
+In: USENIX Security. USENIXAssociation (2020)&lt;&#x2F;li&gt;
+&lt;li&gt;Möller, H. M., and Mora, F.:
+&lt;em&gt;Upper and lower bounds for the degree of Gröbner bases&lt;&#x2F;em&gt;.
+In: International Symposium on Symbolic and Algebraic Manipulation, pages 172–183. Springer (1984)&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</description>
+      </item>
+      <item>
+          <title>Converting Gröbner bases with FGLM</title>
+          <pubDate>Thu, 22 Oct 2020 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://jfs.sh/blog/fglm-presentation/</link>
+          <guid>https://jfs.sh/blog/fglm-presentation/</guid>
+          <description xml:base="https://jfs.sh/blog/fglm-presentation/">&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;🛈&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;I originally wrote this post when working at &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;asdm.gmbh&quot;&gt;AS Discrete Mathematics&lt;&#x2F;a&gt; as part of a project sponsored by the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;ethereum.foundation&#x2F;&quot;&gt;Ethereum Foundation&lt;&#x2F;a&gt;. It is reproduced here with friendly permission.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;Have you ever computed a Gröbner basis in some monomial order
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\prec_0&lt;&#x2F;script&gt;
+
+only to then realize that you &lt;em&gt;actually&lt;&#x2F;em&gt; wanted it in another order
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;\prec_1&lt;&#x2F;script&gt;
+
+?
+I know, happens &lt;em&gt;all&lt;&#x2F;em&gt; the time…
+But fret not, FGLM can convert between the two orders, and you don&#x27;t have to start your computation from scratch.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;blog&#x2F;2020-10-22_fglm_summary.png&quot; alt=&quot;A visual summary of the execution of FGLM on an example input.&quot; title=&quot;Left, a &quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.bitchute.com&#x2F;video&#x2F;5TeyXMq4m7Gc&#x2F;&quot;&gt;Here&#x27;s a recording&lt;&#x2F;a&gt; where I&#x27;m explaining how FGLM works.
+If you&#x27;d like to look through the slides at your own pace, &lt;a href=&quot;&#x2F;blog&#x2F;2020-10-22_fglm_example_animated.pdf&quot;&gt;here they are&lt;&#x2F;a&gt;.
+You can also find the two Gröbner bases used in the example as well as pseudocode for FGLM in the slides, in case you want to retrace the steps yourself.&lt;&#x2F;p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;iframe scrolling=&quot;no&quot; style=&quot;border: none;display:block;&quot; src=&quot;https:&#x2F;&#x2F;www.bitchute.com&#x2F;embed&#x2F;5TeyXMq4m7Gc&#x2F;&quot; width=&quot;640&quot; height=&quot;360&quot; frameborder=&quot;0&quot;&gt;&lt;&#x2F;iframe&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;If you are interested in not only &lt;em&gt;how&lt;&#x2F;em&gt; but also &lt;em&gt;why&lt;&#x2F;em&gt; FGLM works, have a look at the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;doi.org&#x2F;10.1006&#x2F;jsco.1993.1051&quot;&gt;original publication&lt;&#x2F;a&gt;.
+Section 5 and 6 give a comprehensive overview of FGLM&#x27;s complexity, which can be summarized as
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;O(n\cdot D^3)&lt;&#x2F;script&gt;
+
+where &lt;script type=&quot;math&#x2F;tex&quot;&gt;D&lt;&#x2F;script&gt;
+ is the dimension of quotient ring
+&lt;script type=&quot;math&#x2F;tex&quot;&gt;k[x_0, \dots, x_{n-1}] &#x2F; \langle G \rangle&lt;&#x2F;script&gt;
+
+as a &lt;script type=&quot;math&#x2F;tex&quot;&gt;k&lt;&#x2F;script&gt;
+-vector-space.
+More intuitively, &lt;script type=&quot;math&#x2F;tex&quot;&gt;D&lt;&#x2F;script&gt;
+ is the number of monomials in the staircase of a Gröbner basis, which are those dots in the non-blue region in this post&#x27;s first picture.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;python&quot; style=&quot;background-color:#2e3440;color:#d8dee9;&quot; class=&quot;language-python &quot;&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;def &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;FGLM&lt;&#x2F;span&gt;&lt;span&gt;(order_new&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;gb_old&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;order_old):
+&lt;&#x2F;span&gt;&lt;span&gt;    d &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;{}
+&lt;&#x2F;span&gt;&lt;span&gt;    gb_new &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;[]
+&lt;&#x2F;span&gt;&lt;span&gt;    next_monoms &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;[&lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;1&lt;&#x2F;span&gt;&lt;span&gt;]
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;while &lt;&#x2F;span&gt;&lt;span&gt;next_monoms:
+&lt;&#x2F;span&gt;&lt;span&gt;        monom &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#88c0d0;&quot;&gt;min&lt;&#x2F;span&gt;&lt;span&gt;(next_monoms) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;# according to order_new
+&lt;&#x2F;span&gt;&lt;span&gt;        next_monoms &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;-= &lt;&#x2F;span&gt;&lt;span&gt;monom
+&lt;&#x2F;span&gt;&lt;span&gt;        &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;no g &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;gb_new such that &lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;LM&lt;&#x2F;span&gt;&lt;span&gt;(g) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;| &lt;&#x2F;span&gt;&lt;span&gt;monom:
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;# monom is still within staircase
+&lt;&#x2F;span&gt;&lt;span&gt;            reduced_monom &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;= &lt;&#x2F;span&gt;&lt;span&gt;monom&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;reduce&lt;&#x2F;span&gt;&lt;span&gt;(gb_old&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;order_old)
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;if &lt;&#x2F;span&gt;&lt;span&gt;reduced_monom &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;+ &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#88c0d0;&quot;&gt;sum&lt;&#x2F;span&gt;&lt;span&gt;([w[u] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;* &lt;&#x2F;span&gt;&lt;span&gt;v &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;u&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;v &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;d&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;items&lt;&#x2F;span&gt;&lt;span&gt;()]) &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;== &lt;&#x2F;span&gt;&lt;span style=&quot;color:#b48ead;&quot;&gt;0 &lt;&#x2F;span&gt;&lt;span style=&quot;background-color:#bf616a;color:#d8dee9;&quot;&gt;for&lt;&#x2F;span&gt;&lt;span&gt; some w&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;                &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;# w[i] are field elements, i.e., coefficients.
+&lt;&#x2F;span&gt;&lt;span&gt;                &lt;&#x2F;span&gt;&lt;span style=&quot;color:#616e88;&quot;&gt;# they can be found by Gaussian reduction of d.values()
+&lt;&#x2F;span&gt;&lt;span&gt;                gb_new &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;+= &lt;&#x2F;span&gt;&lt;span&gt;monom &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;+ &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#88c0d0;&quot;&gt;sum&lt;&#x2F;span&gt;&lt;span&gt;([w[u] &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;* &lt;&#x2F;span&gt;&lt;span&gt;u &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;u&lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;, &lt;&#x2F;span&gt;&lt;span&gt;v &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span&gt;d&lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;.&lt;&#x2F;span&gt;&lt;span style=&quot;color:#88c0d0;&quot;&gt;items&lt;&#x2F;span&gt;&lt;span&gt;()])
+&lt;&#x2F;span&gt;&lt;span&gt;            &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;else&lt;&#x2F;span&gt;&lt;span&gt;:
+&lt;&#x2F;span&gt;&lt;span&gt;                d &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;+= &lt;&#x2F;span&gt;&lt;span&gt;{monom &lt;&#x2F;span&gt;&lt;span style=&quot;color:#eceff4;&quot;&gt;: &lt;&#x2F;span&gt;&lt;span&gt;reduced_monom}
+&lt;&#x2F;span&gt;&lt;span&gt;                next_monoms &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;+= &lt;&#x2F;span&gt;&lt;span&gt;[x_i &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;* &lt;&#x2F;span&gt;&lt;span&gt;monom &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;for &lt;&#x2F;span&gt;&lt;span&gt;i &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;in &lt;&#x2F;span&gt;&lt;span style=&quot;font-style:italic;color:#88c0d0;&quot;&gt;range&lt;&#x2F;span&gt;&lt;span&gt;(n)]
+&lt;&#x2F;span&gt;&lt;span&gt;    &lt;&#x2F;span&gt;&lt;span style=&quot;color:#81a1c1;&quot;&gt;return &lt;&#x2F;span&gt;&lt;span&gt;gb_new
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</description>
+      </item>
+      <item>
+          <title>Introduction to GB Attacks on AOC</title>
+          <pubDate>Wed, 12 Aug 2020 00:00:00 +0000</pubDate>
+          <author>Unknown</author>
+          <link>https://jfs.sh/blog/introduction-to-gb-attacks-on-aoc/</link>
+          <guid>https://jfs.sh/blog/introduction-to-gb-attacks-on-aoc/</guid>
+          <description xml:base="https://jfs.sh/blog/introduction-to-gb-attacks-on-aoc/">&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th style=&quot;text-align: left&quot;&gt;🛈&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td style=&quot;text-align: left&quot;&gt;I originally wrote this post when working at &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;asdm.gmbh&quot;&gt;AS Discrete Mathematics&lt;&#x2F;a&gt; as part of a project sponsored by the &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;ethereum.foundation&#x2F;&quot;&gt;Ethereum Foundation&lt;&#x2F;a&gt;. It is reproduced here with friendly permission.&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;Today, I gave an introductory presentation on Gröbner basis attacks in the context of attacking arithmetization-oriented ciphers.&lt;&#x2F;p&gt;
+&lt;figure&gt;
+    &lt;img src=&quot;&amp;#x2F;blog&amp;#x2F;2020-08-12_summary.png&quot; &gt;
+    
+    &lt;figcaption&gt;Summary slide of the introductory presentation to Gröbner bases.&lt;&#x2F;figcaption&gt;
+    
+&lt;&#x2F;figure&gt;
+&lt;p&gt;Couldn&#x27;t make it?
+Not to worry!
+Take a peek at &lt;a href=&quot;&#x2F;blog&#x2F;2020-08-12_ac_using_gbs.pdf&quot;&gt;the slides&lt;&#x2F;a&gt;, and complement them by watching &lt;a rel=&quot;nofollow noreferrer&quot; href=&quot;https:&#x2F;&#x2F;www.bitchute.com&#x2F;video&#x2F;aYp4d6gVnFjT&#x2F;&quot;&gt;the recording&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;p align=&quot;center&quot;&gt;
+&lt;iframe scrolling=&quot;no&quot; style=&quot;border: none;display:block;&quot; src=&quot;https:&#x2F;&#x2F;www.bitchute.com&#x2F;embed&#x2F;aYp4d6gVnFjT&#x2F;&quot; width=&quot;640&quot; height=&quot;360&quot; frameborder=&quot;0&quot;&gt;&lt;&#x2F;iframe&gt;
+&lt;&#x2F;p&gt;
+&lt;p&gt;Another important piece of the puzzle is FGLM, which is skipped in today&#x27;s presentation.
+&lt;a href=&quot;https:&#x2F;&#x2F;jfs.sh&#x2F;blog&#x2F;fglm-presentation&#x2F;&quot;&gt;Here&lt;&#x2F;a&gt;&#x27;s a dedicated presentation about FGLM.&lt;&#x2F;p&gt;
+</description>
+      </item>
+    </channel>
+</rss>

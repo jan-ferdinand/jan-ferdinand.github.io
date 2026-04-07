@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Converting Gröbner bases with FGLM</title>
+    <meta name="description" content="">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/var.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/katex.min.css">
+<link rel="stylesheet" href="/css/sidenotes.css">
+<link rel="stylesheet" href="/css/header.css" />
+<link rel="stylesheet" href="/css/footer.css" />
+<link rel="stylesheet" href="/css/post.css" />
+
+    
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://jfs.sh/rss.xml">
+    
+    </head>
+
+<body>
+    <script>if(localStorage.getItem('theme')=='dark'){document.body.classList.add('dark-mode');}</script>
+    
+<header  class="blur" >
+    <div class="top">
+        <a class="header blog" href="/blog">
+            <img src="/icons/pen-nib-fill.svg" class="filter-dark" width="36px">
+            <span>Blog</span>
+        </a>
+        <a class="back" href="/">
+            <img src="/icons/arrow-left-s-line.svg" class="filter-dark" width="14px">
+            <span>Home</span>
+        </a>
+        <div class="icon">
+            <a id="go-home" href="/" aria-label="home" ><img src="/icons/user-3-fill.svg" class="filter-dark" width="24px"></a>
+            <button id="color-toggle" aria-label="dark light mode switch"><img src="/icons/moon-fill.svg" class="filter-dark" width="24px"></button>
+            <button id="toc-toggle" aria-label="table of content"><img src="/icons/menu-2-fill.svg" class="filter-dark" width="24px"></button>
+            </div>
+    </div>
+    <div id="progress-bar"></div>
+</header>
+
+<div class="wrap">
+    <aside  class="blur" >  
+    </aside>
+    <main>
+        <div id="top"></div>
+        <article>
+            <h1>Converting Gröbner bases with FGLM</h1>
+            <div id="post-info">
+                <div class="date">
+                    <span id="publish">2020-10-22</span>
+                    </div>
+                <div class="tags">
+                    <a class="tag" href="https://jfs.sh/tags/algebra"><span>#Algebra</span></a><a class="tag" href="https://jfs.sh/tags/grobner-basis"><span>#Gröbner basis</span></a><a class="tag" href="https://jfs.sh/tags/term-order-change"><span>#Term Order Change</span></a><a class="tag" href="https://jfs.sh/tags/presentation"><span>#Presentation</span></a><a class="tag" href="https://jfs.sh/tags/fglm"><span>#FGLM</span></a><a class="tag" href="https://jfs.sh/tags/as-discrete-mathematics"><span>#AS Discrete Mathematics</span></a>
+                </div>
+            </div>    
+
+            
+            
+            <table><thead><tr><th style="text-align: left">🛈</th></tr></thead><tbody>
+<tr><td style="text-align: left">I originally wrote this post when working at <a rel="nofollow noreferrer" href="https://asdm.gmbh">AS Discrete Mathematics</a> as part of a project sponsored by the <a rel="nofollow noreferrer" href="https://ethereum.foundation/">Ethereum Foundation</a>. It is reproduced here with friendly permission.</td></tr>
+</tbody></table>
+<p>Have you ever computed a Gröbner basis in some monomial order
+<script type="math/tex">\prec_0</script>
+
+only to then realize that you <em>actually</em> wanted it in another order
+<script type="math/tex">\prec_1</script>
+
+?
+I know, happens <em>all</em> the time…
+But fret not, FGLM can convert between the two orders, and you don't have to start your computation from scratch.</p>
+<p><img src="/blog/2020-10-22_fglm_summary.png" alt="A visual summary of the execution of FGLM on an example input." title="Left, a " /></p>
+<p><a rel="nofollow noreferrer" href="https://www.bitchute.com/video/5TeyXMq4m7Gc/">Here's a recording</a> where I'm explaining how FGLM works.
+If you'd like to look through the slides at your own pace, <a href="/blog/2020-10-22_fglm_example_animated.pdf">here they are</a>.
+You can also find the two Gröbner bases used in the example as well as pseudocode for FGLM in the slides, in case you want to retrace the steps yourself.</p>
+<p align="center">
+<iframe scrolling="no" style="border: none;display:block;" src="https://www.bitchute.com/embed/5TeyXMq4m7Gc/" width="640" height="360" frameborder="0"></iframe>
+</p>
+<p>If you are interested in not only <em>how</em> but also <em>why</em> FGLM works, have a look at the <a rel="nofollow noreferrer" href="https://doi.org/10.1006/jsco.1993.1051">original publication</a>.
+Section 5 and 6 give a comprehensive overview of FGLM's complexity, which can be summarized as
+<script type="math/tex">O(n\cdot D^3)</script>
+
+where <script type="math/tex">D</script>
+ is the dimension of quotient ring
+<script type="math/tex">k[x_0, \dots, x_{n-1}] / \langle G \rangle</script>
+
+as a <script type="math/tex">k</script>
+-vector-space.
+More intuitively, <script type="math/tex">D</script>
+ is the number of monomials in the staircase of a Gröbner basis, which are those dots in the non-blue region in this post's first picture.</p>
+<pre data-lang="python" style="background-color:#2e3440;color:#d8dee9;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#81a1c1;">def </span><span style="color:#88c0d0;">FGLM</span><span>(order_new</span><span style="color:#eceff4;">, </span><span>gb_old</span><span style="color:#eceff4;">, </span><span>order_old):
+</span><span>    d </span><span style="color:#81a1c1;">= </span><span>{}
+</span><span>    gb_new </span><span style="color:#81a1c1;">= </span><span>[]
+</span><span>    next_monoms </span><span style="color:#81a1c1;">= </span><span>[</span><span style="color:#b48ead;">1</span><span>]
+</span><span>    </span><span style="color:#81a1c1;">while </span><span>next_monoms:
+</span><span>        monom </span><span style="color:#81a1c1;">= </span><span style="font-style:italic;color:#88c0d0;">min</span><span>(next_monoms) </span><span style="color:#616e88;"># according to order_new
+</span><span>        next_monoms </span><span style="color:#81a1c1;">-= </span><span>monom
+</span><span>        </span><span style="color:#81a1c1;">if </span><span>no g </span><span style="color:#81a1c1;">in </span><span>gb_new such that </span><span style="color:#88c0d0;">LM</span><span>(g) </span><span style="color:#81a1c1;">| </span><span>monom:
+</span><span>            </span><span style="color:#616e88;"># monom is still within staircase
+</span><span>            reduced_monom </span><span style="color:#81a1c1;">= </span><span>monom</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">reduce</span><span>(gb_old</span><span style="color:#eceff4;">, </span><span>order_old)
+</span><span>            </span><span style="color:#81a1c1;">if </span><span>reduced_monom </span><span style="color:#81a1c1;">+ </span><span style="font-style:italic;color:#88c0d0;">sum</span><span>([w[u] </span><span style="color:#81a1c1;">* </span><span>v </span><span style="color:#81a1c1;">for </span><span>u</span><span style="color:#eceff4;">, </span><span>v </span><span style="color:#81a1c1;">in </span><span>d</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">items</span><span>()]) </span><span style="color:#81a1c1;">== </span><span style="color:#b48ead;">0 </span><span style="background-color:#bf616a;color:#d8dee9;">for</span><span> some w</span><span style="color:#eceff4;">:
+</span><span>                </span><span style="color:#616e88;"># w[i] are field elements, i.e., coefficients.
+</span><span>                </span><span style="color:#616e88;"># they can be found by Gaussian reduction of d.values()
+</span><span>                gb_new </span><span style="color:#81a1c1;">+= </span><span>monom </span><span style="color:#81a1c1;">+ </span><span style="font-style:italic;color:#88c0d0;">sum</span><span>([w[u] </span><span style="color:#81a1c1;">* </span><span>u </span><span style="color:#81a1c1;">for </span><span>u</span><span style="color:#eceff4;">, </span><span>v </span><span style="color:#81a1c1;">in </span><span>d</span><span style="color:#81a1c1;">.</span><span style="color:#88c0d0;">items</span><span>()])
+</span><span>            </span><span style="color:#81a1c1;">else</span><span>:
+</span><span>                d </span><span style="color:#81a1c1;">+= </span><span>{monom </span><span style="color:#eceff4;">: </span><span>reduced_monom}
+</span><span>                next_monoms </span><span style="color:#81a1c1;">+= </span><span>[x_i </span><span style="color:#81a1c1;">* </span><span>monom </span><span style="color:#81a1c1;">for </span><span>i </span><span style="color:#81a1c1;">in </span><span style="font-style:italic;color:#88c0d0;">range</span><span>(n)]
+</span><span>    </span><span style="color:#81a1c1;">return </span><span>gb_new
+</span></code></pre>
+
+        </article>
+    </main>
+    <div class="blank"></div>
+</div>
+<footer>
+    <div class="copyright">
+         
+    </div>
+    
+</footer>
+<script src="/js/dark.js"></script>    
+    <script src="/js/toc.js"></script>
+    <script src="/js/progress.js"></script>
+    <script src="/js/lightense.min.js"></script>
+    <script src="/js/img.js"></script>
+    <script src="/js/katex.min.js"></script>
+    <script src="/js/mathtex-script-type.min.js"></script>
+
+</body>
+
+</html>

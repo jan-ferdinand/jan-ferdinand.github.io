@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Why the Degree of Regularity Alone is Bad for Estimating Security – a Counter Example to Common Arguments</title>
+    <meta name="description" content="">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/var.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/katex.min.css">
+<link rel="stylesheet" href="/css/sidenotes.css">
+<link rel="stylesheet" href="/css/header.css" />
+<link rel="stylesheet" href="/css/footer.css" />
+<link rel="stylesheet" href="/css/post.css" />
+
+    
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://jfs.sh/rss.xml">
+    
+    </head>
+
+<body>
+    <script>if(localStorage.getItem('theme')=='dark'){document.body.classList.add('dark-mode');}</script>
+    
+<header  class="blur" >
+    <div class="top">
+        <a class="header blog" href="/blog">
+            <img src="/icons/pen-nib-fill.svg" class="filter-dark" width="36px">
+            <span>Blog</span>
+        </a>
+        <a class="back" href="/">
+            <img src="/icons/arrow-left-s-line.svg" class="filter-dark" width="14px">
+            <span>Home</span>
+        </a>
+        <div class="icon">
+            <a id="go-home" href="/" aria-label="home" ><img src="/icons/user-3-fill.svg" class="filter-dark" width="24px"></a>
+            <button id="color-toggle" aria-label="dark light mode switch"><img src="/icons/moon-fill.svg" class="filter-dark" width="24px"></button>
+            <button id="toc-toggle" aria-label="table of content"><img src="/icons/menu-2-fill.svg" class="filter-dark" width="24px"></button>
+            </div>
+    </div>
+    <div id="progress-bar"></div>
+</header>
+
+<div class="wrap">
+    <aside  class="blur" >  
+        <nav>
+            <ul>
+                <li>
+                    <a class="toc-h2" href="#how-current-aocs-argue-resistance-to-grobner-basis-analysis">How Current AOCs Argue Resistance to Gröbner Basis Analysis</a>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#the-degree-of-regularity-does-not-suffice">The Degree of Regularity does not Suffice</a>
+                    <ul>
+                        <li>
+                            <a class="toc-h3" href="#example-1-the-system-is-already-a-grobner-basis">Example 1: The system is already a Gröbner basis</a>
+                        </li>
+                        <li>
+                            <a class="toc-h3" href="#example-2-the-system-can-be-split-up">Example 2: The system can be split up</a>
+                        </li>
+                        <li>
+                            <a class="toc-h3" href="#example-3-the-system-is-not-very-involved">Example 3: The system is not very “involved”</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#existing-lower-bounds">Existing Lower Bounds</a>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#references">References</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <main>
+        <div id="top"></div>
+        <article>
+            <h1>Why the Degree of Regularity Alone is Bad for Estimating Security – a Counter Example to Common Arguments</h1>
+            <div id="post-info">
+                <div class="date">
+                    <span id="publish">2021-05-18</span>
+                    </div>
+                <div class="tags">
+                    <a class="tag" href="https://jfs.sh/tags/algebra"><span>#Algebra</span></a><a class="tag" href="https://jfs.sh/tags/grobner-basis"><span>#Gröbner basis</span></a><a class="tag" href="https://jfs.sh/tags/degree-of-regularity"><span>#Degree of Regularity</span></a><a class="tag" href="https://jfs.sh/tags/as-discrete-mathematics"><span>#AS Discrete Mathematics</span></a>
+                </div>
+            </div>    
+
+            
+            
+            <table><thead><tr><th style="text-align: left">🛈</th></tr></thead><tbody>
+<tr><td style="text-align: left">I originally wrote this post when working at <a rel="nofollow noreferrer" href="https://asdm.gmbh">AS Discrete Mathematics</a> as part of a project sponsored by the <a rel="nofollow noreferrer" href="https://ethereum.foundation/">Ethereum Foundation</a>. It is reproduced here with friendly permission.</td></tr>
+</tbody></table>
+<p>Cryptographic primitives designed to be algebraically simple – <a rel="nofollow noreferrer" href="https://asdm.gmbh/arithmetization-oriented-ciphers/">AOCs</a> – might be particularly vulnerable to algebraic attacks.
+One of the most threatening attack vectors in this category is the <a href="https://jfs.sh/blog/introduction-to-gb-attacks-on-aoc/">Gröbner basis analysis</a>.
+For a cipher or hash function to be considered secure, the Gröbner basis for any polynomial system derivable from the primitive needs to be intractable to compute.</p>
+<p>Unfortunately, the complexity of computing a Gröbner basis for a specific polynomial system is generally not known before the computation is completed.
+However, some complexity bounds exist.
+One of the most prominently used bounds is based on a polynomial system's <a rel="nofollow noreferrer" href="https://asdm.gmbh/2021/03/15/d_reg/">degree of regularity</a>.</p>
+<p>Generally, computing the degree of regularity for a polynomial system is as hard as <a rel="nofollow noreferrer" href="https://asdm.gmbh/2021/04/16/dreg-from-gb/">computing the Gröbner basis</a> itself.
+Luckily, for an “<a rel="nofollow noreferrer" href="https://staff.math.su.se/shapiro/ProblemSolving/Pardue.pdf">average</a>”<a rel="nofollow noreferrer" href="https://en.wikipedia.org/wiki/Regular_sequence">regular</a> determined system, the degree of regularity equals the <em>Macaulay bound</em>.
+That is, for <script type="math/tex">\mathcal{F} = \{f_0, \dots, f_{s-1}\} \subseteq \mathbb{F}[x_0, \dots, x_{n-1}]</script>
+ we have <script type="math/tex">d_\text{reg} = 1 + \sum_{i=0}^{s-1}\deg(f_i) - 1.</script>
+</p>
+<h1 id="how-current-aocs-argue-resistance-to-grobner-basis-analysis">How Current AOCs Argue Resistance to Gröbner Basis Analysis</h1>
+<p>The <strong>Poseidon</strong> [6] paper mentions the Macaulay bound, and implicitly assumes that the polynomial system arising from Poseidon is a regular sequence.
+My own experiments indicate that this assumption is <em>false</em>.
+Similarly, <strong>GMiMC</strong> [1] uses the Macaulay bound and assumes the regularity of the system implicitly.
+My own experiments indicate that this assumption is also <em>false</em>.
+The authors of <strong>Ciminion</strong> [4] explicitly assume the derived system to be regular, but mistakenly describe this to be “the best adversarial scenario” where in fact the opposite is true.
+Furthermore, my own experiments indicate that the polynomial sequence is <em>not</em> regular.
+For <strong>Rescue</strong> [2], the authors perform Gröbner basis attacks on round-reduced variants, showing that the system arising from Rescue is <em>not</em> regular.
+They then extrapolate the observed degrees to estimate the degree of regularity for the full-round primitive.</p>
+<p>In summary, two approaches can be observed:</p>
+<ol>
+<li>assume regularity of the system, then use the Macaulay bound to compute the degree of regularity, or</li>
+<li>extrapolate the degree of regularity from round-reduced variants.
+Both approaches then use the degree of regularity to estimate the complexity for computing the Gröbner basis.
+This is generally done by looking at the complexity bound of the most efficient Gröbner basis algorithm, F<sub>5</sub>.
+This bound is
+<script type="math/tex;mode=display">O\left(\binom{n + d_\text{reg}}{n}^\omega\right)</script>
+
+where <script type="math/tex">n</script>
+ is the number of variables in the polynomial ring [3].</li>
+</ol>
+<p>But:
+this is an upper bound.
+We need a <em>lower</em> bound.</p>
+<h1 id="the-degree-of-regularity-does-not-suffice">The Degree of Regularity does not Suffice</h1>
+<p>I'll make a series of increasingly complex and decreasingly pathological examples why the degree of regularity derived from the Macaulay bound does not suffice to accurately estimate the <em>concrete</em> complexity of computing a Gröbner basis.
+The ideals of all the systems below are of dimension 0, meaning that the respective sets of common solutions are non-empty and contain finitely many elements.
+This accurately reflects the properties of polynomial systems modeling a cryptographic primitive.</p>
+<h2 id="example-1-the-system-is-already-a-grobner-basis">Example 1: The system is already a Gröbner basis</h2>
+<p>Let's say we want to compute the Gröbner basis for
+<script type="math/tex">\mathcal{F}_\text{gb} = \{x^7, y^7, z^7\} \subseteq \mathbb{F}[x,y,z].</script>
+
+We quickly see that <script type="math/tex">\mathcal{F}</script>
+ is a <a rel="nofollow noreferrer" href="https://en.wikipedia.org/wiki/Regular_sequence">regular sequence</a>, and determine that the degree of regularity is <script type="math/tex">d_\text{reg} = 1 + \sum_{i=0}^2 7 - 1 = 19.</script>
+
+Consequently, or so the roughly sketched argument above goes, a Gröbner basis algorithm like F<sub>4</sub> or F<sub>5</sub> should have to perform computations on polynomials of up to degree 19 before being able to output a Gröbner basis.</p>
+<p>However, <script type="math/tex">\mathcal{F}_\text{gb}</script>
+ is already a Gröbner basis – no computation at all is required!</p>
+<h2 id="example-2-the-system-can-be-split-up">Example 2: The system can be split up</h2>
+<p>Deriving a polynomial system from a cryptographic primitive rarely gives you a Gröbner basis – although there are exceptions, like GMiMC.
+Instead, let's look at the following polynomial system.
+<script type="math/tex;mode=display">\mathcal{F}_\text{indep} = \left\{
+    \begin{aligned}
+        &u^2 v w + u^2, && x^2 y z + x^2, \\
+        &u v^2 w + v^2 + 1, && x y^2 z + y^2 + 1, \\
+        &u v w^2 + w^2, && x y z^2 + z^2 \\
+    \end{aligned}
+\right\}
+\subseteq \mathbb{F}[u,v,w,x,y,z].</script>
+</p>
+<p>The polynomials containing variables <script type="math/tex">u</script>
+, <script type="math/tex">v</script>
+ and <script type="math/tex">w</script>
+ are completely independent from the polynomials where <script type="math/tex">x</script>
+, <script type="math/tex">y,</script>
+ and <script type="math/tex">z</script>
+ make an appearance.
+For the Macaulay bound, this fact is irrelevant.
+Since <script type="math/tex">\mathcal{F}_\text{indep}</script>
+ is a regular sequence, we might derive <script type="math/tex">d_\text{reg} = 1 + \sum_{i=0}^5 4 - 1 = 19.</script>
+</p>
+<p>However, the F<sub>4</sub> implementations of <a rel="nofollow noreferrer" href="http://magma.maths.usyd.edu.au/magma/">magma</a> and <a rel="nofollow noreferrer" href="https://www-polsys.lip6.fr/~jcf/FGb/">FGb</a> as well as the <a rel="nofollow noreferrer" href="https://github.com/ASDiscreteMathematics/gb-voodoo/">python implementation of F<sub>5</sub></a> all compute on polynomials of only degree 5 and lower before finding the Gröbner basis –
+they are not fooled by this attempt to artificially increase the complexity.</p>
+<h2 id="example-3-the-system-is-not-very-involved">Example 3: The system is not very “involved”</h2>
+<p>When deriving a polynomial system from a (single) cryptographic primitive, a partition in the set of polynomials like above is unlikely to appear –
+intuitively, that would lead to weak <a rel="nofollow noreferrer" href="https://en.wikipedia.org/wiki/Confusion_and_diffusion#Diffusion">diffusion</a>.
+Let's change the system a little, then.
+<script type="math/tex;mode=display">\mathcal{F}_\text{invlv} = \left\{
+    \begin{aligned}
+        &u^2 v w + u^2, && x^2 y z + x^2, \\
+        &u v^2 w + v^2 + 1, && x y^2 z + y^2 + 1, \\
+        &u v w^2 + w^2, && u^4 + z^4 \\
+    \end{aligned}
+\right\}
+\subseteq \mathbb{F}[u,v,w,x,y,z].</script>
+</p>
+<p>The sets <script type="math/tex">\mathcal{F}_\text{indep}</script>
+ and <script type="math/tex">\mathcal{F}_\text{invlv}</script>
+ differ in one polynomial, and this polynomial <script type="math/tex">(u^4 + z^4) = f_\text{link}</script>
+ links the two independent subsets of <script type="math/tex">\mathcal{F}_\text{indep}.</script>
+
+I didn't derive the system from any concrete primitive, but a polynomial like <script type="math/tex">f_\text{link}</script>
+ might express how to move from one round to the next in a cipher.</p>
+<p>The Macaulay bound for <script type="math/tex">\mathcal{F}_\text{invlv}</script>
+ does not change from the bound for <script type="math/tex">\mathcal{F}_\text{indep}</script>
+ since <script type="math/tex">f_\text{link}</script>
+ is of the same degree as the polynomial it replaced.
+Also, <script type="math/tex">\mathcal{F}_\text{invlv}</script>
+ is still a regular sequence, so we still have <script type="math/tex">d_\text{reg} = 19.</script>
+</p>
+<p>You might have guessed it by now:
+the highest polynomials appearing during a Gröbner basis computation for <script type="math/tex">\mathcal{F}_\text{invlv}</script>
+ is not 19.
+Magma's F<sub>4</sub> reports a maximum degree of <script type="math/tex">6,</script>
+ FGb only reaches degree 5, and so does python-F<sub>5</sub>.</p>
+<p>While I don't fully understand why this happens, <a rel="nofollow noreferrer" href="https://github.com/ASDiscreteMathematics/gb-voodoo/">vectors of origin</a> give some hints.
+Briefly, <script type="math/tex">v_i</script>
+ is a vector of origin for Gröbner basis element <script type="math/tex">g_i</script>
+ if <script type="math/tex">\mathcal{F}_\text{invlv} \cdot v_i = g_i.</script>
+
+Below are the vectors of origin for <script type="math/tex">\mathcal{F}_\text{invlv},</script>
+ where any big polynomial is replaced by <script type="math/tex">\bullet</script>
+ to ease reading.
+<script type="math/tex;mode=display">\begin{align*}
+    v_1 &= (\bullet, \bullet, {\small 0}, {\small 0}, {\small 0}, {\small 0}), \\
+    v_2 &= (\bullet, \bullet, {\small 0}, {\small 0}, {\small 0}, {\small 0}), \\
+    v_3 &= ({\small 0}, {\small 0}, \bullet, 3, {\small 0}, {\small 0}), \\
+    v_4 &= ({\small 0}, {\small 0}, \bullet, \bullet, {\small 0}, {\small 0}), \\
+    v_5 &= ({\small 0}, {\small 0}, \bullet, \bullet, 1, {\small 0}), \\
+    v_6 &= ({\small 0}, {\small 0}, \bullet, \bullet, \bullet, 1) \\
+\end{align*}</script>
+</p>
+<p>A zero in position <script type="math/tex">i</script>
+ in a vector of origin means that <script type="math/tex">f_i</script>
+ was unnecessary for computing the Gröbner basis element.
+Above vectors of origin have a lot of zeros –
+in fact, even though all polynomials are linked to one another in some (potentially indirect) way, there seems to be a partition.</p>
+<p>I describe polynomial systems for which the Gröbner bases' elements can be computed from a few input polynomials at a time as having low “involvement.”
+As of yet, there is no mathematically rigourous way to define this notion, but above example should give a rough intuition.
+My observations indicate that low involvement means low complexity for computing a Gröbner basis.</p>
+<p><strong>Note.</strong>
+Above counter-examples do not disprove the equality of the degree of regularity and the Macaulay bound for <em>generic</em> polynomial systems –
+they only show that regularity of the sequence is not a sufficient requirement.</p>
+<h1 id="existing-lower-bounds">Existing Lower Bounds</h1>
+<p>The main message of this post is that we need (tight-ish) <em>lower</em>, not upper, bounds for estimating the complexity of a Gröbner basis computation in order to accurately asses the security of cryptographic primitives against this vector of attack.
+Unfortunately, the scientific literature currently has little to offer in this regard.</p>
+<p>Hyun [5] exclusively deals with field <script type="math/tex">\mathbb{Q},</script>
+ while we are interested in finite fields.
+Möller &amp; Mora [7] look at ideals of positive dimension, while we are only interested in zero-dimensional ideals.
+Furthermore, all given bounds are <em>existential</em> while we need a <em>constructive</em> bound.</p>
+<p>In summary, current strategies for arguing that some Arithmetization Oriented Primitive is resistant against Gröbner basis attacks make too many unbacked assumptions, often implicitly.
+The tools to make these arguments rigorously don't currently exist.
+Or in other words: “<a rel="nofollow noreferrer" href="https://www.youtube.com/watch?v=AgMLPFCFE90">look at me still talking when there's science to do.</a>”</p>
+<h1 id="references">References</h1>
+<ol>
+<li>Albrecht, M.R., Grassi, L., Perrin, L., Ramacher, S., Rechberger, C., Rotaru, D.,Roy, A., Schofnegger, M.:
+<em>Feistel Structures for MPC, and More</em>.
+In: ESORICS. pp.151–171. Springer (2019)</li>
+<li>Aly, A., Ashur, T., Ben-Sasson, E., Dhooghe, S., Szepieniec, A.:
+<em>Design of Symmetric Primitives for Advanced Cryptographic Protocols</em>.
+IACR ToSC 2020(3), 1–45(2020)</li>
+<li>Bardet, M., Faugère, J.C., Salvy, B.:
+<em>On the complexity of the F5 Gröbner basis algorithm</em>.
+Journal of Symbolic Computation 70, 49–70 (2015)</li>
+<li>Dobraunig, C.E., Grassi, L., Guinet, A., Kuijsters, D.:
+<em>Ciminion: Symmetric Encryption Based on Toffoli-Gates over Large Finite Fields</em>.
+In: Eurocrypt 2021 (2021)</li>
+<li>Huynh, Dung T.:
+<em>A superexponential lower bound for Gröbner bases and Church-Rosser commutative Thue systems</em>.
+Information and Control, 68(1- 3):196–206 (1986)</li>
+<li>Grassi, L., Khovratovich, D., Rechberger, C., Roy, A., Schofnegger, M.:
+<em>Poseidon: A New Hash Function for Zero-Knowledge Proof Systems</em>.
+In: USENIX Security. USENIXAssociation (2020)</li>
+<li>Möller, H. M., and Mora, F.:
+<em>Upper and lower bounds for the degree of Gröbner bases</em>.
+In: International Symposium on Symbolic and Algebraic Manipulation, pages 172–183. Springer (1984)</li>
+</ol>
+
+        </article>
+    </main>
+    <div class="blank"></div>
+</div>
+<footer>
+    <div class="copyright">
+         
+    </div>
+    
+</footer>
+<script src="/js/dark.js"></script>    
+    <script src="/js/toc.js"></script>
+    <script src="/js/progress.js"></script>
+    <script src="/js/lightense.min.js"></script>
+    <script src="/js/img.js"></script>
+    <script src="/js/katex.min.js"></script>
+    <script src="/js/mathtex-script-type.min.js"></script>
+
+</body>
+
+</html>

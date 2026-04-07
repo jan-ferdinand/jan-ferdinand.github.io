@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <title>Gröbner Basis-Attacking a Tiny Sponge</title>
+    <meta name="description" content="">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="stylesheet" href="/css/var.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/katex.min.css">
+<link rel="stylesheet" href="/css/sidenotes.css">
+<link rel="stylesheet" href="/css/header.css" />
+<link rel="stylesheet" href="/css/footer.css" />
+<link rel="stylesheet" href="/css/post.css" />
+
+    
+      <link rel="alternate" type="application/rss+xml" title="RSS" href="https://jfs.sh/rss.xml">
+    
+    </head>
+
+<body>
+    <script>if(localStorage.getItem('theme')=='dark'){document.body.classList.add('dark-mode');}</script>
+    
+<header  class="blur" >
+    <div class="top">
+        <a class="header blog" href="/blog">
+            <img src="/icons/pen-nib-fill.svg" class="filter-dark" width="36px">
+            <span>Blog</span>
+        </a>
+        <a class="back" href="/">
+            <img src="/icons/arrow-left-s-line.svg" class="filter-dark" width="14px">
+            <span>Home</span>
+        </a>
+        <div class="icon">
+            <a id="go-home" href="/" aria-label="home" ><img src="/icons/user-3-fill.svg" class="filter-dark" width="24px"></a>
+            <button id="color-toggle" aria-label="dark light mode switch"><img src="/icons/moon-fill.svg" class="filter-dark" width="24px"></button>
+            <button id="toc-toggle" aria-label="table of content"><img src="/icons/menu-2-fill.svg" class="filter-dark" width="24px"></button>
+            </div>
+    </div>
+    <div id="progress-bar"></div>
+</header>
+
+<div class="wrap">
+    <aside  class="blur" >  
+        <nav>
+            <ul>
+                <li>
+                    <a class="toc-h2" href="#disclaimer">Disclaimer</a>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#prerequisites">Prerequisites</a>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#description-of-experiments">Description of Experiments</a>
+                    <ul>
+                        <li>
+                            <a class="toc-h3" href="#technical-specifications">Technical Specifications</a>
+                        </li>
+                        <li>
+                            <a class="toc-h3" href="#reproducibility">Reproducibility</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#summary-of-results">Summary of Results</a>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#results-in-detail">Results in Detail</a>
+                    <ul>
+                        <li>
+                            <a class="toc-h3" href="#rescue-prime">Rescue-Prime</a>
+                        </li>
+                        <li>
+                            <a class="toc-h3" href="#poseidon">Poseidon</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#comparison">Comparison: Rescue-Prime vs Poseidon</a>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#conclusion">Conclusion</a>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#references">References</a>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#appendix-summary">Appendix – Summary of the Hash Functions</a>
+                </li>
+                <li>
+                    <a class="toc-h2" href="#appendix-data">Appendix – Raw Data</a>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <main>
+        <div id="top"></div>
+        <article>
+            <h1>Gröbner Basis-Attacking a Tiny Sponge</h1>
+            <div id="post-info">
+                <div class="date">
+                    <span id="publish">2021-06-28</span>
+                    </div>
+                <div class="tags">
+                    <a class="tag" href="https://jfs.sh/tags/algebra"><span>#Algebra</span></a><a class="tag" href="https://jfs.sh/tags/grobner-basis"><span>#Gröbner basis</span></a><a class="tag" href="https://jfs.sh/tags/rescue-prime"><span>#Rescue-Prime</span></a><a class="tag" href="https://jfs.sh/tags/poseidon"><span>#Poseidon</span></a><a class="tag" href="https://jfs.sh/tags/as-discrete-mathematics"><span>#AS Discrete Mathematics</span></a>
+                </div>
+            </div>    
+
+            
+            
+            <table><thead><tr><th style="text-align: left">🛈</th></tr></thead><tbody>
+<tr><td style="text-align: left">I originally wrote this post when working at <a rel="nofollow noreferrer" href="https://asdm.gmbh">AS Discrete Mathematics</a> as part of a project sponsored by the <a rel="nofollow noreferrer" href="https://ethereum.foundation/">Ethereum Foundation</a>. It is reproduced here with friendly permission.</td></tr>
+</tbody></table>
+<p>When estimating the security of a cipher or hash function, there are many different attack scenarios to consider.
+For Arithmetization Oriented Ciphers (AOCs), Gröbner basis attacks are a lot more threatening than they are to “traditional” ciphers, like the AES.
+The most common way to argue resistance against Gröbner basis attacks is to look at the expected complexity of Gröbner basis algorithms.</p>
+<p>However, the complexity estimates only apply asymptotically, and the Big O notation might hide factors that are significant for parameter sizes a cipher designer is interested in.
+Thus, to validate whether the theoretical complexity estimates carry significance, we need “real” data to compare it to.
+This means running experiments – and that's exactly what this post is about.
+Concretely, we have performed several Gröbner basis attacks, and will be discussing and interpreting the resulting data here.</p>
+<h2 id="disclaimer">Disclaimer</h2>
+<p>Take below results with a grain of salt – the data might be wrong.
+As far as I know, no one has reproduced it yet.
+<label for="mn-efn_note" class="margin-toggle">🛈</label><input type="checkbox" id="mn-efn_note" class="margin-toggle"/>
+<span class="marginnote">
+    If you have run your own, comparable experiments, please <a href="mailto:gb_attack@jfs.sh">let me know</a>!
+
+</span>
+
+Please draw any conclusions carefully.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>We assume a certain familiarity with the ciphers Rescue-Prime <a href="https://jfs.sh/blog/gb-attacking-tiny-sponge/#references">[4]</a> and Poseidon <a href="https://jfs.sh/blog/gb-attacking-tiny-sponge/#references">[3]</a>, as well as the <a rel="nofollow noreferrer" href="https://en.wikipedia.org/wiki/Sponge_function">Sponge construction</a>.
+As a quick reminder for these three things, there are graphical depictions at the end of this post and in the next section, respectively.</p>
+<p>Since this post is all about Gröbner basis attacks, a certain familiarity on this topic does not hurt, albeit it shouldn't be strictly necessary.
+In case you want to brush up on a detail or two, have a look <a rel="nofollow noreferrer" href="https://ia.cr/2021/870">here</a>.</p>
+<h1 id="description-of-experiments">Description of Experiments</h1>
+<p>AOCs like Rescue-Prime and Poseidon are designed to have a “small” algebraic description.
+That is, when polynomially modeling their structure, we don't need too many polynomials, and those are not of very high degree.</p>
+<p>A use case where an AOC's simple algebraic description causes major speedups involves hashes in zero-knowledge proof systems.
+The most popular way to transform a permutation, like Rescue-Prime or Poseidon, into a hash function is the Sponge construction.
+On a high level, a Sponge looks like this:</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-28_sponge.png" >
+    
+    <figcaption>Stylized depiction of the Sponge construction.</figcaption>
+    
+</figure>
+<p>Any cryptographic hash function needs to be secure against inversion, i.e., computing a pre-image for a given hash digest must be so difficult as to be infeasible.
+For the Sponge construction, this largely depends on the plugged-in permutation.
+For our experiments, we perform a second pre-image Gröbner basis attack on a Sponge construction with exactly one application of the permutation.
+Furthermore, we set rate = capacity = 1, which is the lowest meaningful value for either parameter.
+This way, we get the smallest Sponge one can build.
+Consequently, if <em>this</em> attack is infeasible, then Gröbner basis attacking a realistically sized Sponge definitely is.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-28_last_squeeze.png" >
+    
+    <figcaption>A super-tiny Sponge. Barely deserves the name.</figcaption>
+    
+</figure>
+<p>As the permutation, we use the two primitives Rescue-Prime and Poseidon with varying numbers of rounds.
+The prime field has size p = 65519, which is the largest 16-bit prime for which gcd(p-1, 3) = 1, meaning we can use exponent 3 in the S-Boxes.
+<label for="mn-largest_prime" class="margin-toggle">🛈</label><input type="checkbox" id="mn-largest_prime" class="margin-toggle"/>
+<span class="marginnote">
+    For the largest 16-bit prime, i.e., 65521, we'd have to use exponent 11.
+
+</span>
+
+The limitation to 16-bit primes comes from the used Gröbner basis computation implementation, namely <a rel="nofollow noreferrer" href="https://www-polsys.lip6.fr/~jcf/FGb/">FGb</a> <a href="https://jfs.sh/blog/gb-attacking-tiny-sponge/#references">[2]</a>.</p>
+<h2 id="technical-specifications">Technical Specifications</h2>
+<p>All the experiments were performed using <a rel="nofollow noreferrer" href="https://cocalc.com/">cocalc</a> on an “n2-highmem-32 Cascade Lake Google Compute Engine” and 264141536 KiB (~252 GiB) of total RAM as reported by <code>free</code>.
+The operating system in use was (Ubuntu) Linux 5.4.0-1042-gcp x86_64 as reported by <code>uname -srm</code></p>
+<h2 id="reproducibility">Reproducibility</h2>
+<p>The code for the experiments can be found on <a rel="nofollow noreferrer" href="https://github.com/ASDiscreteMathematics/gb_benchmarks">github</a>.
+Its dependencies are <a rel="nofollow noreferrer" href="https://www.sagemath.org/">sagemath</a>, <a rel="nofollow noreferrer" href="https://github.com/mwageringel/fgb_sage">fgb_sage</a>, and <a rel="nofollow noreferrer" href="https://www-polsys.lip6.fr/~jcf/FGb/">FGb</a> <a href="https://jfs.sh/blog/gb-attacking-tiny-sponge/#references">[2]</a>.
+If you have the abilities and capacity to re-run the code to strengthen or refute the claims made here, I encourage you to do so.</p>
+<h1 id="summary-of-results">Summary of Results</h1>
+<p>Before looking at the data in a little more detail, here's a quick summary of some of my findings.</p>
+<ul>
+<li>We managed to compute a Gröbner basis for 6 rounds of Rescue-Prime, but failed at 7 rounds.</li>
+<li>Poseidon has a two types of rounds, which makes arguing about round limits a little more cumbersome.
+With the exception of one outlier, we could not break any partition totaling 11 rounds – see the matrix below.</li>
+<li>Memory, not time, seems to be the most limiting factor.</li>
+<li>The polynomial system for Poseidon appears to be <em>ir</em>regular, in contrast to the authors' implicit assumption.
+This directly affects the number of recommended rounds.
+For example, while Poseidon's authors recommend (8,9) rounds for p = 65519 and 2 elements in the state, extrapolating the data here suggests that (8,24) rounds might be necessary.</li>
+<li>The interpolation for the degree of regularity for Rescue-Prime is different from the interpolation published with Rescue, but similar in principle. This difference might be explained by the use of Rescue-<em>Prime</em> as the permutation. Sadly, it neither validates nor refutes the authors' claims.</li>
+</ul>
+<h1 id="results-in-detail">Results in Detail</h1>
+<p>Experiments like the ones described above generate quite a bunch of data.
+We're not gonna look at <em>everything</em> here, I just want to highlight some parts.
+If you want to start digging deeper, you can find the raw data at <a href="https://jfs.sh/blog/gb-attacking-tiny-sponge/#appendix-data">the end of this post</a>.</p>
+<p>The metric commonly used to estimate the complexity of a Gröbner basis computation is largely depending on the <a href="https://jfs.sh/blog/hilbert-reg/">degree of regularity</a>.
+<label for="mn-dreg" class="margin-toggle">🛈</label><input type="checkbox" id="mn-dreg" class="margin-toggle"/>
+<span class="marginnote">
+    In this post, I will be using ”degree of regularity“ and “maximum degree reached by F<sub>4</sub> during its execution” interchangeably.
+Indeed, it is an open question whether this is always true.
+
+</span>
+
+This is <a href="https://jfs.sh/blog/dreg-insufficient-for-security/">not based on a totally rigorous argument</a>, but it seems to be “good enough” in practice.
+Consequently, quite a bit of the following will be about the degree of regularity and the Macaulay bound.
+<label for="mn-sok_gb" class="margin-toggle">🛈</label><input type="checkbox" id="mn-sok_gb" class="margin-toggle"/>
+<span class="marginnote">
+    If you want to jog your memory on either of these concepts, I suggest taking a glance at <a rel="nofollow noreferrer" href="https://ia.cr/2021/870">this document</a>.
+
+</span>
+
+The Macaulay bound is an upper bound for the degree of regularity, and their values coincide if a polynomial system is a <a rel="nofollow noreferrer" href="https://en.wikipedia.org/wiki/Regular_sequence">regular sequence</a>.</p>
+<p>In general, the successful attacks that took the longest time for the two primitives were 6-round Rescue-Prime, and (full=2, partial=9)-round Poseidon.
+They took around 34 and 73 hours, requiring roughly 75 and 228 GiB of memory, respectively.</p>
+<h2 id="rescue-prime">Rescue-Prime</h2>
+<p>We successfully computed a Gröbner basis for 6-round Rescue-Prime, but ran out of memory during the computation for 7-round Rescue-Prime.</p>
+<h3 id="degree-of-regularity">Degree of Regularity</h3>
+<p>The most important metric to consider is the growth of the degree of regularity as a function in the number of rounds.
+As we can see, the degree of regularity is pretty consistently 2 less than the Macaulay bound of the polynomials system for Rescue-Prime.
+The only exception happens at r = 2 rounds, an anomaly I don't believe deserves a lot of attention.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-28_rescue_prime_dreg_develop.png" >
+    
+    <figcaption>Various metrics of the polynomial system for Rescue-Prime as a function in the number of rounds.</figcaption>
+    
+</figure>
+<p>Interestingly, the degree of the highest degree polynomial in the resulting reduced Gröbner basis – abbreviated as the degree of the Gröbner basis – is even lower than that.
+More importantly though, its growth seems to be only piecewise linear:
+between 1 and 4 rounds, the degree of the Gröbner basis grows by 3 with each iteration, where from round 4 on, the difference is 4.</p>
+<p>The limited number of data points makes drawing conclusions difficult.
+However, it's not unreasonable to argue that extrapolating the degree of the Gröbner basis linearly might lead to inaccuracies.
+Similarly, it is still an open question whether extrapolating the degree of regularity is a good method to estimate the complexity of computing the Gröbner basis for the full-round primitive.</p>
+<p>The observed growth of the degree of regularity in Rescue-Prime is different from what is reported in the publication of “plain” Rescue.
+Concretely, I observe
+<script type="math/tex">d_\text{reg} \approx 4r-1</script>
+
+for Rescue-Prime, whereas Rescue's authors report
+<script type="math/tex">d_\text{reg} = 2r+2</script>
+
+for Rescue <a href="https://jfs.sh/blog/gb-attacking-tiny-sponge/#references">[1, Section 6.1]</a>.
+Here is their figure for comparison:</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-28_rescue_dreg_develop_original_paper.png" >
+    
+    <figcaption>Some of the same metrics as above for the polynomial system for Rescue as a function in the number of rounds, as given by the authors. [1]</figcaption>
+    
+</figure>
+<p>Extending this interpolation of the degree of regularity to an extrapolation can be used to estimate the required number of rounds to achieve a given security level.
+For this, we use the known complexity bound for the most performant Gröbner basis algorithm, which is
+<script type="math/tex">\binom{n + d_\text{reg}}{n}^\omega</script>
+.
+Here, <em>n</em> is the number of variables in the polynomial ring,
+<script type="math/tex">d_\text{reg}</script>
+
+is the degree of regularity, and <em>ω</em> is the linear algebra constant.
+A conservative choice for <em>ω</em> is 2.
+<label for="mn-lin-alg-constant" class="margin-toggle">🛈</label><input type="checkbox" id="mn-lin-alg-constant" class="margin-toggle"/>
+<span class="marginnote">
+    I know of no Gröbner basis algorithm making use of sparse linear algebra techniques, which would imply <em>ω</em> = 2.
+However, it is plausible that they do or can exist.
+
+</span>
+
+For the used parameters of Rescue-Prime, the number of variables, which is equal to the number of equations, is 2r.
+The degree of regularity is estimated to be 4r - 1.
+Putting it all together, we have
+<script type="math/tex">\binom{6r - 1}{2r}^2 > 2^{128}</script>
+
+for r ≥ 13.
+For the same parameters, the authors of Rescue-Prime recommend r = 27 <a href="https://jfs.sh/blog/gb-attacking-tiny-sponge/#references">[4, Algorithm 7]</a>.
+This recommendation also includes a security margin, and considers more attack vectors than just a Gröbner basis attack.</p>
+<h3 id="f4-s-working-degree">F<sub>4</sub>'s Working Degree</h3>
+<p>For Rescue-Prime, the working degree of F<sub>4</sub> increases strictly monotonously:
+every iteration of F<sub>4</sub>'s main loop means working with polynomials of degree exactly 1 higher than in the preceding iteration.
+That makes for a pretty dull figure:</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-28_rescue_prime_f4_degs.png" >
+    
+    <figcaption>For Rescue-Prime, F<sub>4</sub>'s working degree increases by 1 per iteration, independent of the number of rounds.</figcaption>
+    
+</figure>
+<h2 id="poseidon">Poseidon</h2>
+<p>Since Poseidon has two types of rounds, namely full rounds and partial rounds, we have conducted a lot more experiments for Poseidon than for Rescue.
+The following matrix summarizes which ones we ran, and whether the Gröbner basis could be computed successfully.
+The value of a cell indicates how many polynomials the polynomial system had.
+This is equal to the number of variables in the polynomial ring for this problem instance.
+The number of full rounds differ across columns, the number of partial rounds across rows.</p>
+<table cellspacing="0" border="0">
+  <colgroup span="7" width="1"></colgroup>
+  <tr>
+    <td></td>
+    <td align="right">2</td>
+    <td align="right">4</td>
+    <td align="right">6</td>
+    <td align="right">8</td>
+    <td align="right">10</td>
+    <td align="right">12</td>
+  </tr>
+  <tr>
+    <td align="right">0</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">3</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">7</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">11</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">15</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">19</td>
+    <td align="right" bgcolor="#F10D0C" style="color: #444;">23</td>
+  </tr>
+  <tr>
+    <td align="right">1</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">4</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">8</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">12</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">16</td>
+    <td align="right" bgcolor="#F10D0C" style="color: #444;">20</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">2</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">5</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">9</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">13</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">17</td>
+    <td align="right" bgcolor="#F10D0C" style="color: #444;">21</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">3</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">6</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">10</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">14</td>
+    <td align="right" bgcolor="#F10D0C" style="color: #444;">18</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">4</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">7</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">11</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">15</td>
+    <td align="right" bgcolor="#F10D0C" style="color: #444;">19</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">5</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">8</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">12</td>
+    <td align="right" bgcolor="#F10D0C" style="color: #444;">16</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">6</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">9</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">13</td>
+    <td align="right" bgcolor="#E6E905" style="color: #444;">17</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">7</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">10</td>
+    <td align="right" bgcolor="#F10D0C" style="color: #444;">14</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">8</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">11</td>
+    <td align="right" bgcolor="#F10D0C" style="color: #444;">15</td>
+    <td></td>
+    <td colspan=3 align="center" bgcolor="#5EB91E" style="color: #444">GB computed</td>
+  </tr>
+  <tr>
+    <td align="right">9</td>
+    <td align="right" bgcolor="#5EB91E" style="color: #444;">12</td>
+    <td align="right" bgcolor="#E6E905" style="color: #444;">16</td>
+    <td></td>
+    <td colspan=3 align="center" bgcolor="#F10D0C" style="color: #444">out of memory</td>
+  </tr>
+  <tr>
+    <td width="24" align="right">10</td>
+    <td align="right" bgcolor="#F10D0C" style="color: #444;">13</td>
+    <td></td>
+    <td></td>
+    <td colspan=3 align="center" bgcolor="#E6E905" style="color: #444">manually aborted</td>
+  </tr>
+</table>
+<p>A total of 11 rounds seems to the barrier we couldn't break with the available machine, the (2,9)-instance being a notable exception.
+Note that the number of equations seems to not be the cutoff point – for (2,10)-Poseidon, we have 13 equations and variables but cannot compute the Gröbner basis, whereas for (10,0)-Poseidon with its 19 equations, we can compute the Gröbner basis.
+For some of the figures below, we look at the series for
+<script type="math/tex">r_\text{full} = 4</script>
+
+full rounds in more detail to simplify presentation.</p>
+<h3 id="degree-of-regularity-1">Degree of Regularity</h3>
+<p>As before, the degree of regularity is the metric we're interested in the most.
+For example, for Poseidon (4,٭), i.e., 4 full rounds and a varying number of partial rounds, we get the following figure when plotting both the Macaulay bound and the system's degree of regularity.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-28_poseidon_f4_dreg_develop.png" >
+    
+    <figcaption>Degree of regularity and Macaulay bound of the polynomial system for (4,٭)-round Poseidon as a function in the number of partial rounds.</figcaption>
+    
+</figure>
+<p>It appears the degree of regularity is growing slower than the Macaulay bound.
+For a more complete picture, the degrees of regularity for all successfully computed Gröbner bases are listed in the following table.
+A grayed-out value means that the Gröbner basis computation did not terminate, but reached the indicated degree at its maximum before running out of memory or being aborted manually.</p>
+<table cellspacing="0" border="0">
+  <colgroup span="7" width="85"></colgroup>
+  <tr>
+    <td></td>
+    <td align="right">2</td>
+    <td align="right">4</td>
+    <td align="right">6</td>
+    <td align="right">8</td>
+    <td align="right">10</td>
+    <td align="right">12</td>
+  </tr>
+  <tr>
+    <td align="right">0</td>
+    <td align="right" style="color: #444" bgcolor="#FFB66C">4</td>
+    <td align="right" style="color: #444" bgcolor="#FFAA95">5</td>
+    <td align="right" style="color: #444" bgcolor="#EC9BA4">6</td>
+    <td align="right" style="color: #444" bgcolor="#BF819E">7</td>
+    <td align="right" style="color: #444" bgcolor="#B7B3CA">8</td>
+    <td align="right" style="color: #999">8</td>
+  </tr>
+  <tr>
+    <td align="right">1</td>
+    <td align="right" style="color: #444" bgcolor="#FFAA95">5</td>
+    <td align="right" style="color: #444" bgcolor="#EC9BA4">6</td>
+    <td align="right" style="color: #444" bgcolor="#EC9BA4">6</td>
+    <td align="right" style="color: #444" bgcolor="#BF819E">7</td>
+    <td align="right" style="color: #999">8</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">2</td>
+    <td align="right" style="color: #444" bgcolor="#FFAA95">5</td>
+    <td align="right" style="color: #444" bgcolor="#EC9BA4">6</td>
+    <td align="right" style="color: #444" bgcolor="#BF819E">7</td>
+    <td align="right" style="color: #444" bgcolor="#B7B3CA">8</td>
+    <td align="right" style="color: #999">8</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">3</td>
+    <td align="right" style="color: #444" bgcolor="#EC9BA4">6</td>
+    <td align="right" style="color: #444" bgcolor="#BF819E">7</td>
+    <td align="right" style="color: #444" bgcolor="#B7B3CA">8</td>
+    <td align="right" style="color: #999">9</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">4</td>
+    <td align="right" style="color: #444" bgcolor="#BF819E">7</td>
+    <td align="right" style="color: #444" bgcolor="#B7B3CA">8</td>
+    <td align="right" style="color: #444" bgcolor="#B4C7DC">9</td>
+    <td align="right" style="color: #999">9</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">5</td>
+    <td align="right" style="color: #444" bgcolor="#B7B3CA">8</td>
+    <td align="right" style="color: #444" bgcolor="#B4C7DC">9</td>
+    <td align="right" style="color: #999">9</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">6</td>
+    <td align="right" style="color: #444" bgcolor="#B4C7DC">9</td>
+    <td align="right" style="color: #444" bgcolor="#B3CAC7">10</td>
+    <td align="right" style="color: #999">10</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">7</td>
+    <td align="right" style="color: #444" bgcolor="#B3CAC7">10</td>
+    <td align="right" style="color: #999">11</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">8</td>
+    <td align="right" style="color: #444" bgcolor="#AFD095">11</td>
+    <td align="right" style="color: #999">12</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">9</td>
+    <td align="right" style="color: #444" bgcolor="#E8F2A1">12</td>
+    <td align="right" style="color: #999">13</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td align="right">10</td>
+    <td align="right" style="color: #999">13</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+<p>We can compute the Macaulay bound for the polynomial system arising from
+<script type="math/tex">(r_\text{full}, r_\text{partial})</script>
+-Poseidon
+as
+<script type="math/tex">4r_\text{full} + 2r_\text{part} - 1</script>
+.
+A closely fitting linear approximation for the degree of regularity based on above data is
+<script type="math/tex">d_\text{reg} \approx  \frac{r_\text{full}}{2} + r_\text{part} + 2</script>
+.
+The (limited) data suggests that the degree of regularity depends on a full round a lot less than the Macaulay bound makes it seem.
+Overall, the degree of regularity does not stay very close to the Macaulay bound.</p>
+<p>Based on the <a rel="nofollow noreferrer" href="https://extgit.iaik.tugraz.at/krypto/hadesmimc/-/blob/master/code/calc_round_numbers.py">script</a> supplied by the authors of Poseidon, the recommended number of rounds for 128 bits of security when using a state size of 2 is (8, 9).
+Using the number of full rounds as a given, and plugging the interpolated degree of regularity, i.e., r + 6, and the required number of variables, i.e., r + 15, into the complexity bound for the most performant Gröbner basis algorithm leads us to the conclusion that r ≥ 24 partial rounds are necessary to achieve 128 bits of security against Gröbner basis attacks, i.e.,
+<script type="math/tex">\binom{2r+21}{r+15}^2 > 2^{128}</script>
+
+for r ≥ 24.
+This discrepancy is the direct consequence of the observed degree of regularity not equaling the Macaulay bound – plugging the Macaulay bound into the same formula results in r ≥ 10.</p>
+<h3 id="f4-s-working-degree-1">F<sub>4</sub>'s Working Degree</h3>
+<p>The working degree of F<sub>4</sub> is quite “bouncy” for the polynomial systems derived from Poseidon.
+For example, for
+<script type="math/tex">r_\text{full} = 4</script>
+
+with varying number of partial rounds, we can plot the working degree of F<sub>4</sub> against the iteration that degree occurred in.
+While the overall tendency is “up,” there are many iterations for which the working degree does not change, or even drops.
+I am unsure what exactly this means in terms of security, or if it means anything at all.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-28_poseidon_4_f4_degs.png" >
+    
+    <figcaption>For Poseidon, F<sub>4</sub>'s working degree develops… interestingly.</figcaption>
+    
+</figure>
+<h1 id="comparison">Comparison: Rescue-Prime vs Poseidon</h1>
+<p>One of the most notable differences between the polynomial systems for Rescue-Prime and Poseidon is the growth rate of their respective degrees of regularity.
+For example, consider the following plot, where I have repeated the data for Rescue-Prime from above and added the Macaulay bound and degree of regularity for (٭,0)-Poseidon, i.e., varying the number of full rounds.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-28_mac-bound_f4-deg_comparison.png" >
+    
+    <figcaption>
+  For Rescue-Prime, the degree of regularity closely matches the Macaulay bound.
+  For Poseidon, the Macaulay bound vastly overestimates the actual degree of regularity.
+</figcaption>
+    
+</figure>
+<p>While the Macaulay bounds are almost identical, the observed degrees of regularity differ greatly.</p>
+<p>It's also nice to see the development of the used memory for a few instances, even though that comparison is not very important.
+Below figure shows the required memory over time for 5, 6, and 7-round Rescue-Prime and (4,5), (4,6), (4,7)-round Poseidon.
+Recall that 7-round Rescue-Prime and (4,7)-round Poseidon both ran out of memory, i.e., terminated abnormally.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-28_memory_vs_time.png" >
+    
+    <figcaption>Not significant but interesting: memory consumption over time for various polynomial systems.</figcaption>
+    
+</figure>
+<p>By the jumps in memory consumption you can pretty clearly see where a new, bigger matrix was constructed.
+This corresponds to the iterations of F<sub>4</sub>.
+Exponential – or binomial – growth being what it is, it does not make sense to plot instances with less rounds.
+Already, 5-round Rescue-Prime and (4,5)-round Poseidon are barely visible in the lower-left corner of the figure.
+The dotted line corresponds to the total available memory.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>The data suggests that the implicit assumption about the regularity of the polynomial system arising from Poseidon is wrong:
+the difference between the Macaulay bound and the observed degree of regularity implies that the system is irregular.
+This has direct consequences for the minimum number of rounds required to achieve a target security level.
+For example, for p = 65519 and state size 2, we recommend (8,24) rounds as opposed to (8,9) rounds.</p>
+<p>An interesting open question is how to interpret the “bounciness” of F<sub>4</sub>'s working degree when computing a Gröbner basis for a Poseidon-derived system.
+The significance of this behavior is completely unclear.</p>
+<p>Another open question regards the discrepancy in the observed growth of the degree of regularity for Rescue and Rescue-Prime.
+Regardless, the data supports the security argument of Rescue-Prime:
+adding one half round at either end, i.e., transforming “plain” Rescue into Rescue-Prime, does not seem to decrease security.</p>
+<p>All things told, no successful Gröbner basis attack could be performed for anything approaching realistic round numbers – even for this tiny Sponge construction.</p>
+<h1 id="references">References</h1>
+<ol>
+<li>Aly, A., Ashur, T., Ben-Sasson, E., Dhooghe, S., Szepieniec, A.:
+<em>Design  of Symmetric Primitives for Advanced Cryptographic Protocols</em>.
+IACR ToSC  2020(3), 1–45 (2020)</li>
+<li>J.-C. Faugère:
+<em>FGb: A Library for Computing Gröbner Bases</em>.
+In Komei Fukuda, Joris Hoeven, Michael Joswig, and Nobuki Takayama, editors, Mathematical Software ICMS 2010, volume 6327 of Lecture Notes in Computer Science, pages 84-87, Berlin, Heidelberg, September 2010.
+Springer Berlin / Heidelberg.</li>
+<li>Grassi, L., Khovratovich, D., Rechberger, C., Roy, A., Schofnegger, M.:
+<em>Poseidon: A New Hash Function for Zero-Knowledge Proof Systems</em>.
+In: USENIX Security. USENIX Association (2020)</li>
+<li>Szepieniec, A., Ashur, T., Dhooghe, S.:
+<em>Rescue-Prime: a Standard Specification (SoK)</em>.
+Cryptology ePrint Archive, Report 2020/1143 (2020)</li>
+</ol>
+<h1 id="appendix-summary">Appendix – Summary of the Hash Functions</h1>
+<p>Below, I have put some figures summarizing the AOCs Rescue-Prime and Poseidon, respectively.
+The input, output, and constants are all vectors of the same length.
+They are contracted here to simplify presentation.</p>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-28_rescue_prime.png" >
+    
+    <figcaption>2-round Rescue-Prime. Note that a single round, made up of two half rounds, first uses exponent 3 and then ⅓.</figcaption>
+    
+</figure>
+<figure>
+    <img src="&#x2F;blog&#x2F;2021-06-28_poseidon.png" >
+    
+    <figcaption>(2,1)-round Poseidon, i.e., the instance has 2 full rounds – 1 at the beginning, 1 at the end – and 1 partial round.</figcaption>
+    
+</figure>
+<h1 id="appendix-data">Appendix – Raw Data</h1>
+<p><a href="https://jfs.sh/blog/gb-attacking-tiny-sponge/2021-06-28_last_squeeze_attack_data.zip">Here's the data</a> this post is based on!
+Each experiment, say, (4,3)-Poseidon, comes with 4 files:
+<label for="mn-spaces" class="margin-toggle">🛈</label><input type="checkbox" id="mn-spaces" class="margin-toggle"/>
+<span class="marginnote">
+    Yes, there are spaces in the filename. 🤦 Sorry.
+
+</span>
+</p>
+<dl>
+  <dt><strong><code>poseidon_65519_(4, 3)_fgb_debug.txt</code></strong></dt>
+  <dd>debug information of FGb, described on page 12 in <a href="https://www-polsys.lip6.fr/~jcf/FGb/C/Cdoc.pdf">this document</a>.</dd>
+  <br>
+  <dt><strong><code>poseidon_65519_(4, 3)_mem.txt</code></strong></dt>
+  <dd>memory requirements over time, in KiB, one row per second.</dd>
+  <br>
+  <dt><strong><code>poseidon_65519_(4, 3)_summary.txt</code></strong></dt>
+  <dd>includes time & memory measurements, degrees, data from FGb.</dd>
+  <br>
+  <dt><strong><code>poseidon_65519_(4, 3)_sys.txt</code></strong></dt>
+  <dd>the polynomial system for which the Gröbner basis was computed.</dd>
+</dl>
+
+        </article>
+    </main>
+    <div class="blank"></div>
+</div>
+<footer>
+    <div class="copyright">
+         
+    </div>
+    
+</footer>
+<script src="/js/dark.js"></script>    
+    <script src="/js/toc.js"></script>
+    <script src="/js/progress.js"></script>
+    <script src="/js/lightense.min.js"></script>
+    <script src="/js/img.js"></script>
+    <script src="/js/katex.min.js"></script>
+    <script src="/js/mathtex-script-type.min.js"></script>
+
+</body>
+
+</html>
